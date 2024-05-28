@@ -2,7 +2,7 @@ import Image from 'next/image';
 import React from 'react';
 import { answers } from './data';
 
-const Answer = () => {
+const Answer = ({ answer }: { answer: string }) => {
   return (
     <div className='container w-full flex gap-4 h-auto shrink-0 border bg-white rounded-lg border-solid border-[#C2C2C2] p-5 lg:p-10'>
       <div className='hidden lg:block'>
@@ -47,14 +47,9 @@ const Answer = () => {
           </div>
         </div>
         <div className='flex max-w-[890px] items-center content-center gap-[15px] flex-wrap'>
-          {answers.map((item, id) => (
-            <p
-              key={id}
-              className='text-black text-base font-light leading-[152.5%]'
-            >
-              {item}
-            </p>
-          ))}
+          <p className='text-black text-base font-light leading-[152.5%] whitespace-pre-wrap'>
+            {answer}
+          </p>
         </div>
       </div>
     </div>
