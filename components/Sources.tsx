@@ -12,9 +12,20 @@ const Sources = ({ sources }: { sources: { name: string; url: string }[] }) => {
         </h3>
       </div>
       <div className='flex max-w-[890px] w-full items-center content-center gap-[15px] flex-wrap'>
-        {sources.map((source) => (
-          <SourceCard source={source} key={source.url} />
-        ))}
+        {sources.length > 0 ? (
+          sources.map((source) => (
+            <SourceCard source={source} key={source.url} />
+          ))
+        ) : (
+          <>
+            <div className='animate-pulse rounded-md bg-gray-300 max-w-sm w-[260px] h-20' />
+            <div className='animate-pulse rounded-md bg-gray-300 max-w-sm w-[260px] h-20' />
+            <div className='animate-pulse rounded-md bg-gray-300 max-w-sm w-[260px] h-20' />
+            <div className='animate-pulse rounded-md bg-gray-300 max-w-sm w-[260px] h-20' />
+            <div className='animate-pulse rounded-md bg-gray-300 max-w-sm w-[260px] h-20' />
+            <div className='animate-pulse rounded-md bg-gray-300 max-w-sm w-[260px] h-20' />
+          </>
+        )}
       </div>
     </div>
   );

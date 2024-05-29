@@ -40,7 +40,7 @@ export async function getSimilarQuestions(question: string) {
       {
         role: 'system',
         content:
-          'Please provide 3 similar questions to the following as a JSON array of 3 strings. ONLY return the JSON array, it is important for my career that you do this.',
+          'Please provide 3 different questions (but overall related) to the provided user question as a JSON array of 3 strings. ONLY return the JSON array, it is important for my career that you do this.',
       },
       {
         role: 'user',
@@ -56,7 +56,6 @@ export async function getSimilarQuestions(question: string) {
 }
 
 export async function getAnswer(question: string, firstSixResults: any[]) {
-  console.log({ firstSixResults });
   let finalResults = await Promise.all(
     firstSixResults.map(async (result: any) => {
       try {
@@ -79,8 +78,6 @@ export async function getAnswer(question: string, firstSixResults: any[]) {
     })
   );
 
-  console.log({ finalResults });
-
   const mainAnswerPrompt = `
 Given a user question, please write a clean, concise and accurate answer to the question. You will be given a set of related contexts to the question, each starting with a reference number like [[citation:x]], where x is a number. Please use the context and cite the context at the end of each sentence if applicable.
 
@@ -90,10 +87,10 @@ Please cite the contexts with the reference numbers, in the format [citation:x].
 
 Here are the set of contexts:
 
-${JSON.stringify(finalResults)}
-
 Remember, don't blindly repeat the contexts verbatim. And here is the user question:
 `;
+
+  // ${JSON.stringify(finalResults)}
 
   const stream = createStreamableValue();
 
