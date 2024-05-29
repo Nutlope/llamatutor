@@ -4,10 +4,9 @@ import Hero from '@/components/Hero';
 import InputArea from '@/components/InputArea';
 import SimilarTopics from '@/components/SimilarTopics';
 import Sources from '@/components/Sources';
-import TypeAnimation from '@/components/TypeAnimation';
 import Image from 'next/image';
 import { useEffect, useRef, useState } from 'react';
-import { getCompletion } from './actions';
+import { getAnswer, getSimilarQuestions, getSources } from './actions';
 import { readStreamableValue } from 'ai/rsc';
 
 export default function Home() {
@@ -15,8 +14,12 @@ export default function Home() {
   const [question, setQuestion] = useState('');
   const [showResult, setShowResult] = useState(false);
   const [answer, setAnswer] = useState('');
+  const [sources, setSources] = useState<{ name: string; url: string }[]>([]);
+  const [similarQuestions, setSimilarQuestions] = useState<string[]>([]);
   const [loading, setLoading] = useState(false);
   const chatContainerRef = useRef<HTMLDivElement>(null);
+
+  console.log({ sources, answer });
 
   const handleDisplayResult = async () => {
     setShowResult(true);
@@ -24,12 +27,18 @@ export default function Home() {
     setQuestion(promptValue);
     setPromptValue('');
 
-    let answer = await getCompletion(promptValue);
+    let sources = await getSources(promptValue);
+    setSources(sources);
+
+    let answer = await getAnswer(promptValue, sources);
     let textContent = '';
     for await (const delta of readStreamableValue(answer)) {
       textContent = textContent + delta;
       setAnswer(textContent);
     }
+
+    let similarQs = await getSimilarQuestions(promptValue);
+    setSimilarQuestions(similarQs);
 
     setLoading(false);
   };
@@ -74,9 +83,9 @@ export default function Home() {
                 <div className='grow'>&quot;{question}&quot;</div>
               </div>
               <>
-                {/* <Sources /> */}
+                <Sources sources={sources} />
                 <Answer answer={answer} />
-                {/* <SimilarTopics /> */}
+                <SimilarTopics similarQuestions={similarQuestions} />
               </>
             </div>
 

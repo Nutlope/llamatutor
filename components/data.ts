@@ -48,19 +48,19 @@ export const sources: sourceType[] = [
     img: '/img/indeed.svg',
   },
   {
-    id: 2,
+    id: 4,
     name: '13 tips to make you a better web designer',
     link: 'https://webflow.com/blog/web-design-tips',
     img: '/img/W.svg',
   },
   {
-    id: 3,
+    id: 5,
     name: '17 Essential Web Designer Skills',
     link: 'https://www.indeed.com/career-advice/resumes-cover-letters/web-designing-skills',
     img: '/img/indeed.svg',
   },
   {
-    id: 1,
+    id: 6,
     name: 'How To Design A Website (2024 Guide)',
     link: 'www.forbes.com/advisor/business/software/how-design-website/',
     img: '/img/F.svg',

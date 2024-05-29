@@ -10,7 +10,7 @@ const together = new Together({
   accessToken: process.env['TOGETHER_API_KEY'],
 });
 
-export async function getBingResults(question: string) {
+export async function getSources(question: string) {
   const params = new URLSearchParams({
     q: question,
     mkt: 'en-US',
@@ -31,6 +31,32 @@ export async function getBingResults(question: string) {
   const bingResults = bingJson.webPages.value;
   const firstSixResults = bingResults.slice(0, 6);
 
+  return firstSixResults;
+}
+
+export async function getSimilarQuestions(question: string) {
+  const similarQuestions = await together.chat.completions.create({
+    messages: [
+      {
+        role: 'system',
+        content:
+          'Please provide 3 similar questions to the following as a JSON array of 3 strings. ONLY return the JSON array, it is important for my career that you do this.',
+      },
+      {
+        role: 'user',
+        content: question,
+      },
+    ],
+    model: 'mistralai/Mixtral-8x7B-Instruct-v0.1',
+  });
+
+  console.log(similarQuestions.choices?.[0].message?.content);
+
+  return JSON.parse(similarQuestions.choices?.[0].message?.content);
+}
+
+export async function getAnswer(question: string, firstSixResults: any[]) {
+  console.log({ firstSixResults });
   let finalResults = await Promise.all(
     firstSixResults.map(async (result: any) => {
       try {
@@ -53,15 +79,28 @@ export async function getBingResults(question: string) {
     })
   );
 
-  return finalResults;
-}
+  console.log({ finalResults });
 
-export async function getCompletion(question: string) {
+  const mainAnswerPrompt = `
+Given a user question, please write a clean, concise and accurate answer to the question. You will be given a set of related contexts to the question, each starting with a reference number like [[citation:x]], where x is a number. Please use the context and cite the context at the end of each sentence if applicable.
+
+Your answer must be correct, accurate and written by an expert using an unbiased and professional tone. Please limit to 1024 tokens. Do not give any information that is not related to the question, and do not repeat. Say "information is missing on" followed by the related topic, if the given context do not provide sufficient information.
+
+Please cite the contexts with the reference numbers, in the format [citation:x]. If a sentence comes from multiple contexts, please list all applicable citations, like [citation:3][citation:5]. Other than code and specific names and citations, your answer must be written in the same language as the question.
+
+Here are the set of contexts:
+
+${JSON.stringify(finalResults)}
+
+Remember, don't blindly repeat the contexts verbatim. And here is the user question:
+`;
+
   const stream = createStreamableValue();
 
   (async () => {
     const chatStream = await together.chat.completions.create({
       messages: [
+        { role: 'system', content: mainAnswerPrompt },
         {
           role: 'user',
           content: question,
