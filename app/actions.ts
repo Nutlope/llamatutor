@@ -78,7 +78,9 @@ export async function getAnswer(question: string, firstSixResults: any[]) {
     })
   );
 
-  const mainAnswerPrompt = `
+  console.log({ finalResults });
+
+  const anotherAnswerPrompt = `
 Given a user question, please write a clean, concise and accurate answer to the question. You will be given a set of related contexts to the question, each starting with a reference number like [[citation:x]], where x is a number. Please use the context and cite the context at the end of each sentence if applicable.
 
 Your answer must be correct, accurate and written by an expert using an unbiased and professional tone. Please limit to 1024 tokens. Do not give any information that is not related to the question, and do not repeat. Say "information is missing on" followed by the related topic, if the given context do not provide sufficient information.
@@ -87,17 +89,50 @@ Please cite the contexts with the reference numbers, in the format [citation:x].
 
 Here are the set of contexts:
 
-Remember, don't blindly repeat the contexts verbatim. And here is the user question:
-`;
+<contexts>
+${finalResults.map(
+  (result, index) => `[[citation:${index}]] ${result.fullContent}`
+)}
+</contexts>
 
-  // ${JSON.stringify(finalResults)}
+${JSON.stringify(finalResults)}
+
+Remember, don't blindly repeat the contexts verbatim. And here is the user question:
+  `;
+
+  console.log({ anotherAnswerPrompt });
+
+  const mainAnswerPrompt = `
+Given a user question and the provided context, please write a clean, concise and accurate answer to the question. You will be given the text of several web pages in the <search_results> block below. Each page will be in its own <search_result_index> block, where index is the citation number.
+
+You have to cite the answer using [number] notation. You must cite the sentences with their relevent context number. You must cite each and every part of the answer so the user can know where the information is coming from.
+Place these citations at the end of that particular sentence. You can cite the same sentence multiple times if it is relevant to the user's query like [number1][number2].
+
+However you do not need to cite it using the same number. You can use different numbers to cite the same sentence multiple times. The number refers to the number of the search result (passed in the context) used to generate that part of the answer. I will get fired if you do not cite correctly.
+
+Please ONLY use the search results to answer the question.Your answer must be correct, accurate and written by an expert using an unbiased and professional tone. Please limit to 1024 tokens. Do not give any information that is not related to the question, and do not repeat.
+
+<search_results>
+${finalResults.map(
+  (result, index) => `
+  <search_result_ ${index}>
+    ${result.fullContent}
+  </search_result_>
+`
+)}
+</search_results>
+
+If you cannot answer the question only using the context using <search_results>, you can say that 'Sorry I could not find any relevant information on this topic. Would you like me to ask something else?'. Please do NOT answer the question if the context in <search_results> isn't enough to answer it. It is very important for my career that you follow these instructions.
+
+Here is the user question:
+`;
 
   const stream = createStreamableValue();
 
   (async () => {
     const chatStream = await together.chat.completions.create({
       messages: [
-        { role: 'system', content: mainAnswerPrompt },
+        { role: 'system', content: anotherAnswerPrompt },
         {
           role: 'user',
           content: question,
