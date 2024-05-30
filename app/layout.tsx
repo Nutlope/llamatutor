@@ -1,8 +1,6 @@
 import type { Metadata } from 'next';
-import { Inter, Lexend } from 'next/font/google';
+import { Lexend } from 'next/font/google';
 import './globals.css';
-import Footer from '@/components/common/Footer';
-import Header from '@/components/common/Header';
 
 const inter = Lexend({ subsets: ['latin'] });
 

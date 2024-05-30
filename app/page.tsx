@@ -30,44 +30,28 @@ export default function Home() {
     setQuestion(newQuestion);
     setPromptValue('');
 
-    let p1 = handleSourcesAndAnswer(newQuestion);
-    // let p2 = handleSimilarQuestions(newQuestion);
-
-    await Promise.all([p1]);
+    await handleSourcesAndAnswer(newQuestion);
+    await handleSimilarQuestions(newQuestion);
 
     setLoading(false);
   };
 
   async function handleSourcesAndAnswer(question: string) {
-    let res = await fetch('/api/getSources', {
-      method: 'POST',
-      body: JSON.stringify({ question }),
-    });
-    let sources = await res.json();
+    let sources = await getSources(question);
     setSources(sources);
 
-    let res2 = await fetch('/api/getAnswer', {
-      method: 'POST',
-      body: JSON.stringify({ question, sources }),
-    });
-    // let answers = await res2.body
-    console.log(res2.body);
-    // let answers = readStreamableValue(res2);
-    // let answers = await res.json();
+    let answer = await getAnswer(question, sources);
 
-    // let answer = await getAnswer(question, sources);
-    // console.timeEnd('answer stream');
-    // let textContent = '';
-    // for await (const delta of res2) {
-    //   console.log({ delta });
-    //   textContent = textContent + delta;
-    //   setAnswer(textContent);
-    // }
+    let textContent = '';
+    for await (const delta of readStreamableValue(answer)) {
+      textContent = textContent + delta;
+      setAnswer(textContent);
+    }
   }
 
   async function handleSimilarQuestions(question: string) {
     let similarQs = await getSimilarQuestions(question);
-    // setSimilarQuestions(similarQs);
+    setSimilarQuestions(similarQs);
   }
 
   const reset = () => {
