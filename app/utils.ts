@@ -7,8 +7,7 @@ export const cleanedText = (text: string) => {
     .replace(/\t/g, '')
     .replace(/\n+(\s*\n)*/g, '\n');
 
-  if (newText.length > 40000) {
-    return newText.substring(0, 40000);
-  }
-  return newText;
+  let finalText = newText.substring(0, 40000);
+
+  return finalText;
 };
