@@ -7,7 +7,7 @@ import { JSDOM } from 'jsdom';
 import { cleanedText } from './utils';
 
 const together = new Together({
-  accessToken: process.env['TOGETHER_API_KEY'],
+  apiKey: process.env['TOGETHER_API_KEY'],
 });
 
 export async function getSources(question: string) {
