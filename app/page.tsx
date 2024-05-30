@@ -1,4 +1,5 @@
 'use client';
+
 import Answer from '@/components/Answer';
 import Hero from '@/components/Hero';
 import InputArea from '@/components/InputArea';

@@ -1,5 +1,4 @@
 import Image from 'next/image';
-import React from 'react';
 import SourceCard from './SourceCard';
 
 const Sources = ({ sources }: { sources: { name: string; url: string }[] }) => {

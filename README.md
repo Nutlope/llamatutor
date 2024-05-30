@@ -20,20 +20,28 @@ Open source perplexity.
 
 ## Tasks
 
+- [x] Add helicone for observability
+- [ ] Make sure to restrict answer to 32k total tokens
+- [ ] Make sure similar topics shows up well in 3 items
+- [ ] Make sure similar topics works when you click on it
 - [ ] Optimize the answer prompt
+- [ ] Add the right favicon
 - [ ] Fix answer to show the right citations in the right way
-
+- [ ] Add OG image and info
 - [ ] Add loading state for similar topics
 - [ ] Replace all icons with SVGs
-- [ ] Make sure similar topics shows up well in 3 items
-- [ ] Add helicone for observability
-
 - [ ] Fix mobile mode to look good
-- [ ] Fix hard refresh in header and footer
 
 ## Future tasks
 
+- [ ] Fix hard refresh in header and footer
 - [ ] Add upstash redis for caching & rate limiting
 - [ ] Add in more advanced RAG techniques like keyword search & question rephrasing
 - [ ] Add authentication with Clerk
 - [ ] Add postgres/prisma to save the user's prompts
+
+## Inspiration
+
+- Perplexity
+- You.com
+- Lepton search

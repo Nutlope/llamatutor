@@ -49,7 +49,7 @@ const Answer = ({ answer }: { answer: string }) => {
         <div className='flex items-center content-center gap-[15px] flex-wrap'>
           <div className='text-black w-full text-base font-light leading-[152.5%] whitespace-pre-wrap'>
             {answer ? (
-              answer
+              answer.trim()
             ) : (
               <div className='flex flex-col gap-2 w-full'>
                 <div className='animate-pulse rounded-md bg-gray-300 w-full h-6' />

@@ -8,6 +8,10 @@ import { cleanedText } from './utils';
 
 const together = new Together({
   apiKey: process.env['TOGETHER_API_KEY'],
+  baseURL: 'https://together.helicone.ai/v1',
+  defaultHeaders: {
+    'Helicone-Auth': `Bearer ${process.env.HELICONE_API_KEY}`,
+  },
 });
 
 export async function getSources(question: string) {
@@ -47,7 +51,7 @@ export async function getSimilarQuestions(question: string) {
         content: question,
       },
     ],
-    model: 'mistralai/Mixtral-8x7B-Instruct-v0.1',
+    model: 'meta-llama/Llama-3-8b-chat-hf',
   });
 
   console.log(similarQuestions.choices?.[0].message?.content);

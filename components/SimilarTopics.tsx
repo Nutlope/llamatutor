@@ -1,6 +1,5 @@
 import Image from 'next/image';
 import React from 'react';
-import { similarTopics } from './data';
 
 const SimilarTopics = ({
   similarQuestions,
