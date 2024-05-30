@@ -23,10 +23,9 @@ Open source perplexity.
 - [x] Add helicone for observability
 - [x] Make sure to restrict answer to 32k total tokens
 - [x] Make sure similar topics shows up well in 3 items
+- [x] Improve all prompts
 - [ ] Make sure similar topics works when you click on it
-- [x] Optimize the answer prompt
 - [ ] Add the right favicon
-- [ ] Fix answer to show the right citations in the right way
 - [ ] Add OG image and info
 - [ ] Add loading state for similar topics
 - [ ] Replace all icons with SVGs
@@ -34,6 +33,7 @@ Open source perplexity.
 
 ## Future tasks
 
+- [ ] Make sure the answer correctly cites all the sources in the text & number the citations in the UI
 - [ ] Add input validation with retries to make sure similar topics is always an array of 3
 - [ ] Fix hard refresh in header and footer
 - [ ] Add upstash redis for caching & rate limiting
