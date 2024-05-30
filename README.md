@@ -24,18 +24,22 @@ Open source perplexity.
 - [x] Make sure to restrict answer to 32k total tokens
 - [x] Make sure similar topics shows up well in 3 items
 - [x] Improve all prompts
-- [ ] Make sure similar topics works when you click on it
+- [x] Code cleanup
+- [x] Fixed asking follow up questions
+- [x] Make sure similar topics works when you click on it
+- [ ] Add loading state for similar topics
 - [ ] Add the right favicon
 - [ ] Add OG image and info
-- [ ] Add loading state for similar topics
 - [ ] Replace all icons with SVGs
 - [ ] Fix mobile mode to look good
 
 ## Future tasks
 
+- [ ] Parallelize the calls to get the related questions + the answer
 - [ ] Make sure the answer correctly cites all the sources in the text & number the citations in the UI
 - [ ] Add input validation with retries to make sure similar topics is always an array of 3
 - [ ] Fix hard refresh in header and footer
+- [ ] Restrict the info being sent from sources
 - [ ] Add upstash redis for caching & rate limiting
 - [ ] Add in more advanced RAG techniques like keyword search & question rephrasing
 - [ ] Add authentication with Clerk

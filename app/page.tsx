@@ -6,7 +6,7 @@ import InputArea from '@/components/InputArea';
 import SimilarTopics from '@/components/SimilarTopics';
 import Sources from '@/components/Sources';
 import Image from 'next/image';
-import { useEffect, useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 import { getAnswer, getSimilarQuestions, getSources } from './actions';
 import { readStreamableValue } from 'ai/rsc';
 import Header from '@/components/common/Header';
@@ -22,27 +22,53 @@ export default function Home() {
   const [loading, setLoading] = useState(false);
   const chatContainerRef = useRef<HTMLDivElement>(null);
 
-  const handleDisplayResult = async () => {
+  const handleDisplayResult = async (newQuestion?: string) => {
+    newQuestion = newQuestion || promptValue;
+
     setShowResult(true);
     setLoading(true);
-    setQuestion(promptValue);
+    setQuestion(newQuestion);
     setPromptValue('');
 
-    let sources = await getSources(promptValue);
-    setSources(sources);
+    let p1 = handleSourcesAndAnswer(newQuestion);
+    // let p2 = handleSimilarQuestions(newQuestion);
 
-    let answer = await getAnswer(promptValue, sources);
-    let textContent = '';
-    for await (const delta of readStreamableValue(answer)) {
-      textContent = textContent + delta;
-      setAnswer(textContent);
-    }
-
-    let similarQs = await getSimilarQuestions(promptValue);
-    setSimilarQuestions(similarQs);
+    await Promise.all([p1]);
 
     setLoading(false);
   };
+
+  async function handleSourcesAndAnswer(question: string) {
+    let res = await fetch('/api/getSources', {
+      method: 'POST',
+      body: JSON.stringify({ question }),
+    });
+    let sources = await res.json();
+    setSources(sources);
+
+    let res2 = await fetch('/api/getAnswer', {
+      method: 'POST',
+      body: JSON.stringify({ question, sources }),
+    });
+    // let answers = await res2.body
+    console.log(res2.body);
+    // let answers = readStreamableValue(res2);
+    // let answers = await res.json();
+
+    // let answer = await getAnswer(question, sources);
+    // console.timeEnd('answer stream');
+    // let textContent = '';
+    // for await (const delta of res2) {
+    //   console.log({ delta });
+    //   textContent = textContent + delta;
+    //   setAnswer(textContent);
+    // }
+  }
+
+  async function handleSimilarQuestions(question: string) {
+    let similarQs = await getSimilarQuestions(question);
+    // setSimilarQuestions(similarQs);
+  }
 
   const reset = () => {
     setShowResult(false);
@@ -53,18 +79,9 @@ export default function Home() {
     setSimilarQuestions([]);
   };
 
-  // useEffect(() => {
-  //   // Scroll to the bottom whenever messages change
-  //   if (chatContainerRef.current && messages?.length > 0) {
-  //     chatContainerRef.current.scrollIntoView({
-  //       behavior: 'smooth',
-  //     });
-  //   }
-  // }, [messages]);
-
   return (
     <>
-      <Header onReset={reset} />
+      <Header />
       <main className='px-4 pb-4 h-full'>
         {!showResult && (
           <Hero
@@ -74,7 +91,6 @@ export default function Home() {
           />
         )}
 
-        {/* result components. this components display depend on system response */}
         {showResult && (
           <div className='w-full grow h-full min-h-[68vh] flex flex-col justify-between '>
             <div className='w-full container space-y-2'>
@@ -97,7 +113,12 @@ export default function Home() {
                 <>
                   <Sources sources={sources} />
                   <Answer answer={answer} />
-                  <SimilarTopics similarQuestions={similarQuestions} />
+                  <SimilarTopics
+                    similarQuestions={similarQuestions}
+                    setPromptValue={setPromptValue}
+                    handleDisplayResult={handleDisplayResult}
+                    reset={reset}
+                  />
                 </>
               </div>
 
@@ -109,12 +130,13 @@ export default function Home() {
                 setPromptValue={setPromptValue}
                 handleDisplayResult={handleDisplayResult}
                 disabled={loading}
+                reset={reset}
               />
             </div>
           </div>
         )}
       </main>
-      <Footer onReset={reset} />
+      <Footer />
     </>
   );
 }

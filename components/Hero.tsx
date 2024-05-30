@@ -1,7 +1,6 @@
 import Image from 'next/image';
 import React, { FC } from 'react';
 import InputArea from './InputArea';
-import { suggestions } from './data';
 
 type THeroProps = {
   promptValue: string;
@@ -81,5 +80,29 @@ const Hero: FC<THeroProps> = ({
     </div>
   );
 };
+
+type suggestionType = {
+  id: number;
+  name: string;
+  icon: string;
+};
+
+const suggestions: suggestionType[] = [
+  {
+    id: 1,
+    name: 'How does photosynthesis work?',
+    icon: '/img/icon _leaf_.svg',
+  },
+  {
+    id: 2,
+    name: 'What are the benefits of regular exercise?',
+    icon: '/img/icon _dumbell_.svg',
+  },
+  {
+    id: 3,
+    name: 'Can you explain the theory of relativity?',
+    icon: '/img/icon _atom_.svg',
+  },
+];
 
 export default Hero;

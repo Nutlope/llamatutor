@@ -1,21 +1,11 @@
 import Image from 'next/image';
 import Link from 'next/link';
 
-const Footer = ({ onReset }: { onReset: () => void }) => {
+const Footer = () => {
   return (
     <>
       <div className=' container px-4 lg:px-0 min-h-[72px] lg:py-5 pt-5 flex justify-between items-center border-t border-[#D2D2D2] lg:min-h-[72px] pb-3'>
-        <a
-          href='/'
-          className='flex items-center gap-2.5'
-          // onClick={(e) => {
-          //   let isUnmodifiedLeftClick = !e.ctrlKey && !e.metaKey;
-          //   if (isUnmodifiedLeftClick) {
-          //     e.preventDefault();
-          //     onReset();
-          //   }
-          // }}
-        >
+        <a href='/' className='flex items-center gap-2.5'>
           <Image src='/img/logo.svg' alt='footer' width={31} height={30} />
           <span className='text-base   font-medium leading-[normal]'>
             TurboSeek.io
