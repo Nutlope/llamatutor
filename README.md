@@ -33,16 +33,11 @@
 5. Create a `.env` (use the `.example.env` for reference) and replace the API keys
 6. Run `npm install` and `npm run dev` to install dependencies and run locally
 
-## Tasks
-
-- [ ] Add loading state for similar topics
-- [ ] Add the right favicon
-- [ ] Replace all icons with SVGs
-- [ ] Fix mobile mode to look good
-
 ## Future tasks
 
 - [ ] Make sure the answer correctly cites all the sources in the text & number the citations in the UI
+- [ ] Automatically scroll when an answer is happening, esp for mobile
+- [ ] Add sharability to allow folks to share answers
 - [ ] Parallelize the calls to get the related questions + the answer at the same time, move to route handlers
 - [ ] Add input validation with retries to make sure similar topics is always an array of 3
 - [ ] Fix hard refresh in the header and footer by migrating answers to a new page

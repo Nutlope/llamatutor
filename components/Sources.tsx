@@ -1,28 +1,28 @@
-import Image from 'next/image';
-import SourceCard from './SourceCard';
+import Image from "next/image";
+import SourceCard from "./SourceCard";
 
 const Sources = ({ sources }: { sources: { name: string; url: string }[] }) => {
   return (
-    <div className='container w-full h-auto shrink-0 border bg-white rounded-lg border-solid border-[#C2C2C2] lg:p-10 p-5'>
-      <div className='flex items-start gap-4 pb-3 lg:pb-3.5'>
-        <Image src='/img/sources.png' alt='footer' width={24} height={24} />
-        <h3 className='text-black text-base   font-bold leading-[152.5%] uppercase'>
-          sources:{' '}
+    <div className="container h-auto w-full shrink-0 rounded-lg border border-solid border-[#C2C2C2] bg-white p-5 lg:p-10">
+      <div className="flex items-start gap-4 pb-3 lg:pb-3.5">
+        <Image src="/img/sources.svg" alt="footer" width={24} height={24} />
+        <h3 className="text-base font-bold uppercase leading-[152.5%] text-black">
+          sources:{" "}
         </h3>
       </div>
-      <div className='flex max-w-[890px] w-full items-center content-center gap-[15px] flex-wrap'>
+      <div className="flex w-full max-w-[890px] flex-wrap content-center items-center gap-[15px]">
         {sources.length > 0 ? (
           sources.map((source) => (
             <SourceCard source={source} key={source.url} />
           ))
         ) : (
           <>
-            <div className='animate-pulse rounded-md bg-gray-300 max-w-sm w-[260px] h-20' />
-            <div className='animate-pulse rounded-md bg-gray-300 max-w-sm w-[260px] h-20' />
-            <div className='animate-pulse rounded-md bg-gray-300 max-w-sm w-[260px] h-20' />
-            <div className='animate-pulse rounded-md bg-gray-300 max-w-sm w-[260px] h-20' />
-            <div className='animate-pulse rounded-md bg-gray-300 max-w-sm w-[260px] h-20' />
-            <div className='animate-pulse rounded-md bg-gray-300 max-w-sm w-[260px] h-20' />
+            <div className="h-20 w-[260px] max-w-sm animate-pulse rounded-md bg-gray-300" />
+            <div className="h-20 w-[260px] max-w-sm animate-pulse rounded-md bg-gray-300" />
+            <div className="h-20 w-[260px] max-w-sm animate-pulse rounded-md bg-gray-300" />
+            <div className="h-20 w-[260px] max-w-sm animate-pulse rounded-md bg-gray-300" />
+            <div className="h-20 w-[260px] max-w-sm animate-pulse rounded-md bg-gray-300" />
+            <div className="h-20 w-[260px] max-w-sm animate-pulse rounded-md bg-gray-300" />
           </>
         )}
       </div>

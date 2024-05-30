@@ -1,6 +1,6 @@
-import Image from 'next/image';
-import React, { FC } from 'react';
-import InputArea from './InputArea';
+import Image from "next/image";
+import { FC } from "react";
+import InputArea from "./InputArea";
 
 type THeroProps = {
   promptValue: string;
@@ -18,23 +18,23 @@ const Hero: FC<THeroProps> = ({
   };
 
   return (
-    <div className='flex flex-col items-center justify-center'>
+    <div className="flex flex-col items-center justify-center">
       <a
-        className='inline-flex h-7 items-center gap-[9px] shrink-0 bg-white shadow-[0px_1px_1px_0px_rgba(0,0,0,0.25)] px-2.5 py-1 rounded-[50px] border-[0.5px] border-solid border-[#E6E6E6] mb-4'
-        href='https://www.together.ai/'
-        target='_blank'
+        className="mb-4 inline-flex h-7 shrink-0 items-center gap-[9px] rounded-[50px] border-[0.5px] border-solid border-[#E6E6E6] bg-white px-3 py-4 shadow-[0px_1px_1px_0px_rgba(0,0,0,0.25)]"
+        href="https://www.together.ai/"
+        target="_blank"
       >
-        <Image src='/img/together-ai.png' alt='hero' width={18} height={18} />
-        <span className='text-[#1B1B16] text-center text-base   font-light leading-[normal]'>
+        <Image src="/img/together-ai.svg" alt="hero" width={18} height={18} />
+        <span className="text-center text-base font-light leading-[normal] text-[#1B1B16]">
           Powered by Together AI
         </span>
       </a>
-      <h2 className='text-center text-3xl lg:text-[64px] font-semibold leading-[normal] bg-custom-gradient bg-clip-text pb-7 pt-2 '>
+      <h2 className="bg-custom-gradient bg-clip-text pb-7 pt-2 text-center text-3xl font-semibold leading-[normal] lg:text-[64px]">
         Search smarter & faster
       </h2>
 
       {/* input section */}
-      <div className='max-w-[708px] w-full pb-6 '>
+      <div className="w-full max-w-[708px] pb-6">
         <InputArea
           promptValue={promptValue}
           setPromptValue={setPromptValue}
@@ -43,10 +43,10 @@ const Hero: FC<THeroProps> = ({
       </div>
 
       {/* Suggestions section */}
-      <div className='flex flex-wrap lg:flex-nowrap items-center gap-2.5 pb-[30px] sm:justify-normal justify-center '>
+      <div className="flex flex-wrap items-center justify-center gap-2.5 pb-[30px] lg:flex-nowrap lg:justify-normal">
         {suggestions.map((item) => (
           <div
-            className='rounded border flex cursor-pointer bg-[#EDEDEA] border-solid border-[#C1C1C1] h-[35px] justify-center items-center gap-[5px] px-2.5 py-2'
+            className="flex h-[35px] cursor-pointer items-center justify-center gap-[5px] rounded border border-solid border-[#C1C1C1] bg-[#EDEDEA] px-2.5 py-2"
             onClick={() => handleClickSuggestion(item?.name)}
             key={item.id}
           >
@@ -55,9 +55,9 @@ const Hero: FC<THeroProps> = ({
               alt={item.name}
               width={18}
               height={16}
-              className='w-[18px]'
+              className="w-[18px]"
             />
-            <span className='text-[#1B1B16] text-sm   font-light leading-[normal]'>
+            <span className="text-sm font-light leading-[normal] text-[#1B1B16]">
               {item.name}
             </span>
           </div>
@@ -65,13 +65,13 @@ const Hero: FC<THeroProps> = ({
       </div>
 
       {/* Github link section */}
-      <p className='text-[#1B1B16] text-center text-sm   font-light leading-[normal]'>
-        Fully open source!{' '}
-        <span className='text-sm font-medium underline'>
+      <p className="text-center text-sm font-light leading-[normal] text-[#1B1B16]">
+        Fully open source!{" "}
+        <span className="text-sm font-medium underline">
           <a
-            href='https://github.com'
-            target='_blank'
-            rel='noopener noreferrer'
+            href="https://github.com/Nutlope/turboseek"
+            target="_blank"
+            rel="noopener noreferrer"
           >
             Star it on github.
           </a>
@@ -90,18 +90,18 @@ type suggestionType = {
 const suggestions: suggestionType[] = [
   {
     id: 1,
-    name: 'How does photosynthesis work?',
-    icon: '/img/icon _leaf_.svg',
+    name: "How does photosynthesis work?",
+    icon: "/img/icon _leaf_.svg",
   },
   {
     id: 2,
-    name: 'What are the benefits of regular exercise?',
-    icon: '/img/icon _dumbell_.svg',
+    name: "What are the benefits of regular exercise?",
+    icon: "/img/icon _dumbell_.svg",
   },
   {
     id: 3,
-    name: 'Can you explain the theory of relativity?',
-    icon: '/img/icon _atom_.svg',
+    name: "Can you explain the theory of relativity?",
+    icon: "/img/icon _atom_.svg",
   },
 ];
 

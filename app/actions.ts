@@ -1,33 +1,33 @@
-'use server';
+"use server";
 
-import { createStreamableValue } from 'ai/rsc';
-import Together from 'together-ai';
-import { Readability } from '@mozilla/readability';
-import { JSDOM } from 'jsdom';
+import { createStreamableValue } from "ai/rsc";
+import Together from "together-ai";
+import { Readability } from "@mozilla/readability";
+import { JSDOM } from "jsdom";
 
 const together = new Together({
-  apiKey: process.env['TOGETHER_API_KEY'],
-  baseURL: 'https://together.helicone.ai/v1',
+  apiKey: process.env["TOGETHER_API_KEY"],
+  baseURL: "https://together.helicone.ai/v1",
   defaultHeaders: {
-    'Helicone-Auth': `Bearer ${process.env.HELICONE_API_KEY}`,
+    "Helicone-Auth": `Bearer ${process.env.HELICONE_API_KEY}`,
   },
 });
 
 export async function getSources(question: string) {
   const params = new URLSearchParams({
     q: question,
-    mkt: 'en-US',
+    mkt: "en-US",
   });
 
   const response = await fetch(
     `https://api.bing.microsoft.com/v7.0/search?${params}`,
     {
-      method: 'GET',
+      method: "GET",
       // @ts-ignore since that header key isn't part of the header type
       headers: {
-        'Ocp-Apim-Subscription-Key': process.env['BING_API_KEY'],
+        "Ocp-Apim-Subscription-Key": process.env["BING_API_KEY"],
       },
-    }
+    },
   );
 
   const bingJson = await response.json();
@@ -41,18 +41,18 @@ export async function getSimilarQuestions(question: string) {
   const similarQuestions = await together.chat.completions.create({
     messages: [
       {
-        role: 'system',
+        role: "system",
         content: `
           You are a helpful assistant that helps the user to ask related questions, based on user's original question. Please identify worthwhile topics that can be follow-ups, and write 3 questions no longer than 20 words each. Please make sure that specifics, like events, names, locations, are included in follow up questions so they can be asked standalone. For example, if the original question asks about "the Manhattan project", in the follow up question, do not just say "the project", but use the full name "the Manhattan project". Your related questions must be in the same language as the original question.
 
           Please provide these 3 related questions as a JSON array of 3 strings. Do NOT repeat the original question. ONLY return the JSON array, it is important for my career that you do this. Here is the user's question:`,
       },
       {
-        role: 'user',
+        role: "user",
         content: question,
       },
     ],
-    model: 'meta-llama/Llama-3-8b-chat-hf',
+    model: "meta-llama/Llama-3-8b-chat-hf",
   });
 
   let questions = similarQuestions.choices?.[0].message?.content;
@@ -81,7 +81,7 @@ export async function getAnswer(question: string, firstSixResults: any[]) {
         console.log(e);
         return;
       }
-    })
+    }),
   );
 
   const mainAnswerPrompt = `
@@ -93,7 +93,7 @@ export async function getAnswer(question: string, firstSixResults: any[]) {
 
   <contexts>
   ${finalResults.map(
-    (result, index) => `[[citation:${index}]] ${result.fullContent} \n\n`
+    (result, index) => `[[citation:${index}]] ${result.fullContent} \n\n`,
   )}
   </contexts>
 
@@ -105,13 +105,13 @@ export async function getAnswer(question: string, firstSixResults: any[]) {
   (async () => {
     const chatStream = await together.chat.completions.create({
       messages: [
-        { role: 'system', content: mainAnswerPrompt },
+        { role: "system", content: mainAnswerPrompt },
         {
-          role: 'user',
+          role: "user",
           content: question,
         },
       ],
-      model: 'mistralai/Mixtral-8x7B-Instruct-v0.1',
+      model: "mistralai/Mixtral-8x7B-Instruct-v0.1",
       stream: true,
     });
 
@@ -127,11 +127,11 @@ export async function getAnswer(question: string, firstSixResults: any[]) {
 const cleanedText = (text: string) => {
   let newText = text
     .trim()
-    .replace(/(\n){4,}/g, '\n\n\n')
-    .replace(/\n\n/g, ' ')
-    .replace(/ {3,}/g, '  ')
-    .replace(/\t/g, '')
-    .replace(/\n+(\s*\n)*/g, '\n');
+    .replace(/(\n){4,}/g, "\n\n\n")
+    .replace(/\n\n/g, " ")
+    .replace(/ {3,}/g, "  ")
+    .replace(/\t/g, "")
+    .replace(/\n+(\s*\n)*/g, "\n");
 
   let finalText = newText.substring(0, 40000);
 

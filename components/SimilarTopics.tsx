@@ -1,4 +1,4 @@
-import Image from 'next/image';
+import Image from "next/image";
 
 const SimilarTopics = ({
   similarQuestions,
@@ -10,61 +10,58 @@ const SimilarTopics = ({
   reset: () => void;
 }) => {
   return (
-    <div className='container w-full flex gap-4 h-auto shrink-0 border bg-white rounded-lg border-solid border-[#C2C2C2] lg:p-10 p-5'>
-      <div className='hidden lg:block'>
+    <div className="container flex h-auto w-full shrink-0 gap-4 rounded-lg border border-solid border-[#C2C2C2] bg-white p-5 lg:p-10">
+      <div className="hidden lg:block">
         <Image
-          src='/img/similarTopics.svg'
-          alt='footer'
+          src="/img/similarTopics.svg"
+          alt="footer"
           width={24}
           height={24}
         />
       </div>
-      <div className='divide-y divide-[#E5E5E5] flex-1'>
-        <div className='flex gap-4 pb-3'>
+      <div className="flex-1 divide-y divide-[#E5E5E5]">
+        <div className="flex gap-4 pb-3">
           <Image
-            src='/img/similarTopics.svg'
-            alt='footer'
+            src="/img/similarTopics.svg"
+            alt="footer"
             width={24}
             height={24}
-            className='block lg:hidden'
+            className="block lg:hidden"
           />
-          <h3 className='text-black text-base font-bold  uppercase'>
-            Similar topics:{' '}
+          <h3 className="text-base font-bold uppercase text-black">
+            Similar topics:{" "}
           </h3>
         </div>
 
-        <div className=' max-w-[890px] divide-y divide-[#E5E5E5] space-y-[15px]'>
+        <div className="max-w-[890px] space-y-[15px] divide-y divide-[#E5E5E5]">
           {similarQuestions.length > 0 ? (
             similarQuestions.map((item) => (
               <button
-                className='flex items-center gap-4 pt-3.5 cursor-pointer'
+                className="flex cursor-pointer items-center gap-4 pt-3.5"
                 key={item}
                 onClick={() => {
                   reset();
                   handleDisplayResult(item);
                 }}
               >
-                <div className='flex items-center'>
+                <div className="flex items-center">
                   <Image
-                    src='/img/arrow-circle-up-right.svg'
-                    alt='footer'
+                    src="/img/arrow-circle-up-right.svg"
+                    alt="footer"
                     width={24}
                     height={24}
                   />
                 </div>
-                <p className='text-[#1B1B16] [leading-trim:both] [text-edge:cap] text-sm font-light leading-[normal]'>
+                <p className="text-sm font-light leading-[normal] text-[#1B1B16] [leading-trim:both] [text-edge:cap]">
                   {item}
                 </p>
               </button>
             ))
           ) : (
             <>
-              <div className='animate-pulse rounded-md bg-gray-300 max-w-sm w-[260px] h-20' />
-              <div className='animate-pulse rounded-md bg-gray-300 max-w-sm w-[260px] h-20' />
-              <div className='animate-pulse rounded-md bg-gray-300 max-w-sm w-[260px] h-20' />
-              <div className='animate-pulse rounded-md bg-gray-300 max-w-sm w-[260px] h-20' />
-              <div className='animate-pulse rounded-md bg-gray-300 max-w-sm w-[260px] h-20' />
-              <div className='animate-pulse rounded-md bg-gray-300 max-w-sm w-[260px] h-20' />
+              <div className="h-10 w-full animate-pulse rounded-md bg-gray-300" />
+              <div className="h-10 w-full animate-pulse rounded-md bg-gray-300" />
+              <div className="h-10 w-full animate-pulse rounded-md bg-gray-300" />
             </>
           )}
         </div>

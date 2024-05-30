@@ -1,22 +1,22 @@
-'use client';
+"use client";
 
-import Answer from '@/components/Answer';
-import Hero from '@/components/Hero';
-import InputArea from '@/components/InputArea';
-import SimilarTopics from '@/components/SimilarTopics';
-import Sources from '@/components/Sources';
-import Image from 'next/image';
-import { useRef, useState } from 'react';
-import { getAnswer, getSimilarQuestions, getSources } from './actions';
-import { readStreamableValue } from 'ai/rsc';
-import Header from '@/components/Header';
-import Footer from '@/components/Footer';
+import Answer from "@/components/Answer";
+import Hero from "@/components/Hero";
+import InputArea from "@/components/InputArea";
+import SimilarTopics from "@/components/SimilarTopics";
+import Sources from "@/components/Sources";
+import Image from "next/image";
+import { useRef, useState } from "react";
+import { getAnswer, getSimilarQuestions, getSources } from "./actions";
+import { readStreamableValue } from "ai/rsc";
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
 
 export default function Home() {
-  const [promptValue, setPromptValue] = useState('');
-  const [question, setQuestion] = useState('');
+  const [promptValue, setPromptValue] = useState("");
+  const [question, setQuestion] = useState("");
   const [showResult, setShowResult] = useState(false);
-  const [answer, setAnswer] = useState('');
+  const [answer, setAnswer] = useState("");
   const [sources, setSources] = useState<{ name: string; url: string }[]>([]);
   const [similarQuestions, setSimilarQuestions] = useState<string[]>([]);
   const [loading, setLoading] = useState(false);
@@ -28,7 +28,7 @@ export default function Home() {
     setShowResult(true);
     setLoading(true);
     setQuestion(newQuestion);
-    setPromptValue('');
+    setPromptValue("");
 
     await handleSourcesAndAnswer(newQuestion);
     await handleSimilarQuestions(newQuestion);
@@ -42,7 +42,7 @@ export default function Home() {
 
     let answer = await getAnswer(question, sources);
 
-    let textContent = '';
+    let textContent = "";
     for await (const delta of readStreamableValue(answer)) {
       textContent = textContent + delta;
       setAnswer(textContent);
@@ -56,9 +56,9 @@ export default function Home() {
 
   const reset = () => {
     setShowResult(false);
-    setPromptValue('');
-    setQuestion('');
-    setAnswer('');
+    setPromptValue("");
+    setQuestion("");
+    setAnswer("");
     setSources([]);
     setSimilarQuestions([]);
   };
@@ -66,7 +66,7 @@ export default function Home() {
   return (
     <>
       <Header />
-      <main className='px-4 pb-4 h-full'>
+      <main className="h-full px-4 pb-4">
         {!showResult && (
           <Hero
             promptValue={promptValue}
@@ -76,23 +76,23 @@ export default function Home() {
         )}
 
         {showResult && (
-          <div className='w-full grow h-full min-h-[68vh] flex flex-col justify-between '>
-            <div className='w-full container space-y-2'>
-              <div className='container space-y-2'>
-                <div className='w-full flex items-start gap-3 container px-5 lg:px-10 pt-2'>
-                  <div className='w-fit flex gap-4 items-center'>
+          <div className="flex h-full min-h-[68vh] w-full grow flex-col justify-between">
+            <div className="container w-full space-y-2">
+              <div className="container space-y-2">
+                <div className="container flex w-full items-start gap-3 px-5 pt-2 lg:px-10">
+                  <div className="flex w-fit items-center gap-4">
                     <Image
-                      src={'/img/message-question-circle.svg'}
-                      alt='message'
+                      src={"/img/message-question-circle.svg"}
+                      alt="message"
                       width={30}
                       height={30}
-                      className='size-[24px]'
+                      className="size-[24px]"
                     />
-                    <p className='text-black font-bold leading-[152%] uppercase'>
+                    <p className="pr-5 font-bold uppercase leading-[152%] text-black">
                       Question:
                     </p>
                   </div>
-                  <div className='grow'>&quot;{question}&quot;</div>
+                  <div className="grow">&quot;{question}&quot;</div>
                 </div>
                 <>
                   <Sources sources={sources} />
@@ -105,9 +105,9 @@ export default function Home() {
                 </>
               </div>
 
-              <div className='pt-1 sm:pt-2' ref={chatContainerRef}></div>
+              <div className="pt-1 sm:pt-2" ref={chatContainerRef}></div>
             </div>
-            <div className='container px-4 lg:px-0'>
+            <div className="container px-4 lg:px-0">
               <InputArea
                 promptValue={promptValue}
                 setPromptValue={setPromptValue}
