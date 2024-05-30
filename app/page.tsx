@@ -9,8 +9,8 @@ import Image from 'next/image';
 import { useRef, useState } from 'react';
 import { getAnswer, getSimilarQuestions, getSources } from './actions';
 import { readStreamableValue } from 'ai/rsc';
-import Header from '@/components/common/Header';
-import Footer from '@/components/common/Footer';
+import Header from '@/components/Header';
+import Footer from '@/components/Footer';
 
 export default function Home() {
   const [promptValue, setPromptValue] = useState('');

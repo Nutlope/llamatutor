@@ -4,7 +4,6 @@ import { createStreamableValue } from 'ai/rsc';
 import Together from 'together-ai';
 import { Readability } from '@mozilla/readability';
 import { JSDOM } from 'jsdom';
-import { cleanedText } from './utils';
 
 const together = new Together({
   apiKey: process.env['TOGETHER_API_KEY'],
@@ -124,3 +123,17 @@ export async function getAnswer(question: string, firstSixResults: any[]) {
 
   return stream.value;
 }
+
+const cleanedText = (text: string) => {
+  let newText = text
+    .trim()
+    .replace(/(\n){4,}/g, '\n\n\n')
+    .replace(/\n\n/g, ' ')
+    .replace(/ {3,}/g, '  ')
+    .replace(/\t/g, '')
+    .replace(/\n+(\s*\n)*/g, '\n');
+
+  let finalText = newText.substring(0, 40000);
+
+  return finalText;
+};

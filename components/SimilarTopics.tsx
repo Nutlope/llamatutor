@@ -3,12 +3,10 @@ import Image from 'next/image';
 const SimilarTopics = ({
   similarQuestions,
   handleDisplayResult,
-  setPromptValue,
   reset,
 }: {
   similarQuestions: string[];
-  handleDisplayResult: () => void;
-  setPromptValue: React.Dispatch<React.SetStateAction<string>>;
+  handleDisplayResult: (item: string) => void;
   reset: () => void;
 }) => {
   return (

@@ -14,6 +14,7 @@
     "framer-motion": "^11.2.6",
     "jsdom": "^24.1.0",
     "next": "14.2.3",
+    "next-plausible": "^3.12.0",
     "react": "^18",
     "react-dom": "^18",
     "together-ai": "^0.6.0-alpha.3"
