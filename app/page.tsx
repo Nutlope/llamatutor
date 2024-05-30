@@ -99,7 +99,6 @@ export default function Home() {
                   <Answer answer={answer} />
                   <SimilarTopics
                     similarQuestions={similarQuestions}
-                    setPromptValue={setPromptValue}
                     handleDisplayResult={handleDisplayResult}
                     reset={reset}
                   />

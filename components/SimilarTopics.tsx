@@ -34,28 +34,39 @@ const SimilarTopics = ({
         </div>
 
         <div className=' max-w-[890px] divide-y divide-[#E5E5E5] space-y-[15px]'>
-          {similarQuestions.map((item) => (
-            <button
-              className='flex items-center gap-4 pt-3.5 cursor-pointer'
-              key={item}
-              onClick={() => {
-                reset();
-                handleDisplayResult(item);
-              }}
-            >
-              <div className='flex items-center'>
-                <Image
-                  src='/img/arrow-circle-up-right.svg'
-                  alt='footer'
-                  width={24}
-                  height={24}
-                />
-              </div>
-              <p className='text-[#1B1B16] [leading-trim:both] [text-edge:cap] text-sm font-light leading-[normal]'>
-                {item}
-              </p>
-            </button>
-          ))}
+          {similarQuestions.length > 0 ? (
+            similarQuestions.map((item) => (
+              <button
+                className='flex items-center gap-4 pt-3.5 cursor-pointer'
+                key={item}
+                onClick={() => {
+                  reset();
+                  handleDisplayResult(item);
+                }}
+              >
+                <div className='flex items-center'>
+                  <Image
+                    src='/img/arrow-circle-up-right.svg'
+                    alt='footer'
+                    width={24}
+                    height={24}
+                  />
+                </div>
+                <p className='text-[#1B1B16] [leading-trim:both] [text-edge:cap] text-sm font-light leading-[normal]'>
+                  {item}
+                </p>
+              </button>
+            ))
+          ) : (
+            <>
+              <div className='animate-pulse rounded-md bg-gray-300 max-w-sm w-[260px] h-20' />
+              <div className='animate-pulse rounded-md bg-gray-300 max-w-sm w-[260px] h-20' />
+              <div className='animate-pulse rounded-md bg-gray-300 max-w-sm w-[260px] h-20' />
+              <div className='animate-pulse rounded-md bg-gray-300 max-w-sm w-[260px] h-20' />
+              <div className='animate-pulse rounded-md bg-gray-300 max-w-sm w-[260px] h-20' />
+              <div className='animate-pulse rounded-md bg-gray-300 max-w-sm w-[260px] h-20' />
+            </>
+          )}
         </div>
       </div>
     </div>
