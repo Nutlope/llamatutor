@@ -44,7 +44,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        <PlausibleProvider domain="explorecareers.io" />
+        <PlausibleProvider domain="turboseek.io" />
       </head>
       <body
         className={`${inter.className} flex min-h-screen flex-col justify-between`}
