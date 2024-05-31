@@ -23,14 +23,19 @@ export default function useStream(stream?: ReadableStream) {
       cache.current = { stream, reader };
 
       for await (const delta of streamAsyncIterator(reader)) {
-        new TextDecoder()
+        let decoded = new TextDecoder()
           .decode(delta)
           .split("\n")
-          .filter((line) => line.trim() !== "")
-          .forEach((str) => {
+          .filter((line) => line.trim() !== "");
+
+        decoded.forEach((str) => {
+          try {
             let json = JSON.parse(str);
             setText((t) => t + json.choices[0].delta.content);
-          });
+          } catch {
+            console.log("Error parsing in useStream: ", str);
+          }
+        });
       }
     }
 

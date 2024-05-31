@@ -55,19 +55,24 @@ export async function POST(request: Request) {
   Remember, don't blindly repeat the contexts verbatim. It is very important for my career that you follow these instructions. Here is the user question:
     `;
 
-  const res = await together.chat.completions.create({
-    messages: [
-      { role: "system", content: mainAnswerPrompt },
-      {
-        role: "user",
-        content: question,
-      },
-    ],
-    model: "mistralai/Mixtral-8x7B-Instruct-v0.1",
-    stream: true,
-  });
+  try {
+    const res = await together.chat.completions.create({
+      messages: [
+        { role: "system", content: mainAnswerPrompt },
+        {
+          role: "user",
+          content: question,
+        },
+      ],
+      model: "mistralai/Mixtral-8x7B-Instruct-v0.1",
+      stream: true,
+    });
 
-  return new Response(res.toReadableStream());
+    return new Response(res.toReadableStream());
+  } catch (e) {
+    console.log(e);
+    return new Response(`Error: ${e}`, { status: 500 });
+  }
 }
 
 const cleanedText = (text: string) => {
@@ -79,7 +84,5 @@ const cleanedText = (text: string) => {
     .replace(/\t/g, "")
     .replace(/\n+(\s*\n)*/g, "\n");
 
-  let finalText = newText.substring(0, 30000);
-
-  return finalText;
+  return newText.substring(0, 21000);
 };
