@@ -16,8 +16,8 @@ export default function Home() {
   const [promptValue, setPromptValue] = useState("");
   const [question, setQuestion] = useState("");
   const [showResult, setShowResult] = useState(false);
-  const [answer, setAnswer] = useState("");
   const [sources, setSources] = useState<{ name: string; url: string }[]>([]);
+  const [answerStream, setAnswerStream] = useState<ReadableStream>();
   const [similarQuestions, setSimilarQuestions] = useState<string[]>([]);
   const [loading, setLoading] = useState(false);
   const chatContainerRef = useRef<HTMLDivElement>(null);
@@ -30,23 +30,44 @@ export default function Home() {
     setQuestion(newQuestion);
     setPromptValue("");
 
+    console.time("foo");
     await handleSourcesAndAnswer(newQuestion);
-    await handleSimilarQuestions(newQuestion);
+
+    console.timeEnd("foo");
+    // await handleSimilarQuestions(newQuestion);
 
     setLoading(false);
   };
 
   async function handleSourcesAndAnswer(question: string) {
-    let sources = await getSources(question);
+    let sourcesResponse = await fetch("/api/getSources", {
+      method: "POST",
+      body: JSON.stringify({ question }),
+    });
+    let sources = await sourcesResponse.json();
+
     setSources(sources);
+    // if (sourcesResponse.body) {
+    //   setSourcesStream(sourcesResponse.body);
+    // }
 
-    let answer = await getAnswer(question, sources);
-
-    let textContent = "";
-    for await (const delta of readStreamableValue(answer)) {
-      textContent = textContent + delta;
-      setAnswer(textContent);
+    let answerResponse = await fetch("/api/getAnswer", {
+      method: "POST",
+      body: JSON.stringify({ question, sources }),
+    });
+    if (answerResponse.body) {
+      setAnswerStream(answerResponse.body);
     }
+
+    // let sources = await getSources(question);
+    // setSources(sources);
+    // let answer = await getAnswer(question, []);
+    // setAnswer(answer);
+    // let textContent = "";
+    // for await (const delta of readStreamableValue(answer)) {
+    //   textContent = textContent + delta;
+    //   setAnswer(textContent);
+    // }
   }
 
   async function handleSimilarQuestions(question: string) {
@@ -58,8 +79,8 @@ export default function Home() {
     setShowResult(false);
     setPromptValue("");
     setQuestion("");
-    setAnswer("");
-    setSources([]);
+    setAnswerStream(undefined);
+    // setSources([]);
     setSimilarQuestions([]);
   };
 
@@ -96,12 +117,12 @@ export default function Home() {
                 </div>
                 <>
                   <Sources sources={sources} />
-                  <Answer answer={answer} />
-                  <SimilarTopics
+                  <Answer stream={answerStream} />
+                  {/* <SimilarTopics
                     similarQuestions={similarQuestions}
                     handleDisplayResult={handleDisplayResult}
                     reset={reset}
-                  />
+                  /> */}
                 </>
               </div>
 
