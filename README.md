@@ -35,13 +35,13 @@
 
 ## Future tasks
 
+- [ ] Restrict the info being sent from sources in the server action, do some cleanup
+- [ ] Try to parse the sources in a more effecient way to make the app faster overall
 - [ ] Make sure the answer correctly cites all the sources in the text & number the citations in the UI
 - [ ] Automatically scroll when an answer is happening, esp for mobile
-- [ ] Add sharability to allow folks to share answers
-- [ ] Parallelize the calls to get the related questions + the answer at the same time, move to route handlers
-- [ ] Add input validation with retries to make sure similar topics is always an array of 3
 - [ ] Fix hard refresh in the header and footer by migrating answers to a new page
-- [ ] Restrict the info being sent from sources in the server action, do some cleanup
+- [ ] Add sharability to allow folks to share answers
+- [ ] Add input validation with retries to make sure similar topics is always an array of 3
 - [ ] Add upstash redis for caching results & rate limiting users
 - [ ] Add in more advanced RAG techniques like keyword search & question rephrasing
 - [ ] Add authentication with Clerk if it gets popular along with postgres/prisma to save user sessions
