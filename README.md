@@ -36,10 +36,10 @@
 ## Future tasks
 
 - [ ] Make sure the answer correctly cites all the sources in the text & number the citations in the UI
-- [ ] Automatically scroll when an answer is happening, esp for mobile
-- [ ] Fix hard refresh in the header and footer by migrating answers to a new page
 - [ ] Try to parse the sources in a more effecient way to make the app faster overall
 - [ ] Add sharability to allow folks to share answers
+- [ ] Automatically scroll when an answer is happening, especially for mobile
+- [ ] Fix hard refresh in the header and footer by migrating answers to a new page
 - [ ] Add input validation with retries to make sure similar topics is always an array of 3
 - [ ] Add upstash redis for caching results & rate limiting users
 - [ ] Add in more advanced RAG techniques like keyword search & question rephrasing

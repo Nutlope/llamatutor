@@ -95,7 +95,7 @@ const suggestions: suggestionType[] = [
   },
   {
     id: 2,
-    name: "What are the benefits of regular exercise?",
+    name: "How can I get a 6 pack in 3 months?",
     icon: "/img/icon _dumbell_.svg",
   },
   {
