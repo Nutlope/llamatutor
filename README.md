@@ -13,8 +13,8 @@
 - Together AI for LLM inference
 - Mixtral 8x7B & Llama-3 for the LLMs
 - Bing for the search API
-- Vercel AI SDK with server actions
 - Helicone for observability
+- Plausible for website analytics
 
 ## How it works
 
