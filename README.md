@@ -35,9 +35,8 @@
 
 ## Future tasks
 
-- [ ] Restrict the info being sent from sources in the server action, do some cleanup
-- [ ] Try to parse the sources in a more effecient way to make the app faster overall
 - [ ] Make sure the answer correctly cites all the sources in the text & number the citations in the UI
+- [ ] Try to parse the sources in a more effecient way to make the app faster overall
 - [ ] Automatically scroll when an answer is happening, esp for mobile
 - [ ] Fix hard refresh in the header and footer by migrating answers to a new page
 - [ ] Add sharability to allow folks to share answers

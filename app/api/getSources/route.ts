@@ -20,7 +20,11 @@ export async function POST(request: Request) {
 
   const bingJson = await response.json();
   const bingResults = bingJson.webPages.value;
-  const firstSixResults = bingResults.slice(0, 6);
+
+  const firstSixResults = bingResults.slice(0, 6).map((result: any) => ({
+    name: result.name,
+    url: result.url,
+  }));
 
   return NextResponse.json(firstSixResults);
 }
