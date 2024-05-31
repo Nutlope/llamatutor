@@ -1,6 +1,6 @@
 import Together from "together-ai";
 import { Readability } from "@mozilla/readability";
-import { JSDOM } from "jsdom";
+import jsdom, { JSDOM } from "jsdom";
 
 const together = new Together({
   apiKey: process.env["TOGETHER_API_KEY"],
@@ -18,19 +18,22 @@ export async function POST(request: Request) {
       try {
         const response = await fetch(result.url);
         const html = await response.text();
-        const dom = new JSDOM(html);
+        const virtualConsole = new jsdom.VirtualConsole();
+        const dom = new JSDOM(html, { virtualConsole });
+
         const doc = dom.window.document;
         const parsed = new Readability(doc).parse();
 
         if (parsed) {
           let parsedContent = cleanedText(parsed.textContent);
+
           return {
             ...result,
             fullContent: parsedContent,
           };
         }
       } catch (e) {
-        console.log(e);
+        console.log(`error parsing ${result.name}, error: ${e}`);
         return;
       }
     }),
