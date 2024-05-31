@@ -25,4 +25,4 @@ export async function POST(request: Request) {
   return NextResponse.json(firstSixResults);
 }
 
-export const runtime = "edge";
+// export const runtime = "edge";
