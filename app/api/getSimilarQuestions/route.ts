@@ -32,3 +32,5 @@ export async function POST(request: Request) {
 
   return NextResponse.json(JSON.parse(questions));
 }
+
+export const runtime = "edge";

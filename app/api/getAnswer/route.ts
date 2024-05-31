@@ -81,4 +81,4 @@ const cleanedText = (text: string) => {
   return finalText;
 };
 
-export const config = { runtime: "edge" };
+export const runtime = "edge";
