@@ -79,7 +79,7 @@ const cleanedText = (text: string) => {
     .replace(/\t/g, "")
     .replace(/\n+(\s*\n)*/g, "\n");
 
-  let finalText = newText.substring(0, 40000);
+  let finalText = newText.substring(0, 30000);
 
   return finalText;
 };
