@@ -46,11 +46,6 @@ export async function POST(request: Request) {
   Remember, don't blindly repeat the contexts verbatim. It is very important for my career that you follow these instructions. Here is the user question:
     `;
 
-  // const res = await togetherai.chat.completions.create({
-  //   model: "mistralai/Mixtral-8x7B-Instruct-v0.1",
-  //   messages: [{ role: "user", content: question }],
-  //   stream: true,
-  // });
   const res = await togetherai.chat.completions.create({
     messages: [
       { role: "system", content: mainAnswerPrompt },
@@ -66,8 +61,6 @@ export async function POST(request: Request) {
   return new Response(res.toReadableStream());
 }
 
-export const config = { runtime: "edge" };
-
 const cleanedText = (text: string) => {
   let newText = text
     .trim()
@@ -81,3 +74,5 @@ const cleanedText = (text: string) => {
 
   return finalText;
 };
+
+export const config = { runtime: "edge" };
