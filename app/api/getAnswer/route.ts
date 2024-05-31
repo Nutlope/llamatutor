@@ -2,7 +2,13 @@ import Together from "together-ai";
 import { Readability } from "@mozilla/readability";
 import { JSDOM } from "jsdom";
 
-let togetherai = new Together();
+const together = new Together({
+  apiKey: process.env["TOGETHER_API_KEY"],
+  baseURL: "https://together.helicone.ai/v1",
+  defaultHeaders: {
+    "Helicone-Auth": `Bearer ${process.env.HELICONE_API_KEY}`,
+  },
+});
 
 export async function POST(request: Request) {
   let { question, sources } = await request.json();
@@ -46,7 +52,7 @@ export async function POST(request: Request) {
   Remember, don't blindly repeat the contexts verbatim. It is very important for my career that you follow these instructions. Here is the user question:
     `;
 
-  const res = await togetherai.chat.completions.create({
+  const res = await together.chat.completions.create({
     messages: [
       { role: "system", content: mainAnswerPrompt },
       {

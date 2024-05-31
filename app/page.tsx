@@ -1,16 +1,14 @@
 "use client";
 
 import Answer from "@/components/Answer";
+import Footer from "@/components/Footer";
+import Header from "@/components/Header";
 import Hero from "@/components/Hero";
 import InputArea from "@/components/InputArea";
 import SimilarTopics from "@/components/SimilarTopics";
 import Sources from "@/components/Sources";
 import Image from "next/image";
 import { useRef, useState } from "react";
-import { getAnswer, getSimilarQuestions, getSources } from "./actions";
-import { readStreamableValue } from "ai/rsc";
-import Header from "@/components/Header";
-import Footer from "@/components/Footer";
 
 export default function Home() {
   const [promptValue, setPromptValue] = useState("");
@@ -30,11 +28,10 @@ export default function Home() {
     setQuestion(newQuestion);
     setPromptValue("");
 
-    console.time("foo");
-    await handleSourcesAndAnswer(newQuestion);
-
-    console.timeEnd("foo");
-    // await handleSimilarQuestions(newQuestion);
+    await Promise.all([
+      handleSourcesAndAnswer(newQuestion),
+      handleSimilarQuestions(newQuestion),
+    ]);
 
     setLoading(false);
   };
@@ -47,9 +44,6 @@ export default function Home() {
     let sources = await sourcesResponse.json();
 
     setSources(sources);
-    // if (sourcesResponse.body) {
-    //   setSourcesStream(sourcesResponse.body);
-    // }
 
     let answerResponse = await fetch("/api/getAnswer", {
       method: "POST",
@@ -58,21 +52,15 @@ export default function Home() {
     if (answerResponse.body) {
       setAnswerStream(answerResponse.body);
     }
-
-    // let sources = await getSources(question);
-    // setSources(sources);
-    // let answer = await getAnswer(question, []);
-    // setAnswer(answer);
-    // let textContent = "";
-    // for await (const delta of readStreamableValue(answer)) {
-    //   textContent = textContent + delta;
-    //   setAnswer(textContent);
-    // }
   }
 
   async function handleSimilarQuestions(question: string) {
-    let similarQs = await getSimilarQuestions(question);
-    setSimilarQuestions(similarQs);
+    let res = await fetch("/api/getSimilarQuestions", {
+      method: "POST",
+      body: JSON.stringify({ question }),
+    });
+    let questions = await res.json();
+    setSimilarQuestions(questions);
   }
 
   const reset = () => {
@@ -80,7 +68,7 @@ export default function Home() {
     setPromptValue("");
     setQuestion("");
     setAnswerStream(undefined);
-    // setSources([]);
+    setSources([]);
     setSimilarQuestions([]);
   };
 
@@ -118,11 +106,11 @@ export default function Home() {
                 <>
                   <Sources sources={sources} />
                   <Answer stream={answerStream} />
-                  {/* <SimilarTopics
+                  <SimilarTopics
                     similarQuestions={similarQuestions}
                     handleDisplayResult={handleDisplayResult}
                     reset={reset}
-                  /> */}
+                  />
                 </>
               </div>
 
