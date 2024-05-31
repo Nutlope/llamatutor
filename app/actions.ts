@@ -14,6 +14,7 @@ const together = new Together({
 });
 
 export async function getSources(question: string) {
+  return [];
   const params = new URLSearchParams({
     q: question,
     mkt: "en-US",
