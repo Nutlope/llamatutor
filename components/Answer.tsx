@@ -1,10 +1,7 @@
-import useStream from "@/app/hooks/use-stream";
 import Image from "next/image";
 import { Toaster, toast } from "react-hot-toast";
 
-export default function Answer({ stream }: { stream?: ReadableStream }) {
-  let text = useStream(stream);
-
+export default function Answer({ answer }: { answer: string }) {
   return (
     <div className="container flex h-auto w-full shrink-0 gap-4 rounded-lg border border-solid border-[#C2C2C2] bg-white p-5 lg:p-10">
       <div className="hidden lg:block">
@@ -24,7 +21,7 @@ export default function Answer({ stream }: { stream?: ReadableStream }) {
               Answer:{" "}
             </h3>
           </div>
-          {stream && (
+          {answer && (
             <div className="flex items-center gap-3">
               {/* <Image
                 src="/img/link.svg"
@@ -35,7 +32,7 @@ export default function Answer({ stream }: { stream?: ReadableStream }) {
               /> */}
               <button
                 onClick={() => {
-                  navigator.clipboard.writeText(text.trim());
+                  navigator.clipboard.writeText(answer.trim());
                   toast("Bio copied to clipboard", {
                     icon: "✂️",
                   });
@@ -61,8 +58,8 @@ export default function Answer({ stream }: { stream?: ReadableStream }) {
         </div>
         <div className="flex flex-wrap content-center items-center gap-[15px]">
           <div className="w-full whitespace-pre-wrap text-base font-light leading-[152.5%] text-black">
-            {text ? (
-              text.trim()
+            {answer ? (
+              answer.trim()
             ) : (
               <div className="flex w-full flex-col gap-2">
                 <div className="h-6 w-full animate-pulse rounded-md bg-gray-300" />

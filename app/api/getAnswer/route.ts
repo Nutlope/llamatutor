@@ -1,16 +1,13 @@
-import Together from "together-ai";
 import { Readability } from "@mozilla/readability";
 import jsdom, { JSDOM } from "jsdom";
+import {
+  TogetherAIStream,
+  TogetherAIStreamPayload,
+} from "@/utils/TogetherAIStream";
 
-const together = new Together({
-  apiKey: process.env["TOGETHER_API_KEY"],
-  baseURL: "https://together.helicone.ai/v1",
-  defaultHeaders: {
-    "Helicone-Auth": `Bearer ${process.env.HELICONE_API_KEY}`,
-  },
-});
-
-export const maxDuration = 45;
+export const config = {
+  runtime: "edge",
+};
 
 export async function POST(request: Request) {
   let { question, sources } = await request.json();
@@ -56,7 +53,8 @@ export async function POST(request: Request) {
     `;
 
   try {
-    const res = await together.chat.completions.create({
+    const payload: TogetherAIStreamPayload = {
+      model: "mistralai/Mixtral-8x7B-Instruct-v0.1",
       messages: [
         { role: "system", content: mainAnswerPrompt },
         {
@@ -64,11 +62,15 @@ export async function POST(request: Request) {
           content: question,
         },
       ],
-      model: "mistralai/Mixtral-8x7B-Instruct-v0.1",
       stream: true,
-    });
+    };
 
-    return new Response(res.toReadableStream());
+    const stream = await TogetherAIStream(payload);
+    return new Response(stream, {
+      headers: new Headers({
+        "Cache-Control": "no-cache",
+      }),
+    });
   } catch (e) {
     console.log(e);
     return new Response(`Error: ${e}`, { status: 500 });
@@ -84,5 +86,5 @@ const cleanedText = (text: string) => {
     .replace(/\t/g, "")
     .replace(/\n+(\s*\n)*/g, "\n");
 
-  return newText.substring(0, 21000);
+  return newText.substring(0, 20000);
 };

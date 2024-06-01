@@ -9,13 +9,18 @@ import SimilarTopics from "@/components/SimilarTopics";
 import Sources from "@/components/Sources";
 import Image from "next/image";
 import { useRef, useState } from "react";
+import {
+  createParser,
+  ParsedEvent,
+  ReconnectInterval,
+} from "eventsource-parser";
 
 export default function Home() {
   const [promptValue, setPromptValue] = useState("");
   const [question, setQuestion] = useState("");
   const [showResult, setShowResult] = useState(false);
   const [sources, setSources] = useState<{ name: string; url: string }[]>([]);
-  const [answerStream, setAnswerStream] = useState<ReadableStream>();
+  const [answer, setAnswer] = useState("");
   const [similarQuestions, setSimilarQuestions] = useState<string[]>([]);
   const [loading, setLoading] = useState(false);
   const chatContainerRef = useRef<HTMLDivElement>(null);
@@ -45,12 +50,46 @@ export default function Home() {
 
     setSources(sources);
 
-    let answerResponse = await fetch("/api/getAnswer", {
+    const response = await fetch("/api/getAnswer", {
       method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
       body: JSON.stringify({ question, sources }),
     });
-    if (answerResponse.body) {
-      setAnswerStream(answerResponse.body);
+
+    if (!response.ok) {
+      throw new Error(response.statusText);
+    }
+
+    // This data is a ReadableStream
+    const data = response.body;
+    if (!data) {
+      return;
+    }
+
+    const onParse = (event: ParsedEvent | ReconnectInterval) => {
+      if (event.type === "event") {
+        const data = event.data;
+        try {
+          const text = JSON.parse(data).text ?? "";
+          setAnswer((prev) => prev + text);
+        } catch (e) {
+          console.error(e);
+        }
+      }
+    };
+
+    // https://web.dev/streams/#the-getreader-and-read-methods
+    const reader = data.getReader();
+    const decoder = new TextDecoder();
+    const parser = createParser(onParse);
+    let done = false;
+    while (!done) {
+      const { value, done: doneReading } = await reader.read();
+      done = doneReading;
+      const chunkValue = decoder.decode(value);
+      parser.feed(chunkValue);
     }
   }
 
@@ -67,7 +106,7 @@ export default function Home() {
     setShowResult(false);
     setPromptValue("");
     setQuestion("");
-    setAnswerStream(undefined);
+    setAnswer("");
     setSources([]);
     setSimilarQuestions([]);
   };
@@ -105,7 +144,7 @@ export default function Home() {
                 </div>
                 <>
                   <Sources sources={sources} />
-                  <Answer stream={answerStream} />
+                  <Answer answer={answer} />
                   <SimilarTopics
                     similarQuestions={similarQuestions}
                     handleDisplayResult={handleDisplayResult}
