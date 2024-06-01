@@ -33,7 +33,7 @@ export default function Answer({ answer }: { answer: string }) {
               <button
                 onClick={() => {
                   navigator.clipboard.writeText(answer.trim());
-                  toast("Bio copied to clipboard", {
+                  toast("Answer copied to clipboard", {
                     icon: "✂️",
                   });
                 }}
