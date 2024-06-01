@@ -35,8 +35,9 @@
 
 ## Future tasks
 
+- [ ] Fix issue with the app crashing on several responses
 - [ ] Make sure the answer correctly cites all the sources in the text & number the citations in the UI
-- [ ] Try to parse the sources in a more effecient way to make the app faster overall
+- [ ] Try to parse the sources in a more effecient way to make the app faster overall: Try Serper API
 - [ ] Add sharability to allow folks to share answers
 - [ ] Automatically scroll when an answer is happening, especially for mobile
 - [ ] Fix hard refresh in the header and footer by migrating answers to a new page
