@@ -5,8 +5,6 @@ import {
   TogetherAIStreamPayload,
 } from "@/utils/TogetherAIStream";
 
-export const runtime = "edge";
-
 export async function POST(request: Request) {
   let { question, sources } = await request.json();
 
