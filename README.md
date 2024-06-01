@@ -35,12 +35,12 @@
 
 ## Future tasks
 
-- [ ] Make sure the answer correctly cites all the sources in the text & number the citations in the UI
 - [ ] Try to parse the sources in a more effecient way to make the app faster overall: Try Serper API
+- [ ] Have the AI tool ignore video links like Youtube cause can't scrape them fast
+- [ ] Make sure the answer correctly cites all the sources in the text & number the citations in the UI
 - [ ] Add sharability to allow folks to share answers
 - [ ] Automatically scroll when an answer is happening, especially for mobile
 - [ ] Fix hard refresh in the header and footer by migrating answers to a new page
-- [ ] Add input validation with retries to make sure similar topics is always an array of 3
 - [ ] Add upstash redis for caching results & rate limiting users
 - [ ] Add in more advanced RAG techniques like keyword search & question rephrasing
 - [ ] Add authentication with Clerk if it gets popular along with postgres/prisma to save user sessions

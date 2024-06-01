@@ -4,6 +4,7 @@ import {
   TogetherAIStream,
   TogetherAIStreamPayload,
 } from "@/utils/TogetherAIStream";
+import fs from "fs";
 
 export const config = {
   runtime: "edge",
@@ -25,6 +26,8 @@ export async function POST(request: Request) {
         let parsedContent = parsed
           ? cleanedText(parsed.textContent)
           : "Nothing found";
+
+        fs.writeFileSync(`${result.name}.txt`, parsedContent);
         return {
           ...result,
           fullContent: parsedContent,
