@@ -29,12 +29,8 @@ export default function useStream(stream?: ReadableStream) {
           .filter((line) => line.trim() !== "");
 
         decoded.forEach((str) => {
-          try {
-            let json = JSON.parse(str);
-            setText((t) => t + json.choices[0].delta.content);
-          } catch {
-            console.log("Error parsing in useStream: ", str);
-          }
+          let json = JSON.parse(str);
+          setText((t) => t + json.choices[0].delta.content);
         });
       }
     }
