@@ -52,7 +52,7 @@ export async function POST(request: Request) {
   )}
   </contexts>
 
-  Remember, don't blindly repeat the contexts verbatim. It is very important for my career that you follow these instructions. Here is the user question:
+  Remember, don't blindly repeat the contexts verbatim and don't tell the user how you used the citations – just respond with the answer. It is very important for my career that you follow these instructions. Here is the user question:
     `;
 
   try {
