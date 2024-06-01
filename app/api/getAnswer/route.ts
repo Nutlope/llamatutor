@@ -4,6 +4,15 @@ import {
   TogetherAIStream,
   TogetherAIStreamPayload,
 } from "@/utils/TogetherAIStream";
+import Together from "together-ai";
+
+const together = new Together({
+  apiKey: process.env["TOGETHER_API_KEY"],
+  baseURL: "https://together.helicone.ai/v1",
+  defaultHeaders: {
+    "Helicone-Auth": `Bearer ${process.env.HELICONE_API_KEY}`,
+  },
+});
 
 export async function POST(request: Request) {
   let { question, sources } = await request.json();
@@ -69,8 +78,21 @@ export async function POST(request: Request) {
       }),
     });
   } catch (e) {
-    console.log(e);
-    return new Response(`Error: ${e}`, { status: 500 });
+    // If for some reason streaming fails, we can just call it without streaming
+    let answer = await together.chat.completions.create({
+      model: "mistralai/Mixtral-8x7B-Instruct-v0.1",
+      messages: [
+        { role: "system", content: mainAnswerPrompt },
+        {
+          role: "user",
+          content: question,
+        },
+      ],
+    });
+
+    let parsedAnswer = answer.choices![0].message?.content;
+    console.log("Error is: ", e);
+    return new Response(parsedAnswer, { status: 202 });
   }
 }
 

@@ -62,6 +62,12 @@ export default function Home() {
       throw new Error(response.statusText);
     }
 
+    if (response.status === 202) {
+      const fullAnswer = await response.text();
+      setAnswer(fullAnswer);
+      return;
+    }
+
     // This data is a ReadableStream
     const data = response.body;
     if (!data) {
