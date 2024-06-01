@@ -29,7 +29,7 @@ export async function POST(request: Request) {
 
           return {
             ...result,
-            fullContent: parsedContent,
+            fullContent: parsedContent ? parsedContent : "No content found",
           };
         }
       } catch (e) {
