@@ -25,15 +25,13 @@ export async function POST(request: Request) {
 
         const doc = dom.window.document;
         const parsed = new Readability(doc).parse();
-
-        if (parsed) {
-          let parsedContent = cleanedText(parsed.textContent);
-
-          return {
-            ...result,
-            fullContent: parsedContent ? parsedContent : "No content found",
-          };
-        }
+        let parsedContent = parsed
+          ? cleanedText(parsed.textContent)
+          : "Nothing found";
+        return {
+          ...result,
+          fullContent: parsedContent,
+        };
       } catch (e) {
         console.log(`error parsing ${result.name}, error: ${e}`);
         return;
