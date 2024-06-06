@@ -8,6 +8,7 @@ const Header = () => {
         <div className="col-span-2 flex items-center justify-center">
           <a href="/">
             <Image
+              unoptimized
               src="/img/logo.svg"
               alt="logo"
               width={40}

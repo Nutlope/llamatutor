@@ -5,12 +5,19 @@ export default function Answer({ answer }: { answer: string }) {
   return (
     <div className="container flex h-auto w-full shrink-0 gap-4 rounded-lg border border-solid border-[#C2C2C2] bg-white p-5 lg:p-10">
       <div className="hidden lg:block">
-        <Image src="/img/Info.svg" alt="footer" width={24} height={24} />
+        <Image
+          unoptimized
+          src="/img/Info.svg"
+          alt="footer"
+          width={24}
+          height={24}
+        />
       </div>
       <div className="w-full">
         <div className="flex items-center justify-between pb-3">
           <div className="flex gap-4">
             <Image
+              unoptimized
               src="/img/Info.svg"
               alt="footer"
               width={24}
@@ -23,7 +30,7 @@ export default function Answer({ answer }: { answer: string }) {
           </div>
           {answer && (
             <div className="flex items-center gap-3">
-              {/* <Image
+              {/* <Image unoptimized
                 src="/img/link.svg"
                 alt="footer"
                 width={20}
@@ -39,6 +46,7 @@ export default function Answer({ answer }: { answer: string }) {
                 }}
               >
                 <Image
+                  unoptimized
                   src="/img/copy.svg"
                   alt="footer"
                   width={20}
@@ -46,7 +54,7 @@ export default function Answer({ answer }: { answer: string }) {
                   className="cursor-pointer"
                 />
               </button>
-              {/* <Image
+              {/* <Image unoptimized
                 src="/img/share.svg"
                 alt="footer"
                 width={20}

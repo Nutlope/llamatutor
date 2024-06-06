@@ -47,6 +47,7 @@ const InputArea: FC<TInputAreaProps> = ({
         )}
 
         <Image
+          unoptimized
           src={"/img/arrow-narrow-right.svg"}
           alt="search"
           width={24}

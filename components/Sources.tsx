@@ -9,7 +9,13 @@ export default function Sources({
   return (
     <div className="container h-auto w-full shrink-0 rounded-lg border border-solid border-[#C2C2C2] bg-white p-5 lg:p-10">
       <div className="flex items-start gap-4 pb-3 lg:pb-3.5">
-        <Image src="/img/sources.svg" alt="footer" width={24} height={24} />
+        <Image
+          unoptimized
+          src="/img/sources.svg"
+          alt="footer"
+          width={24}
+          height={24}
+        />
         <h3 className="text-base font-bold uppercase leading-[152.5%] text-black">
           sources:{" "}
         </h3>
