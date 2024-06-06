@@ -14,6 +14,8 @@ const together = new Together({
   },
 });
 
+export const maxDuration = 60;
+
 export async function POST(request: Request) {
   let { question, sources } = await request.json();
 
