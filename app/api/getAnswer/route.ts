@@ -19,6 +19,7 @@ export const maxDuration = 60;
 export async function POST(request: Request) {
   let { question, sources } = await request.json();
 
+  console.log("[getAnswer] Fetching text from source URLS");
   let finalResults = await Promise.all(
     sources.map(async (result: any) => {
       try {
@@ -76,6 +77,9 @@ export async function POST(request: Request) {
       stream: true,
     };
 
+    console.log(
+      "[getAnswer] Fetching answer stream from Together API using text and question",
+    );
     const stream = await TogetherAIStream(payload);
     return new Response(stream, {
       headers: new Headers({
@@ -84,6 +88,9 @@ export async function POST(request: Request) {
     });
   } catch (e) {
     // If for some reason streaming fails, we can just call it without streaming
+    console.log(
+      "[getAnswer] Answer stream failed. Try fetching non-stream answer.",
+    );
     let answer = await together.chat.completions.create({
       model: "mistralai/Mixtral-8x7B-Instruct-v0.1",
       messages: [
