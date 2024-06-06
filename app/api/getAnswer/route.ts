@@ -48,6 +48,12 @@ export async function POST(request: Request) {
     }),
   );
 
+  let debug = finalResults.map(
+    (result, index) => `[[citation:${index}]] ${result.fullContent} \n\n`,
+  );
+  console.log("DEBUG LENGTH");
+  console.log(debug.toString().length);
+
   const mainAnswerPrompt = `
   Given a user question and some context, please write a clean, concise and accurate answer to the question based on the context. You will be given a set of related contexts to the question, each starting with a reference number like [[citation:x]], where x is a number. Please use the context when crafting your answer.
 
@@ -81,6 +87,7 @@ export async function POST(request: Request) {
       "[getAnswer] Fetching answer stream from Together API using text and question",
     );
     const stream = await TogetherAIStream(payload);
+    // TODO: Need to add error handling here, since a non-200 status code doesn't throw.
     return new Response(stream, {
       headers: new Headers({
         "Cache-Control": "no-cache",
