@@ -33,6 +33,11 @@
 5. Create a `.env` (use the `.example.env` for reference) and replace the API keys
 6. Run `npm install` and `npm run dev` to install dependencies and run locally
 
+## Tasks
+
+- [ ] Add error handling to getAnswer & anywhere else
+- [ ] Move back to Together SDK w/ helicone + simpler streaming
+
 ## Future tasks
 
 - [ ] Try to parse the sources in a more effecient way to make the app faster overall: Try Serper API
