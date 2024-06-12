@@ -1,12 +1,14 @@
 import { NextResponse } from "next/server";
 
+let excludedSites = ["youtube.com"];
+
 export async function POST(request: Request) {
   let { question } = await request.json();
   const params = new URLSearchParams({
-    q: question,
+    q: `${question} ${excludedSites.map((site) => `-site:${site}`).join(" ")}`,
     mkt: "en-US",
     count: "6",
-    safeSearch:"Strict"
+    safeSearch: "Strict",
   });
 
   const response = await fetch(

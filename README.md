@@ -35,7 +35,6 @@
 
 ## Future tasks
 
-- [ ] Have the AI tool ignore video links like Youtube cause can't scrape them fast
 - [ ] Move back to the Together SDK + simpler streaming
 - [ ] Add a tokenizer to smartly count number of tokens for each source and ensure we're not going over
 - [ ] Add a regenerate option for a user to re-generate
