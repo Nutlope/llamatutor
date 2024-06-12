@@ -25,6 +25,10 @@ export async function POST(request: Request) {
       try {
         console.log(`[getAnswer] Fetching source from ${result.url}`);
         const response = await fetch(result.url);
+        console.log(
+          `[getAnswer] Got response from ${result.url}: ${response.statusText}`,
+        );
+        console.log(`[getAnswer] Awaiting text from ${result.url}`);
         const html = await response.text();
         console.log(`[getAnswer] Got HTML from ${result.url}`);
         const virtualConsole = new jsdom.VirtualConsole();
