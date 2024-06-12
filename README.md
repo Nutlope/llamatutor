@@ -36,6 +36,7 @@
 ## Tasks
 
 - [ ] Add error handling to getAnswer & anywhere else
+- [ ] Tokenizer
 - [ ] Move back to Together SDK w/ helicone + simpler streaming
 
 ## Future tasks
