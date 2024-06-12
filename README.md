@@ -33,10 +33,16 @@
 5. Create a `.env` (use the `.example.env` for reference) and replace the API keys
 6. Run `npm install` and `npm run dev` to install dependencies and run locally
 
+## Tasks
+
+- [ ] Add error handling to getAnswer & anywhere else
+- [ ] Tokenizer
+- [ ] Move back to Together SDK w/ helicone + simpler streaming
+
 ## Future tasks
 
-- [ ] Try to parse the sources in a more effecient way to make the app faster overall: Try Serper API
 - [ ] Have the AI tool ignore video links like Youtube cause can't scrape them fast
+- [ ] Try to parse the sources in a more effecient way to make the app faster overall: Try Serper API
 - [ ] Add a regenrate option for a user to re-generate
 - [ ] Make sure the answer correctly cites all the sources in the text & number the citations in the UI
 - [ ] Add sharability to allow folks to share answers

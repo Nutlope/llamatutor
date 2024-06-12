@@ -14,7 +14,7 @@ const together = new Together({
   },
 });
 
-export const maxDuration = 60;
+export const maxDuration = 45;
 
 export async function POST(request: Request) {
   let { question, sources } = await request.json();
@@ -23,7 +23,8 @@ export async function POST(request: Request) {
   let finalResults = await Promise.all(
     sources.map(async (result: any) => {
       try {
-        const response = await fetch(result.url);
+        // Fetch the source URL, or abort if it's been 3 seconds
+        const response = await fetchWithTimeout(result.url);
         const html = await response.text();
         const virtualConsole = new jsdom.VirtualConsole();
         const dom = new JSDOM(html, { virtualConsole });
@@ -47,12 +48,6 @@ export async function POST(request: Request) {
       }
     }),
   );
-
-  let debug = finalResults.map(
-    (result, index) => `[[citation:${index}]] ${result.fullContent} \n\n`,
-  );
-  console.log("DEBUG LENGTH");
-  console.log(debug.toString().length);
 
   const mainAnswerPrompt = `
   Given a user question and some context, please write a clean, concise and accurate answer to the question based on the context. You will be given a set of related contexts to the question, each starting with a reference number like [[citation:x]], where x is a number. Please use the context when crafting your answer.
@@ -126,3 +121,27 @@ const cleanedText = (text: string) => {
 
   return newText.substring(0, 20000);
 };
+
+async function fetchWithTimeout(url: string, options = {}, timeout = 3000) {
+  // Create an AbortController
+  const controller = new AbortController();
+  const { signal } = controller;
+
+  // Set a timeout to abort the fetch
+  const fetchTimeout = setTimeout(() => {
+    controller.abort();
+  }, timeout);
+
+  // Start the fetch request with the abort signal
+  return fetch(url, { ...options, signal })
+    .then((response) => {
+      clearTimeout(fetchTimeout); // Clear the timeout if the fetch completes in time
+      return response;
+    })
+    .catch((error) => {
+      if (error.name === "AbortError") {
+        throw new Error("Fetch request timed out");
+      }
+      throw error; // Re-throw other errors
+    });
+}
