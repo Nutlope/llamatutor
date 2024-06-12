@@ -14,7 +14,7 @@ const together = new Together({
   },
 });
 
-export const maxDuration = 60;
+export const maxDuration = 45;
 
 export async function POST(request: Request) {
   let { question, sources } = await request.json();
@@ -23,26 +23,17 @@ export async function POST(request: Request) {
   let finalResults = await Promise.all(
     sources.map(async (result: any) => {
       try {
-        console.log(`[getAnswer] Fetching source from ${result.url}`);
         // Fetch the source URL, or abort if it's been 3 seconds
         const response = await fetchWithTimeout(result.url);
-        console.log(
-          `[getAnswer] Got response from ${result.url}: ${response.statusText}`,
-        );
-        console.log(`[getAnswer] Awaiting text from ${result.url}`);
         const html = await response.text();
-        console.log(`[getAnswer] Got HTML from ${result.url}`);
         const virtualConsole = new jsdom.VirtualConsole();
         const dom = new JSDOM(html, { virtualConsole });
 
         const doc = dom.window.document;
-        console.log(`[getAnswer] Parsing HTML from ${result.url}`);
         const parsed = new Readability(doc).parse();
         let parsedContent = parsed
           ? cleanedText(parsed.textContent)
           : "Nothing found";
-
-        console.log(`[getAnswer] Got parsed content from ${result.url}`);
 
         return {
           ...result,
@@ -57,7 +48,6 @@ export async function POST(request: Request) {
       }
     }),
   );
-  console.log(`[getAnswer] Finished fetching text from source URLs`);
 
   let debug = finalResults.map(
     (result, index) => `[[citation:${index}]] ${result.fullContent} \n\n`,
