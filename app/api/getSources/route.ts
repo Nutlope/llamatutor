@@ -5,6 +5,8 @@ export async function POST(request: Request) {
   const params = new URLSearchParams({
     q: question,
     mkt: "en-US",
+    count: "6",
+    safeSearch:"Strict"
   });
 
   const response = await fetch(
@@ -21,10 +23,10 @@ export async function POST(request: Request) {
   const bingJson = await response.json();
   const bingResults = bingJson.webPages.value;
 
-  const firstSixResults = bingResults.slice(0, 6).map((result: any) => ({
+  const Results = bingResults.map((result: any) => ({
     name: result.name,
     url: result.url,
   }));
 
-  return NextResponse.json(firstSixResults);
+  return NextResponse.json(Results);
 }
