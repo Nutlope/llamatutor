@@ -24,7 +24,8 @@ export async function POST(request: Request) {
     sources.map(async (result: any) => {
       try {
         console.log(`[getAnswer] Fetching source from ${result.url}`);
-        const response = await fetch(result.url);
+        // Fetch the source URL, or abort if it's been 3 seconds
+        const response = await fetchWithTimeout(result.url);
         console.log(
           `[getAnswer] Got response from ${result.url}: ${response.statusText}`,
         );
@@ -136,3 +137,27 @@ const cleanedText = (text: string) => {
 
   return newText.substring(0, 20000);
 };
+
+async function fetchWithTimeout(url: string, options = {}, timeout = 5000) {
+  // Create an AbortController
+  const controller = new AbortController();
+  const { signal } = controller;
+
+  // Set a timeout to abort the fetch
+  const fetchTimeout = setTimeout(() => {
+    controller.abort();
+  }, timeout);
+
+  // Start the fetch request with the abort signal
+  return fetch(url, { ...options, signal })
+    .then((response) => {
+      clearTimeout(fetchTimeout); // Clear the timeout if the fetch completes in time
+      return response;
+    })
+    .catch((error) => {
+      if (error.name === "AbortError") {
+        throw new Error("Fetch request timed out");
+      }
+      throw error; // Re-throw other errors
+    });
+}
