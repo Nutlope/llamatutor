@@ -20,6 +20,7 @@ export default function Home() {
   const [question, setQuestion] = useState("");
   const [showResult, setShowResult] = useState(false);
   const [sources, setSources] = useState<{ name: string; url: string }[]>([]);
+  const [isLoadingSources, setIsLoadingSources] = useState(false);
   const [answer, setAnswer] = useState("");
   const [similarQuestions, setSimilarQuestions] = useState<string[]>([]);
   const [loading, setLoading] = useState(false);
@@ -42,13 +43,19 @@ export default function Home() {
   };
 
   async function handleSourcesAndAnswer(question: string) {
+    setIsLoadingSources(true);
     let sourcesResponse = await fetch("/api/getSources", {
       method: "POST",
       body: JSON.stringify({ question }),
     });
-    let sources = await sourcesResponse.json();
+    if (sourcesResponse.ok) {
+      let sources = await sourcesResponse.json();
 
-    setSources(sources);
+      setSources(sources);
+    } else {
+      setSources([]);
+    }
+    setIsLoadingSources(false);
 
     const response = await fetch("/api/getAnswer", {
       method: "POST",
@@ -150,7 +157,7 @@ export default function Home() {
                   <div className="grow">&quot;{question}&quot;</div>
                 </div>
                 <>
-                  <Sources sources={sources} />
+                  <Sources sources={sources} isLoading={isLoadingSources} />
                   <Answer answer={answer} />
                   <SimilarTopics
                     similarQuestions={similarQuestions}

@@ -1,8 +1,14 @@
 import { NextResponse } from "next/server";
+import { z } from "zod";
 
 let excludedSites = ["youtube.com"];
 
 export async function POST(request: Request) {
+  const BING_API_KEY = process.env["BING_API_KEY"];
+  if (!BING_API_KEY) {
+    throw new Error("BING_API_KEY is required");
+  }
+
   let { question } = await request.json();
   const params = new URLSearchParams({
     q: `${question} ${excludedSites.map((site) => `-site:${site}`).join(" ")}`,
@@ -15,20 +21,25 @@ export async function POST(request: Request) {
     `https://api.bing.microsoft.com/v7.0/search?${params}`,
     {
       method: "GET",
-      // @ts-ignore since that header key isn't part of the header type
       headers: {
-        "Ocp-Apim-Subscription-Key": process.env["BING_API_KEY"],
+        "Ocp-Apim-Subscription-Key": BING_API_KEY,
       },
     },
   );
 
-  const bingJson = await response.json();
-  const bingResults = bingJson.webPages.value;
+  const BingJSONSchema = z.object({
+    webPages: z.object({
+      value: z.array(z.object({ name: z.string(), url: z.string() })),
+    }),
+  });
 
-  const Results = bingResults.map((result: any) => ({
+  const rawJSON = await response.json();
+  const data = BingJSONSchema.parse(rawJSON);
+
+  let results = data.webPages.value.map((result) => ({
     name: result.name,
     url: result.url,
   }));
 
-  return NextResponse.json(Results);
+  return NextResponse.json(results);
 }
