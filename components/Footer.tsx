@@ -13,7 +13,7 @@ const Footer = () => {
             width={31}
             height={30}
           />
-          <span className="text-base font-medium leading-[normal]">
+          <span className="text-base font-medium leading-[normal] ">
             LlamaTeacher.com
           </span>
         </a>

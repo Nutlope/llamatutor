@@ -36,7 +36,7 @@ const Hero: FC<THeroProps> = ({
         </span>
       </a>
       <h2 className="bg-custom-gradient bg-clip-text pb-7 pt-2 text-center text-3xl font-semibold leading-[normal] lg:text-[64px]">
-        Personalized tutor for any topic
+        Personalized <span className="text-blue-500">tutor</span> for any topic
       </h2>
 
       {/* input section */}
@@ -52,7 +52,7 @@ const Hero: FC<THeroProps> = ({
       <div className="flex flex-wrap items-center justify-center gap-2.5 pb-[30px] lg:flex-nowrap lg:justify-normal">
         {suggestions.map((item) => (
           <div
-            className="flex h-[35px] cursor-pointer items-center justify-center gap-[5px] rounded border border-solid border-[#C1C1C1] bg-[#EDEDEA] px-2.5 py-2"
+            className="flex h-[35px] cursor-pointer items-center justify-center gap-[5px] rounded border border-solid border-[#C1C1C1] px-2.5 py-2 hover:bg-gray-200 transition"
             onClick={() => handleClickSuggestion(item?.name)}
             key={item.id}
           >
@@ -74,7 +74,7 @@ const Hero: FC<THeroProps> = ({
       {/* Github link section */}
       <p className="text-center text-sm font-light leading-[normal] text-[#1B1B16]">
         Fully open source!{" "}
-        <span className="text-sm font-medium underline">
+        <span className="text-sm font-medium underline text-blue-500">
           <a
             href="https://github.com/Nutlope/llamateacher"
             target="_blank"
@@ -97,18 +97,23 @@ type suggestionType = {
 const suggestions: suggestionType[] = [
   {
     id: 1,
-    name: "How does photosynthesis work?",
+    name: "Photosynthesis",
     icon: "/img/icon _leaf_.svg",
   },
   {
     id: 2,
-    name: "How can I get a 6 pack in 3 months?",
+    name: "Basketball",
     icon: "/img/icon _dumbell_.svg",
   },
   {
     id: 3,
-    name: "Can you explain the theory of relativity?",
+    name: "History of the NBA",
     icon: "/img/icon _atom_.svg",
+  },
+  {
+    id: 4,
+    name: "Geometry",
+    icon: "/img/icon _leaf_.svg",
   },
 ];
 
