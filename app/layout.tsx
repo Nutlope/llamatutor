@@ -5,12 +5,12 @@ import "./globals.css";
 
 const inter = Lexend({ subsets: ["latin"] });
 
-let title = "Turbo Seek – AI Search Engine";
+let title = "Llama Teacher – AI Personal Tutor";
 let description =
-  "Search smarter and faster with our open source AI search engine";
-let url = "https://turboseek.io/";
-let ogimage = "https://turboseek.io/og-image.png";
-let sitename = "TurboSeek.io";
+  "Learn faster with our open source AI personal tutor";
+let url = "https://LlamaTeacher.com/";
+let ogimage = "https://LlamaTeacher.com/og-image.png";
+let sitename = "llamateacher.com";
 
 export const metadata: Metadata = {
   metadataBase: new URL(url),
@@ -44,7 +44,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        <PlausibleProvider domain="turboseek.io" />
+        <PlausibleProvider domain="llamateacher.com" />
       </head>
       <body
         className={`${inter.className} flex min-h-screen flex-col justify-between`}

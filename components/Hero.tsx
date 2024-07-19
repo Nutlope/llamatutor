@@ -26,17 +26,17 @@ const Hero: FC<THeroProps> = ({
       >
         <Image
           unoptimized
-          src="/img/together-ai.svg"
+          src="/meta-llama-small.png"
           alt="hero"
-          width={18}
-          height={18}
+          width={30}
+          height={30}
         />
         <span className="text-center text-base font-light leading-[normal] text-[#1B1B16]">
-          Powered by Together AI
+          Powered by Llama 3 70B
         </span>
       </a>
       <h2 className="bg-custom-gradient bg-clip-text pb-7 pt-2 text-center text-3xl font-semibold leading-[normal] lg:text-[64px]">
-        Search smarter & faster
+        Personalized tutor for any topic
       </h2>
 
       {/* input section */}
@@ -76,7 +76,7 @@ const Hero: FC<THeroProps> = ({
         Fully open source!{" "}
         <span className="text-sm font-medium underline">
           <a
-            href="https://github.com/Nutlope/turboseek"
+            href="https://github.com/Nutlope/llamateacher"
             target="_blank"
             rel="noopener noreferrer"
           >
