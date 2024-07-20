@@ -18,9 +18,9 @@ const Hero: FC<THeroProps> = ({
   };
 
   return (
-    <div className="flex flex-col items-center justify-center max-w-2xl mx-auto">
+    <div className="mx-auto flex max-w-xl flex-col items-center justify-center">
       <a
-        className="bg-[rgba(234,238,255,0.65)] mb-4 inline-flex h-7 shrink-0 items-center gap-[9px] rounded-[50px] border-[0.5px] border-solid border-[#E6E6E6] bg-white px-5 py-4 shadow-[0px_1px_1px_0px_rgba(0,0,0,0.25)]"
+        className="mb-4 inline-flex h-7 shrink-0 items-center gap-[9px] rounded-[50px] border-[0.5px] border-solid border-[#E6E6E6] bg-[rgba(234,238,255,0.65)] bg-white px-5 py-4 shadow-[0px_1px_1px_0px_rgba(0,0,0,0.25)]"
         href="https://www.together.ai/"
         target="_blank"
       >
@@ -35,13 +35,19 @@ const Hero: FC<THeroProps> = ({
           Powered by Together AI and Llama 3.1
         </span>
       </a>
-      <h2 className="bg-custom-gradient text-gray-900 bg-clip-text mt-2 text-center text-6xl font-medium tracking-tight">
-        Your Personal <span className="text-transparent bg-gradient-to-r from-blue-600 to-blue-500 bg-clip-text font-bold">Tutor</span>
+      <h2 className="mt-2 bg-custom-gradient bg-clip-text text-center text-6xl font-medium tracking-tight text-gray-900">
+        Your Personal{" "}
+        <span className="bg-gradient-to-r from-blue-600 to-blue-500 bg-clip-text font-bold text-transparent">
+          Tutor
+        </span>
       </h2>
-      <p className="mt-4 text-center text-balance">Enter a topic you want to learn along with your age group and generate the most advanced chat bot tailored to you!</p>
+      <p className="mt-4 text-balance text-center">
+        Enter a topic you want to learn along with your age group and generate
+        the most advanced chat bot tailored to you!
+      </p>
 
       {/* input section */}
-      <div className="w-full pb-6 mt-4">
+      <div className="mt-4 w-full pb-6">
         <InputArea
           promptValue={promptValue}
           setPromptValue={setPromptValue}
@@ -53,7 +59,7 @@ const Hero: FC<THeroProps> = ({
       <div className="flex flex-wrap items-center justify-center gap-2.5 pb-[30px] lg:flex-nowrap lg:justify-normal">
         {suggestions.map((item) => (
           <div
-            className="flex h-[35px] cursor-pointer items-center justify-center gap-[5px] rounded border border-solid border-[#C1C1C1] px-2.5 py-2 hover:bg-gray-200 transition"
+            className="flex h-[35px] cursor-pointer items-center justify-center gap-[5px] rounded border border-solid border-[#C1C1C1] px-2.5 py-2 transition hover:bg-gray-200"
             onClick={() => handleClickSuggestion(item?.name)}
             key={item.id}
           >
@@ -75,7 +81,7 @@ const Hero: FC<THeroProps> = ({
       {/* Github link section */}
       <p className="text-center text-sm font-light leading-[normal] text-[#1B1B16]">
         Fully open source!{" "}
-        <span className="text-sm font-medium underline text-blue-500">
+        <span className="text-sm font-medium text-blue-500 underline">
           <a
             href="https://github.com/Nutlope/llamateacher"
             target="_blank"

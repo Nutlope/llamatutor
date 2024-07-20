@@ -8,8 +8,7 @@ import bgImage from "../public/background.png";
 const montserrat = Montserrat({ subsets: ["latin"] });
 
 let title = "Llama Teacher – AI Personal Tutor";
-let description =
-  "Learn faster with our open source AI personal tutor";
+let description = "Learn faster with our open source AI personal tutor";
 let url = "https://LlamaTeacher.com/";
 let ogimage = "https://LlamaTeacher.com/og-image.png";
 let sitename = "llamateacher.com";

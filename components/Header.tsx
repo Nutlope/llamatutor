@@ -8,11 +8,7 @@ const Header = () => {
         <div className="col-span-5"></div>
         <div className="col-span-2 flex items-center justify-center">
           <a href="/">
-            <Image
-              src={logo}
-              alt=""
-              className="size-10"
-            />
+            <Image src={logo} alt="" className="size-10" />
           </a>
         </div>
       </div>

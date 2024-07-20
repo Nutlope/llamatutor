@@ -13,7 +13,7 @@ const Footer = () => {
             width={31}
             height={30}
           />
-          <span className="text-base font-medium leading-[normal] ">
+          <span className="text-base font-medium leading-[normal]">
             LlamaTeacher.com
           </span>
         </a>
@@ -27,7 +27,10 @@ const Footer = () => {
               height={15}
             />
           </Link>
-          <Link href={"https://github.com/Nutlope/llamateacher"} target="_blank">
+          <Link
+            href={"https://github.com/Nutlope/llamateacher"}
+            target="_blank"
+          >
             <Image
               unoptimized
               src={"/img/github-footer.svg"}
