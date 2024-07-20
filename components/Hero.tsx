@@ -18,9 +18,9 @@ const Hero: FC<THeroProps> = ({
   };
 
   return (
-    <div className="flex flex-col items-center justify-center">
+    <div className="flex flex-col items-center justify-center max-w-2xl mx-auto">
       <a
-        className="mb-4 inline-flex h-7 shrink-0 items-center gap-[9px] rounded-[50px] border-[0.5px] border-solid border-[#E6E6E6] bg-white px-3 py-4 shadow-[0px_1px_1px_0px_rgba(0,0,0,0.25)]"
+        className="bg-[rgba(234,238,255,0.65)] mb-4 inline-flex h-7 shrink-0 items-center gap-[9px] rounded-[50px] border-[0.5px] border-solid border-[#E6E6E6] bg-white px-5 py-4 shadow-[0px_1px_1px_0px_rgba(0,0,0,0.25)]"
         href="https://www.together.ai/"
         target="_blank"
       >
@@ -31,16 +31,17 @@ const Hero: FC<THeroProps> = ({
           width={30}
           height={30}
         />
-        <span className="text-center text-base font-light leading-[normal] text-[#1B1B16]">
-          Powered by Llama 3 70B
+        <span className="text-center font-medium italic">
+          Powered by Together AI and Llama 3.1
         </span>
       </a>
-      <h2 className="bg-custom-gradient bg-clip-text pb-7 pt-2 text-center text-3xl font-semibold leading-[normal] lg:text-[64px]">
-        Personalized <span className="text-blue-500">tutor</span> for any topic
+      <h2 className="bg-custom-gradient text-gray-900 bg-clip-text mt-2 text-center text-6xl font-medium tracking-tight">
+        Your Personal <span className="text-transparent bg-gradient-to-r from-blue-600 to-blue-500 bg-clip-text font-bold">Tutor</span>
       </h2>
+      <p className="mt-4 text-center text-balance">Enter a topic you want to learn along with your age group and generate the most advanced chat bot tailored to you!</p>
 
       {/* input section */}
-      <div className="w-full max-w-[708px] pb-6">
+      <div className="w-full pb-6 mt-4">
         <InputArea
           promptValue={promptValue}
           setPromptValue={setPromptValue}

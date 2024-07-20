@@ -1,4 +1,5 @@
 import Image from "next/image";
+import logo from "../public/instructor.png";
 
 const Header = () => {
   return (
@@ -8,12 +9,9 @@ const Header = () => {
         <div className="col-span-2 flex items-center justify-center">
           <a href="/">
             <Image
-              unoptimized
-              src="/img/logo.svg"
-              alt="logo"
-              width={40}
-              height={39}
-              className="h-[33px] w-[35px] lg:h-10 lg:w-10"
+              src={logo}
+              alt=""
+              className="size-10"
             />
           </a>
         </div>

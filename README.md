@@ -24,3 +24,11 @@
 4. Create an account at [Helicone](https://www.helicone.ai/) for observability
 5. Create a `.env` (use the `.example.env` for reference) and replace the API keys
 6. Run `npm install` and `npm run dev` to install dependencies and run locally
+
+## Tasks
+
+- [ ] Remove similar topics
+- [ ] Remove restriction on tokens
+- [ ] Migrate to GPT-4o
+- [ ] Move "question" to "summary"
+- [ ] Think about whether to include a report or generative UI with the vercel SDK? Or generate a quiz? Quiz after a few questions?

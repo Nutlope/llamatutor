@@ -1,9 +1,11 @@
 import type { Metadata } from "next";
-import { Lexend } from "next/font/google";
+import { Montserrat } from "next/font/google";
 import PlausibleProvider from "next-plausible";
 import "./globals.css";
+import Image from "next/image";
+import bgImage from "../public/background.png";
 
-const inter = Lexend({ subsets: ["latin"] });
+const montserrat = Montserrat({ subsets: ["latin"] });
 
 let title = "Llama Teacher – AI Personal Tutor";
 let description =
@@ -46,9 +48,15 @@ export default function RootLayout({
       <head>
         <PlausibleProvider domain="llamateacher.com" />
       </head>
+
       <body
-        className={`${inter.className} flex min-h-screen flex-col justify-between`}
+        className={`${montserrat.className} flex min-h-screen flex-col justify-between text-gray-700 antialiased`}
       >
+        <Image
+          src={bgImage}
+          alt=""
+          className="absolute inset-0 -z-10 h-full w-full object-cover"
+        />
         {children}
       </body>
     </html>

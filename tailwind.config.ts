@@ -1,4 +1,5 @@
 import type { Config } from 'tailwindcss';
+import colors from 'tailwindcss/colors';
 
 const config: Config = {
   content: [
@@ -13,10 +14,14 @@ const config: Config = {
       lg: '898px',
       // xl:"1024px"
     },
+
     container: {
       center: true,
     },
     extend: {
+      colors: {
+        gray: colors.neutral,
+      },
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
         'custom-gradient':
