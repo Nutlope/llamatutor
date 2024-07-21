@@ -107,7 +107,7 @@ export default function Home() {
   }
 
   async function handleSimilarQuestions(question: string) {
-    let res = await fetch("/api/getSimilarQuestions", {
+    let res = await fetch("/api/getFollowUps", {
       method: "POST",
       body: JSON.stringify({ question }),
     });
@@ -150,10 +150,10 @@ export default function Home() {
                       className="size-[24px]"
                     />
                     <p className="pr-5 font-bold uppercase leading-[152%] text-black">
-                      Question:
+                      Topic:
                     </p>
                   </div>
-                  <div className="grow">&quot;{question}&quot;</div>
+                  <div className="grow">{question}</div>
                 </div>
                 <>
                   <Sources sources={sources} isLoading={isLoadingSources} />

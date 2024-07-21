@@ -31,7 +31,7 @@ const SimilarTopics = ({
             className="block lg:hidden"
           />
           <h3 className="text-base font-bold uppercase text-black">
-            Similar topics:{" "}
+            Follow up questions:{" "}
           </h3>
         </div>
 

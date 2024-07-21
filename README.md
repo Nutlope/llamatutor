@@ -28,24 +28,21 @@
 ## Tasks - v1
 
 - [x] Finalize homepage as is
-- [ ] Remove similar topics
-- [ ] Remove restriction on tokens
-- [ ] Migrate to GPT-4o
-- [ ] Move "question" to "summary"
-- [ ] Think about whether to include a report or generative UI with the vercel SDK? Or generate a quiz? Quiz after a few questions?
-- [ ] Finalize the next screen
-- [ ] Make sure it works with GPT-4o and a good system prompt
+- [x] Remove similar topics
+- [x] Move "question" to "summary"
+- [ ] Make it so that the user can ask multiple follow up questions, don't refresh everything
+- [ ] Migrate to GPT-4o & remove restrictions on tokens
+- [ ] Redesign the second screen to match the design
+- [ ] Fix outline in search bar (main + dropdown)
+- [ ] Make the search bar longer overall
+- [ ] Make sure it works well on mobile
+- [ ] Send it to Jamie/Rajan & #component-dx for testing
 
 ## Tasks – v2
 
-- [ ] Small UI fixes and improvements
-  - [ ] Add GitHub CTA on the header
-  - [ ] Fix outline in age group dropdown
-  - [ ] Add a nicer dropdown
-  - [ ] Make the search bar longer overall
-- [ ] Make sure it works well on mobile
+- [ ] Iterate on the system prompt to make sure its good
 - [ ] Add last section to the landing page
+- [ ] Add GitHub CTA on the header
+- [ ] Add a nicer dropdown
 - [ ] Go back and add small design things
 - [ ] Try out the generative UI stuff from Vercel
-- [ ] Send it in #component-dx for testing
-- [ ]
