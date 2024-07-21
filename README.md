@@ -32,8 +32,8 @@
 - [x] Move "question" to "summary"
 - [x] Make it a chat where messages stay on the UI + don't refresh everything
 - [x] Migrate to GPT-4o & remove restrictions on tokens
-- [ ] Show messages more nicely + with markdown mode
-- [ ] Redesign the second screen to match the design
+- [x] Show messages more nicely + with markdown mode + streaming
+- [ ] Redesign the second screen to match the design – move sources to the right, follow ups to end, make sure chat is fixed on bottom
 - [ ] Fix outline in search bar (main + dropdown)
 - [ ] Make the search bar longer overall
 - [ ] Make sure it works well on mobile

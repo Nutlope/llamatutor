@@ -19,11 +19,13 @@
     "react": "^18",
     "react-dom": "^18",
     "react-hot-toast": "^2.4.1",
+    "react-markdown": "^9.0.1",
     "together-ai": "^0.6.0-alpha.3",
     "zod": "^3.23.8",
     "zod-to-json-schema": "^3.23.0"
   },
   "devDependencies": {
+    "@tailwindcss/typography": "^0.5.13",
     "@types/jsdom": "^21.1.6",
     "@types/node": "^20",
     "@types/react": "^18",

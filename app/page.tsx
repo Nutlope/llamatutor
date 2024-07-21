@@ -22,7 +22,6 @@ export default function Home() {
   const [showResult, setShowResult] = useState(false);
   const [sources, setSources] = useState<{ name: string; url: string }[]>([]);
   const [isLoadingSources, setIsLoadingSources] = useState(false);
-  const [answer, setAnswer] = useState("");
   const [similarQuestions, setSimilarQuestions] = useState<string[]>([]);
   const [loading, setLoading] = useState(false);
   const chatContainerRef = useRef<HTMLDivElement>(null);
@@ -59,12 +58,6 @@ export default function Home() {
       throw new Error(chatRes.statusText);
     }
 
-    if (chatRes.status === 202) {
-      const fullAnswer = await chatRes.text();
-      setAnswer(fullAnswer);
-      return;
-    }
-
     // This data is a ReadableStream
     const data = chatRes.body;
     if (!data) {
@@ -77,8 +70,19 @@ export default function Home() {
         const data = event.data;
         try {
           const text = JSON.parse(data).text ?? "";
-          setAnswer((prev) => prev + text);
           fullAnswer += text;
+          // Update messages with each chunk
+          setMessages((prev) => {
+            const lastMessage = prev[prev.length - 1];
+            if (lastMessage.role === "assistant") {
+              return [
+                ...prev.slice(0, -1),
+                { ...lastMessage, content: lastMessage.content + text },
+              ];
+            } else {
+              return [...prev, { role: "assistant", content: text }];
+            }
+          });
         } catch (e) {
           console.error(e);
         }
@@ -97,12 +101,6 @@ export default function Home() {
       const chunkValue = decoder.decode(value);
       parser.feed(chunkValue);
     }
-
-    // Update messages with the full answer
-    setMessages((prev) => [
-      ...prev,
-      { role: "assistant", content: fullAnswer },
-    ]);
   };
 
   async function handleSourcesAndChat(question: string) {
@@ -153,7 +151,6 @@ export default function Home() {
     setShowResult(false);
     setPromptValue("");
     setQuestion("");
-    setAnswer("");
     setSimilarQuestions([]);
   };
 

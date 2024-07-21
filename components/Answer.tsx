@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { Toaster, toast } from "react-hot-toast";
+import ReactMarkdown from "react-markdown";
 
 export default function Answer({
   messages,
@@ -57,11 +58,21 @@ export default function Answer({
           )}
         </div>
         <div className="flex flex-wrap content-center items-center gap-[15px]">
-          <div className="w-full whitespace-pre-wrap text-base font-light leading-[152.5%] text-black">
+          <div className="w-full">
             {messages ? (
-              messages.map((message, index) => (
-                <p key={index}>{message.content}</p>
-              ))
+              <div className="prose">
+                {messages.slice(1).map((message, index) =>
+                  message.role === "assistant" ? (
+                    <ReactMarkdown key={index}>
+                      {message.content.trim()}
+                    </ReactMarkdown>
+                  ) : (
+                    <p key={index} className="font-bold">
+                      User: {message.content}
+                    </p>
+                  ),
+                )}
+              </div>
             ) : (
               <div className="flex w-full flex-col gap-2">
                 <div className="h-6 w-full animate-pulse rounded-md bg-gray-300" />

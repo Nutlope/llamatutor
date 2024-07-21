@@ -51,6 +51,6 @@ export const getSystemPrompt = (finalResults: { fullContent: string }[]) => {
   )}
   </teaching_info>
 
-  It is very important for my career that you follow these instructions. Here is the topic to educate on:
+  Please return answer in markdown. It is very important for my career that you follow these instructions. Here is the topic to educate on:
     `;
 };
