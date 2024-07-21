@@ -62,7 +62,7 @@ export async function POST(request: Request) {
       },
       body: JSON.stringify({
         q: finalQuestion,
-        num: 6,
+        num: 9,
       }),
     });
 

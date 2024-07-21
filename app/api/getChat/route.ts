@@ -3,6 +3,12 @@ import {
   TogetherAIStreamPayload,
 } from "@/utils/TogetherAIStream";
 import Together from "together-ai";
+import OpenAI from "openai";
+import { OpenAIStream, OpenAIStreamPayload } from "@/utils/OpenAIStream";
+
+const openai = new OpenAI({
+  apiKey: process.env["OPENAI_API_KEY"],
+});
 
 const together = new Together({
   apiKey: process.env["TOGETHER_API_KEY"],
@@ -18,13 +24,21 @@ export async function POST(request: Request) {
   let { messages } = await request.json();
 
   try {
-    const payload: TogetherAIStreamPayload = {
-      model: "mistralai/Mixtral-8x7B-Instruct-v0.1",
+    console.log("[getChat] Fetching answer stream from Together API");
+    // const payload: TogetherAIStreamPayload = {
+    //   model: "mistralai/Mixtral-8x7B-Instruct-v0.1",
+    //   messages,
+    //   stream: true,
+    // };
+    // const stream = await TogetherAIStream(payload);
+
+    const payload: OpenAIStreamPayload = {
+      model: "gpt-4o",
       messages,
       stream: true,
     };
-    console.log("[getChat] Fetching answer stream from Together API");
-    const stream = await TogetherAIStream(payload);
+    const stream = await OpenAIStream(payload);
+
     // TODO: Need to add error handling here, since a non-200 status code doesn't throw.
     return new Response(stream, {
       headers: new Headers({
@@ -32,9 +46,8 @@ export async function POST(request: Request) {
       }),
     });
   } catch (e) {
-    // If for some reason streaming fails, we can just call it without streaming
     console.log(
-      "[getAnswer] Answer stream failed. Try fetching non-stream answer.",
+      "[getCHat] Answer stream failed. Try fetching non-stream answer.",
     );
     let answer = await together.chat.completions.create({
       model: "mistralai/Mixtral-8x7B-Instruct-v0.1",

@@ -30,8 +30,9 @@
 - [x] Finalize homepage as is
 - [x] Remove similar topics
 - [x] Move "question" to "summary"
-- [ ] Make it a chat where messages stay on the UI + don't refresh everything
-- [ ] Migrate to GPT-4o & remove restrictions on tokens
+- [x] Make it a chat where messages stay on the UI + don't refresh everything
+- [x] Migrate to GPT-4o & remove restrictions on tokens
+- [ ] Show messages more nicely + with markdown mode
 - [ ] Redesign the second screen to match the design
 - [ ] Fix outline in search bar (main + dropdown)
 - [ ] Make the search bar longer overall
