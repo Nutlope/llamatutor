@@ -25,10 +25,21 @@
 5. Create a `.env` (use the `.example.env` for reference) and replace the API keys
 6. Run `npm install` and `npm run dev` to install dependencies and run locally
 
-## Tasks
+## Tasks - v1
 
+- [ ] Finalize homepage as is
 - [ ] Remove similar topics
 - [ ] Remove restriction on tokens
 - [ ] Migrate to GPT-4o
 - [ ] Move "question" to "summary"
 - [ ] Think about whether to include a report or generative UI with the vercel SDK? Or generate a quiz? Quiz after a few questions?
+- [ ] Finalize the next screen
+- [ ] Make sure it works with GPT-4o and a good system prompt
+
+## Tasks – v2
+
+- [ ] Make sure it works well on mobile
+- [ ] Implement full landing page
+- [ ] Go back and add small design things
+- [ ] Try out the generative UI stuff from Vercel
+- [ ] Send it in #component-dx for testing

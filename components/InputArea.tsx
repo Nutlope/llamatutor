@@ -1,5 +1,7 @@
 import { FC } from "react";
 import { Select } from "@headlessui/react";
+import TypeAnimation from "./TypeAnimation";
+import Image from "next/image";
 
 type TInputAreaProps = {
   promptValue: string;
@@ -37,20 +39,23 @@ const InputArea: FC<TInputAreaProps> = ({
         />
         <div className="flex items-center justify-center">
           <select
-            id="currency"
-            name="currency"
-            className="h-full rounded-md rounded-r-full border-0 bg-transparent px-4 text-gray-500 focus:ring-2 focus:ring-inset sm:text-sm"
+            id="grade"
+            name="grade"
+            className="ring-none mr-4 h-full rounded-md rounded-r-full border-0 bg-transparent px-3 font-medium text-black focus:ring-0 sm:text-sm"
           >
-            <option>USD</option>
-            <option>CAD</option>
-            <option>EUR</option>
+            <option>Elementary School</option>
+            <option>Middle School</option>
+            <option>High School</option>
+            <option>College</option>
+            <option>Undergrad</option>
+            <option>Graduate</option>
           </select>
         </div>
       </div>
-      {/* <button
+      <button
         disabled={disabled}
         type="submit"
-        className="relative flex h-[50px] w-[50px] shrink-0 items-center justify-center rounded-[3px] bg-[linear-gradient(154deg,#1E3A8A_23.37%,#3B82F6_91.91%)] disabled:pointer-events-none disabled:opacity-75"
+        className="relative ml-3 flex size-16 shrink-0 items-center justify-center rounded-md bg-[linear-gradient(154deg,#2A8EF9_23.37%,#175CB6_91.91%)] disabled:pointer-events-none disabled:opacity-75"
       >
         {disabled && (
           <div className="absolute inset-0 flex items-center justify-center">
@@ -60,13 +65,13 @@ const InputArea: FC<TInputAreaProps> = ({
 
         <Image
           unoptimized
-          src={"/img/arrow-narrow-right.svg"}
+          src={"/up-arrow.svg"}
           alt="search"
           width={24}
           height={24}
           className={disabled ? "invisible" : ""}
         />
-      </button> */}
+      </button>
     </form>
   );
 };

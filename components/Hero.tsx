@@ -18,7 +18,7 @@ const Hero: FC<THeroProps> = ({
   };
 
   return (
-    <div className="mx-auto flex max-w-xl flex-col items-center justify-center">
+    <div className="mx-auto flex max-w-2xl flex-col items-center justify-center">
       <a
         className="mb-4 inline-flex h-7 shrink-0 items-center gap-[9px] rounded-[50px] border-[0.5px] border-solid border-[#E6E6E6] bg-[rgba(234,238,255,0.65)] bg-white px-5 py-4 shadow-[0px_1px_1px_0px_rgba(0,0,0,0.25)]"
         href="https://www.together.ai/"
@@ -26,13 +26,13 @@ const Hero: FC<THeroProps> = ({
       >
         <Image
           unoptimized
-          src="/meta-llama-small.png"
+          src="/togethercomputer.png"
           alt="hero"
-          width={30}
-          height={30}
+          width={20}
+          height={20}
         />
-        <span className="text-center font-medium italic">
-          Powered by Together AI and Llama 3.1
+        <span className="text-center text-sm font-medium italic">
+          Powered by <b>Llama 3.1 405B</b> and <b>Together AI</b>
         </span>
       </a>
       <h2 className="mt-2 bg-custom-gradient bg-clip-text text-center text-6xl font-medium tracking-tight text-gray-900">
@@ -42,8 +42,8 @@ const Hero: FC<THeroProps> = ({
         </span>
       </h2>
       <p className="mt-4 text-balance text-center">
-        Enter a topic you want to learn along with your age group and generate
-        the most advanced chat bot tailored to you!
+        Enter a topic you want to learn about along with the education level you
+        want to be taught at and generate a personalized tutor tailored to you!
       </p>
 
       {/* input section */}
@@ -83,7 +83,7 @@ const Hero: FC<THeroProps> = ({
         Fully open source!{" "}
         <span className="text-sm font-medium text-blue-500 underline">
           <a
-            href="https://github.com/Nutlope/llamateacher"
+            href="https://github.com/Nutlope/llama-teacher"
             target="_blank"
             rel="noopener noreferrer"
           >
@@ -104,17 +104,17 @@ type suggestionType = {
 const suggestions: suggestionType[] = [
   {
     id: 1,
-    name: "Photosynthesis",
+    name: "Basketball",
     icon: "/img/icon _leaf_.svg",
   },
   {
     id: 2,
-    name: "Basketball",
+    name: "Machine Learning",
     icon: "/img/icon _dumbell_.svg",
   },
   {
     id: 3,
-    name: "History of the NBA",
+    name: "World History",
     icon: "/img/icon _atom_.svg",
   },
   {

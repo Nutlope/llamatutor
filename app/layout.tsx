@@ -3,7 +3,7 @@ import { Montserrat } from "next/font/google";
 import PlausibleProvider from "next-plausible";
 import "./globals.css";
 import Image from "next/image";
-import bgImage from "../public/background.png";
+import bgImage from "../public/new-bg.png";
 
 const montserrat = Montserrat({ subsets: ["latin"] });
 
@@ -54,7 +54,7 @@ export default function RootLayout({
         <Image
           src={bgImage}
           alt=""
-          className="absolute inset-0 -z-10 h-full w-full object-cover"
+          className="absolute inset-0 -z-10 blur-[2px]"
         />
         {children}
       </body>
