@@ -27,7 +27,7 @@ const InputArea: FC<TInputAreaProps> = ({
         handleDisplayResult();
       }}
     >
-      <div className="flex w-full rounded-full border">
+      <div className="flex w-full rounded-lg border">
         <input
           type="text"
           placeholder="Teach me about..."
@@ -41,7 +41,7 @@ const InputArea: FC<TInputAreaProps> = ({
           <select
             id="grade"
             name="grade"
-            className="ring-none mr-4 h-full rounded-md rounded-r-full border-0 bg-transparent px-3 font-medium text-black focus:ring-0 sm:text-sm"
+            className="ring-none mr-4 h-full rounded-md rounded-r-full border-0 bg-transparent pl-2 font-medium text-black focus:ring-0 sm:text-sm"
           >
             <option>Elementary School</option>
             <option>Middle School</option>
@@ -55,7 +55,7 @@ const InputArea: FC<TInputAreaProps> = ({
       <button
         disabled={disabled}
         type="submit"
-        className="relative ml-3 flex size-16 shrink-0 items-center justify-center rounded-md bg-[linear-gradient(154deg,#2A8EF9_23.37%,#175CB6_91.91%)] disabled:pointer-events-none disabled:opacity-75"
+        className="relative ml-3 flex size-[72px] shrink-0 items-center justify-center rounded-md bg-[linear-gradient(154deg,#2A8EF9_23.37%,#175CB6_91.91%)] disabled:pointer-events-none disabled:opacity-75"
       >
         {disabled && (
           <div className="absolute inset-0 flex items-center justify-center">

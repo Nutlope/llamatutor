@@ -7,14 +7,11 @@ const Footer = () => {
       <a href="/" className="flex items-center gap-2.5">
         <Image
           unoptimized
-          src="/img/logo.svg"
+          src="/new-logo.svg"
           alt="footer"
-          width={31}
+          width={160}
           height={30}
         />
-        <span className="text-base font-medium leading-[normal]">
-          LlamaTutor.com
-        </span>
       </a>
       <div className="flex items-center gap-3">
         <Link href={"https://x.com/nutlope"} target="_blank">

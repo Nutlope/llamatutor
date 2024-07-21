@@ -27,7 +27,7 @@
 
 ## Tasks - v1
 
-- [ ] Finalize homepage as is
+- [x] Finalize homepage as is
 - [ ] Remove similar topics
 - [ ] Remove restriction on tokens
 - [ ] Migrate to GPT-4o
@@ -38,8 +38,13 @@
 
 ## Tasks – v2
 
+- [ ] Small UI fixes and improvements
+  - [ ] Add GitHub CTA on the header
+  - [ ] Fix outline in age group dropdown
+  - [ ] Add a nicer dropdown
+  - [ ] Make the search bar longer overall
 - [ ] Make sure it works well on mobile
-- [ ] Implement full landing page
+- [ ] Add last section to the landing page
 - [ ] Go back and add small design things
 - [ ] Try out the generative UI stuff from Vercel
 - [ ] Send it in #component-dx for testing

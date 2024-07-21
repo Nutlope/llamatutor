@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { FC } from "react";
 import InputArea from "./InputArea";
+import mainImg from "../public/new-hero.png";
 
 type THeroProps = {
   promptValue: string;
@@ -79,7 +80,7 @@ const Hero: FC<THeroProps> = ({
       </div>
 
       {/* Github link section */}
-      <p className="text-center text-sm font-light leading-[normal] text-[#1B1B16]">
+      {/* <p className="text-center text-sm font-light leading-[normal] text-[#1B1B16]">
         Fully open source!{" "}
         <span className="text-sm font-medium text-blue-500 underline">
           <a
@@ -90,7 +91,8 @@ const Hero: FC<THeroProps> = ({
             Star it on github.
           </a>
         </span>
-      </p>
+      </p> */}
+      <Image src={mainImg} alt="hero" className="my-32 max-w-7xl" />
     </div>
   );
 };
@@ -105,22 +107,22 @@ const suggestions: suggestionType[] = [
   {
     id: 1,
     name: "Basketball",
-    icon: "/img/icon _leaf_.svg",
+    icon: "/Basketball.svg",
   },
   {
     id: 2,
     name: "Machine Learning",
-    icon: "/img/icon _dumbell_.svg",
+    icon: "/Light.svg",
   },
   {
     id: 3,
-    name: "World History",
-    icon: "/img/icon _atom_.svg",
+    name: "Personal Finance",
+    icon: "/finance.svg",
   },
   {
     id: 4,
-    name: "Geometry",
-    icon: "/img/icon _leaf_.svg",
+    name: "U.S History",
+    icon: "/us.svg",
   },
 ];
 
