@@ -2,11 +2,12 @@ import { NextResponse } from "next/server";
 import { z } from "zod";
 
 let excludedSites = ["youtube.com"];
-
 let searchEngine: "bing" | "serper" = "serper";
 
 export async function POST(request: Request) {
   let { question } = await request.json();
+
+  const finalQuestion = `teach me about ${question}`;
 
   if (searchEngine === "bing") {
     const BING_API_KEY = process.env["BING_API_KEY"];
@@ -15,7 +16,7 @@ export async function POST(request: Request) {
     }
 
     const params = new URLSearchParams({
-      q: `${question} ${excludedSites.map((site) => `-site:${site}`).join(" ")}`,
+      q: `${finalQuestion} ${excludedSites.map((site) => `-site:${site}`).join(" ")}`,
       mkt: "en-US",
       count: "6",
       safeSearch: "Strict",
@@ -59,7 +60,7 @@ export async function POST(request: Request) {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        q: question,
+        q: finalQuestion,
         num: 6,
       }),
     });

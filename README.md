@@ -30,7 +30,7 @@
 - [x] Finalize homepage as is
 - [x] Remove similar topics
 - [x] Move "question" to "summary"
-- [ ] Make it so that the user can ask multiple follow up questions, don't refresh everything
+- [ ] Make it a chat where messages stay on the UI + don't refresh everything
 - [ ] Migrate to GPT-4o & remove restrictions on tokens
 - [ ] Redesign the second screen to match the design
 - [ ] Fix outline in search bar (main + dropdown)

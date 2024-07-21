@@ -14,6 +14,7 @@ import {
   ParsedEvent,
   ReconnectInterval,
 } from "eventsource-parser";
+import { getSystemPrompt } from "@/utils/utils";
 
 export default function Home() {
   const [promptValue, setPromptValue] = useState("");
@@ -25,8 +26,16 @@ export default function Home() {
   const [similarQuestions, setSimilarQuestions] = useState<string[]>([]);
   const [loading, setLoading] = useState(false);
   const chatContainerRef = useRef<HTMLDivElement>(null);
+  const [finalResults, setFinalResults] = useState<{ fullContent: string }[]>(
+    [],
+  );
+  const [messages, setMessages] = useState<{ role: string; content: string }[]>(
+    [],
+  );
 
-  const handleDisplayResult = async (newQuestion?: string) => {
+  console.log({ messages });
+
+  const handleInitialChat = async (newQuestion?: string) => {
     newQuestion = newQuestion || promptValue;
 
     setShowResult(true);
@@ -40,6 +49,65 @@ export default function Home() {
     ]);
 
     setLoading(false);
+  };
+
+  const handleChat = async (messages: { role: string; content: string }[]) => {
+    const chatRes = await fetch("/api/getChat", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ messages }),
+    });
+
+    if (!chatRes.ok) {
+      throw new Error(chatRes.statusText);
+    }
+
+    if (chatRes.status === 202) {
+      const fullAnswer = await chatRes.text();
+      setAnswer(fullAnswer);
+      return;
+    }
+
+    // This data is a ReadableStream
+    const data = chatRes.body;
+    if (!data) {
+      return;
+    }
+    let fullAnswer = "";
+
+    const onParse = (event: ParsedEvent | ReconnectInterval) => {
+      if (event.type === "event") {
+        const data = event.data;
+        try {
+          const text = JSON.parse(data).text ?? "";
+          setAnswer((prev) => prev + text);
+          fullAnswer += text;
+        } catch (e) {
+          console.error(e);
+        }
+      }
+    };
+
+    // https://web.dev/streams/#the-getreader-and-read-methods
+    const reader = data.getReader();
+    const decoder = new TextDecoder();
+    const parser = createParser(onParse);
+    let done = false;
+
+    while (!done) {
+      const { value, done: doneReading } = await reader.read();
+      done = doneReading;
+      const chunkValue = decoder.decode(value);
+      parser.feed(chunkValue);
+    }
+
+    // Update messages with the full answer
+    setMessages((prev) => [
+      ...prev,
+      { role: "assistant", content: fullAnswer },
+    ]);
   };
 
   async function handleSourcesAndAnswer(question: string) {
@@ -57,53 +125,22 @@ export default function Home() {
     }
     setIsLoadingSources(false);
 
-    const response = await fetch("/api/getAnswer", {
+    const parsedSourcesRes = await fetch("/api/getParsedSources", {
       method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ question, sources }),
+      body: JSON.stringify({ sources }),
     });
-
-    if (!response.ok) {
-      throw new Error(response.statusText);
+    let parsedSources;
+    if (parsedSourcesRes.ok) {
+      parsedSources = await parsedSourcesRes.json();
+      setFinalResults(parsedSources);
     }
 
-    if (response.status === 202) {
-      const fullAnswer = await response.text();
-      setAnswer(fullAnswer);
-      return;
-    }
-
-    // This data is a ReadableStream
-    const data = response.body;
-    if (!data) {
-      return;
-    }
-
-    const onParse = (event: ParsedEvent | ReconnectInterval) => {
-      if (event.type === "event") {
-        const data = event.data;
-        try {
-          const text = JSON.parse(data).text ?? "";
-          setAnswer((prev) => prev + text);
-        } catch (e) {
-          console.error(e);
-        }
-      }
-    };
-
-    // https://web.dev/streams/#the-getreader-and-read-methods
-    const reader = data.getReader();
-    const decoder = new TextDecoder();
-    const parser = createParser(onParse);
-    let done = false;
-    while (!done) {
-      const { value, done: doneReading } = await reader.read();
-      done = doneReading;
-      const chunkValue = decoder.decode(value);
-      parser.feed(chunkValue);
-    }
+    const initialMessage = [
+      { role: "system", content: getSystemPrompt(parsedSources) },
+      { role: "user", content: `${question}` },
+    ];
+    setMessages(initialMessage);
+    handleChat(initialMessage);
   }
 
   async function handleSimilarQuestions(question: string) {
@@ -120,7 +157,6 @@ export default function Home() {
     setPromptValue("");
     setQuestion("");
     setAnswer("");
-    setSources([]);
     setSimilarQuestions([]);
   };
 
@@ -132,7 +168,7 @@ export default function Home() {
           <Hero
             promptValue={promptValue}
             setPromptValue={setPromptValue}
-            handleDisplayResult={handleDisplayResult}
+            handleDisplayResult={handleInitialChat}
           />
         )}
         {showResult && (
@@ -160,7 +196,7 @@ export default function Home() {
                   <Answer answer={answer} />
                   <SimilarTopics
                     similarQuestions={similarQuestions}
-                    handleDisplayResult={handleDisplayResult}
+                    handleDisplayResult={handleInitialChat}
                     reset={reset}
                   />
                 </>
@@ -172,7 +208,7 @@ export default function Home() {
               <InputArea
                 promptValue={promptValue}
                 setPromptValue={setPromptValue}
-                handleDisplayResult={handleDisplayResult}
+                handleDisplayResult={handleInitialChat}
                 disabled={loading}
                 reset={reset}
               />
