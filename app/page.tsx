@@ -127,7 +127,7 @@ export default function Home() {
   return (
     <>
       <Header />
-      <main className="flex-grow px-4 pb-4">
+      <main className="flex-grow">
         {!showResult && (
           <Hero
             promptValue={promptValue}
