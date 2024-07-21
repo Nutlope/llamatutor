@@ -9,7 +9,7 @@ export default function Sources({
   isLoading: boolean;
 }) {
   return (
-    <div className="container h-auto w-full shrink-0 rounded-lg border border-solid border-[#C2C2C2] bg-white p-5 lg:p-10">
+    <div className="h-auto w-full shrink-0 rounded-lg border border-solid border-[#C2C2C2] bg-white p-5 lg:p-10">
       <div className="flex items-start gap-4 pb-3 lg:pb-3.5">
         <Image
           unoptimized

@@ -27,7 +27,7 @@ const Hero: FC<THeroProps> = ({
   };
 
   return (
-    <div className="mx-auto flex max-w-2xl flex-col items-center justify-center">
+    <div className="mx-auto mt-10 flex max-w-2xl flex-col items-center justify-center sm:mt-36">
       <a
         className="mb-4 inline-flex h-7 shrink-0 items-center gap-[9px] rounded-[50px] border-[0.5px] border-solid border-[#E6E6E6] bg-[rgba(234,238,255,0.65)] bg-white px-5 py-4 shadow-[0px_1px_1px_0px_rgba(0,0,0,0.25)]"
         href="https://www.together.ai/"

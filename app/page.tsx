@@ -169,34 +169,22 @@ export default function Home() {
           />
         )}
         {showResult && (
-          <div className="flex h-full min-h-[68vh] w-full grow flex-col justify-between">
-            <div className="container w-full space-y-2">
-              <div className="container space-y-2">
-                <div className="container flex w-full items-start gap-3 px-5 pt-2 lg:px-10">
-                  <div className="flex w-fit items-center gap-4">
-                    <Image
-                      unoptimized
-                      src={"/img/message-question-circle.svg"}
-                      alt="message"
-                      width={30}
-                      height={30}
-                      className="size-[24px]"
-                    />
-                    <p className="pr-5 font-bold uppercase leading-[152%] text-black">
-                      Topic:
-                    </p>
-                  </div>
-                  <div className="grow">{question}</div>
+          <div className="mt-2 flex h-full min-h-[68vh] w-full grow flex-col justify-between">
+            <div className="w-full space-y-2">
+              <div className="space-y-2">
+                <div className="flex w-full items-start gap-3 px-5 pt-2 lg:px-10">
+                  <p className="font-bold uppercase text-gray-900">Topic:</p>
+                  <p>{question}</p>
                 </div>
-                <>
-                  <Sources sources={sources} isLoading={isLoadingSources} />
+                <div className="container">
                   <Answer messages={messages} />
+                  <Sources sources={sources} isLoading={isLoadingSources} />
                   {/* <FollowUpQs
                     similarQuestions={similarQuestions}
                     setMessages={setMessages}
                     handleChat={handleChat}
                   /> */}
-                </>
+                </div>
               </div>
 
               <div className="pt-1 sm:pt-2" ref={chatContainerRef}></div>

@@ -37,11 +37,13 @@
 - [ ] Fix outline in search bar (main + dropdown)
 - [ ] Make the search bar longer overall
 - [ ] Make sure it works well on mobile
+- [ ] Add shift enter to add new lines to the prompt
+- [ ] Put in age group into react state and into the prompt
 - [ ] Send it to Jamie/Rajan & #component-dx for testing
 
 ## Tasks – v2
 
-- [ ] Add TODOs in the repo
+- [ ] Complete TODOs in the repo
 - [ ] Iterate on the system prompt to make sure its good
 - [ ] Add last section to the landing page
 - [ ] Add GitHub CTA on the header
