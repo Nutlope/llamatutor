@@ -2,6 +2,8 @@ import Image from "next/image";
 import { FC } from "react";
 import InputArea from "./InputArea";
 import mainImg from "../public/new-hero.png";
+import sectionBg from "../public/section-bg.png";
+import SectionBg from "./NewSection";
 
 type THeroProps = {
   promptValue: string;
@@ -27,7 +29,7 @@ const Hero: FC<THeroProps> = ({
   };
 
   return (
-    <div className="mx-auto flex max-w-2xl flex-col items-center justify-center">
+    <div className="mx-auto flex flex-col items-center justify-center ">
       <a
         className="mb-4 inline-flex h-7 shrink-0 items-center gap-[9px] rounded-[50px] border-[0.5px] border-solid border-[#E6E6E6] bg-[rgba(234,238,255,0.65)] bg-white px-5 py-4 shadow-[0px_1px_1px_0px_rgba(0,0,0,0.25)]"
         href="https://www.together.ai/"
@@ -50,13 +52,13 @@ const Hero: FC<THeroProps> = ({
           Tutor
         </span>
       </h2>
-      <p className="mt-4 text-balance text-center">
+      <p className="mt-4 max-w-2xl text-balance text-center">
         Enter a topic you want to learn about along with the education level you
         want to be taught at and generate a personalized tutor tailored to you!
       </p>
 
       {/* input section */}
-      <div className="mt-4 w-full pb-6">
+      <div className="mt-6 max-w-3xl w-full pb-6">
         <InputArea
           promptValue={promptValue}
           setPromptValue={setPromptValue}
@@ -90,7 +92,9 @@ const Hero: FC<THeroProps> = ({
         ))}
       </div>
       <Image src={mainImg} alt="hero" className="my-32 max-w-7xl" />
+      <SectionBg />
     </div>
+    
   );
 };
 
