@@ -5,7 +5,6 @@ import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
 import InputArea from "@/components/InputArea";
-import SimilarTopics from "@/components/SimilarTopics";
 import Sources from "@/components/Sources";
 import Image from "next/image";
 import { useRef, useState } from "react";
@@ -15,6 +14,7 @@ import {
   ReconnectInterval,
 } from "eventsource-parser";
 import { getSystemPrompt } from "@/utils/utils";
+import FollowUpQs from "@/components/FollowUpQs";
 
 export default function Home() {
   const [promptValue, setPromptValue] = useState("");
@@ -26,14 +26,9 @@ export default function Home() {
   const [similarQuestions, setSimilarQuestions] = useState<string[]>([]);
   const [loading, setLoading] = useState(false);
   const chatContainerRef = useRef<HTMLDivElement>(null);
-  const [finalResults, setFinalResults] = useState<{ fullContent: string }[]>(
-    [],
-  );
   const [messages, setMessages] = useState<{ role: string; content: string }[]>(
     [],
   );
-
-  console.log({ messages });
 
   const handleInitialChat = async (newQuestion?: string) => {
     newQuestion = newQuestion || promptValue;
@@ -44,14 +39,14 @@ export default function Home() {
     setPromptValue("");
 
     await Promise.all([
-      handleSourcesAndAnswer(newQuestion),
-      handleSimilarQuestions(newQuestion),
+      handleSourcesAndChat(newQuestion),
+      handleFollowUpQs(newQuestion),
     ]);
 
     setLoading(false);
   };
 
-  const handleChat = async (messages: { role: string; content: string }[]) => {
+  const handleChat = async (messages?: { role: string; content: string }[]) => {
     const chatRes = await fetch("/api/getChat", {
       method: "POST",
       headers: {
@@ -110,14 +105,15 @@ export default function Home() {
     ]);
   };
 
-  async function handleSourcesAndAnswer(question: string) {
+  async function handleSourcesAndChat(question: string) {
     setIsLoadingSources(true);
     let sourcesResponse = await fetch("/api/getSources", {
       method: "POST",
       body: JSON.stringify({ question }),
     });
+    let sources;
     if (sourcesResponse.ok) {
-      let sources = await sourcesResponse.json();
+      sources = await sourcesResponse.json();
 
       setSources(sources);
     } else {
@@ -132,7 +128,7 @@ export default function Home() {
     let parsedSources;
     if (parsedSourcesRes.ok) {
       parsedSources = await parsedSourcesRes.json();
-      setFinalResults(parsedSources);
+      console.log({ parsedSources });
     }
 
     const initialMessage = [
@@ -140,10 +136,10 @@ export default function Home() {
       { role: "user", content: `${question}` },
     ];
     setMessages(initialMessage);
-    handleChat(initialMessage);
+    await handleChat(initialMessage);
   }
 
-  async function handleSimilarQuestions(question: string) {
+  async function handleFollowUpQs(question: string) {
     let res = await fetch("/api/getFollowUps", {
       method: "POST",
       body: JSON.stringify({ question }),
@@ -152,6 +148,7 @@ export default function Home() {
     setSimilarQuestions(questions);
   }
 
+  // TODO: Only pass this into like the header to reset. That's it.
   const reset = () => {
     setShowResult(false);
     setPromptValue("");
@@ -168,7 +165,10 @@ export default function Home() {
           <Hero
             promptValue={promptValue}
             setPromptValue={setPromptValue}
-            handleDisplayResult={handleInitialChat}
+            setMessages={setMessages}
+            handleChat={handleChat}
+            messages={messages}
+            handleInitialChat={handleInitialChat}
           />
         )}
         {showResult && (
@@ -193,12 +193,12 @@ export default function Home() {
                 </div>
                 <>
                   <Sources sources={sources} isLoading={isLoadingSources} />
-                  <Answer answer={answer} />
-                  <SimilarTopics
+                  <Answer messages={messages} />
+                  {/* <FollowUpQs
                     similarQuestions={similarQuestions}
-                    handleDisplayResult={handleInitialChat}
-                    reset={reset}
-                  />
+                    setMessages={setMessages}
+                    handleChat={handleChat}
+                  /> */}
                 </>
               </div>
 
@@ -206,11 +206,13 @@ export default function Home() {
             </div>
             <div className="container px-4 lg:px-0">
               <InputArea
+                disabled={loading}
                 promptValue={promptValue}
                 setPromptValue={setPromptValue}
-                handleDisplayResult={handleInitialChat}
-                disabled={loading}
-                reset={reset}
+                setMessages={setMessages}
+                handleChat={handleChat}
+                messages={messages}
+                handleInitialChat={handleInitialChat}
               />
             </div>
           </div>

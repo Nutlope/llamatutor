@@ -1,30 +1,43 @@
 import { FC } from "react";
-import { Select } from "@headlessui/react";
 import TypeAnimation from "./TypeAnimation";
 import Image from "next/image";
 
 type TInputAreaProps = {
   promptValue: string;
   setPromptValue: React.Dispatch<React.SetStateAction<string>>;
-  handleDisplayResult: () => void;
   disabled?: boolean;
-  reset?: () => void;
+  setMessages: React.Dispatch<
+    React.SetStateAction<{ role: string; content: string }[]>
+  >;
+  handleChat: (messages?: { role: string; content: string }[]) => void;
+  messages: { role: string; content: string }[];
+  handleInitialChat: () => void;
 };
 
 const InputArea: FC<TInputAreaProps> = ({
   promptValue,
   setPromptValue,
-  handleDisplayResult,
   disabled,
-  reset,
+  setMessages,
+  handleChat,
+  messages,
+  handleInitialChat,
 }) => {
   return (
     <form
       className="mx-auto flex w-full items-center justify-between"
       onSubmit={(e) => {
         e.preventDefault();
-        if (reset) reset();
-        handleDisplayResult();
+        if (messages.length > 0) {
+          let latestMessages = [
+            ...messages,
+            { role: "user", content: promptValue },
+          ];
+          setMessages(latestMessages);
+          handleChat(latestMessages);
+        } else {
+          handleInitialChat();
+        }
       }}
     >
       <div className="flex w-full rounded-lg border">
@@ -38,6 +51,7 @@ const InputArea: FC<TInputAreaProps> = ({
           onChange={(e) => setPromptValue(e.target.value)}
         />
         <div className="flex items-center justify-center">
+          {/* TODO: Add this in state and pass to the prompt */}
           <select
             id="grade"
             name="grade"

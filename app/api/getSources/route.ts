@@ -47,6 +47,7 @@ export async function POST(request: Request) {
     }));
 
     return NextResponse.json(results);
+    // TODO: Figure out a way to remove certain results like YT
   } else if (searchEngine === "serper") {
     const SERPER_API_KEY = process.env["SERPER_API_KEY"];
     if (!SERPER_API_KEY) {

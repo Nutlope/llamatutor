@@ -6,13 +6,21 @@ import mainImg from "../public/new-hero.png";
 type THeroProps = {
   promptValue: string;
   setPromptValue: React.Dispatch<React.SetStateAction<string>>;
-  handleDisplayResult: () => void;
+  setMessages: React.Dispatch<
+    React.SetStateAction<{ role: string; content: string }[]>
+  >;
+  handleChat: (messages?: { role: string; content: string }[]) => void;
+  messages: { role: string; content: string }[];
+  handleInitialChat: () => void;
 };
 
 const Hero: FC<THeroProps> = ({
   promptValue,
   setPromptValue,
-  handleDisplayResult,
+  setMessages,
+  handleChat,
+  messages,
+  handleInitialChat,
 }) => {
   const handleClickSuggestion = (value: string) => {
     setPromptValue(value);
@@ -52,7 +60,10 @@ const Hero: FC<THeroProps> = ({
         <InputArea
           promptValue={promptValue}
           setPromptValue={setPromptValue}
-          handleDisplayResult={handleDisplayResult}
+          setMessages={setMessages}
+          handleChat={handleChat}
+          messages={messages}
+          handleInitialChat={handleInitialChat}
         />
       </div>
 
@@ -78,20 +89,6 @@ const Hero: FC<THeroProps> = ({
           </div>
         ))}
       </div>
-
-      {/* Github link section */}
-      {/* <p className="text-center text-sm font-light leading-[normal] text-[#1B1B16]">
-        Fully open source!{" "}
-        <span className="text-sm font-medium text-blue-500 underline">
-          <a
-            href="https://github.com/Nutlope/llama-teacher"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Star it on github.
-          </a>
-        </span>
-      </p> */}
       <Image src={mainImg} alt="hero" className="my-32 max-w-7xl" />
     </div>
   );

@@ -44,11 +44,12 @@ export const getSystemPrompt = (finalResults: { fullContent: string }[]) => {
 
   Here is the information to teach:
 
-  <contexts>
+  <teaching_info>
+  ${"\n"}
   ${finalResults.map(
-    (result, index) => `[[citation:${index}]] ${result.fullContent} \n\n`,
+    (result, index) => `## Webpage #${index}:\n ${result.fullContent} \n\n`,
   )}
-  </contexts>
+  </teaching_info>
 
   It is very important for my career that you follow these instructions. Here is the topic to educate on:
     `;

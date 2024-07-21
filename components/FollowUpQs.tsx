@@ -1,6 +1,6 @@
 import Image from "next/image";
 
-const SimilarTopics = ({
+const FollowUpQs = ({
   similarQuestions,
   handleDisplayResult,
   reset,
@@ -73,4 +73,4 @@ const SimilarTopics = ({
   );
 };
 
-export default SimilarTopics;
+export default FollowUpQs;

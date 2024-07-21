@@ -40,6 +40,7 @@
 
 ## Tasks – v2
 
+- [ ] Add TODOs in the repo
 - [ ] Iterate on the system prompt to make sure its good
 - [ ] Add last section to the landing page
 - [ ] Add GitHub CTA on the header
