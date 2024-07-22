@@ -7,7 +7,7 @@ let searchEngine: "bing" | "serper" = "serper";
 export async function POST(request: Request) {
   let { question } = await request.json();
 
-  const finalQuestion = `teach me about ${question}`;
+  const finalQuestion = `what is ${question}`;
 
   if (searchEngine === "bing") {
     const BING_API_KEY = process.env["BING_API_KEY"];

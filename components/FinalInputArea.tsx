@@ -14,7 +14,7 @@ type TInputAreaProps = {
   handleInitialChat: () => void;
 };
 
-const InputArea: FC<TInputAreaProps> = ({
+const FinalInputArea: FC<TInputAreaProps> = ({
   promptValue,
   setPromptValue,
   disabled,
@@ -90,4 +90,4 @@ const InputArea: FC<TInputAreaProps> = ({
   );
 };
 
-export default InputArea;
+export default FinalInputArea;

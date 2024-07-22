@@ -3,7 +3,6 @@
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
-import InputArea from "@/components/InputArea";
 import Sources from "@/components/Sources";
 import { useRef, useState } from "react";
 import {
@@ -149,25 +148,25 @@ export default function Home() {
         {showResult ? (
           <div className="mt-2 flex h-full min-h-[68vh] w-full grow flex-col justify-between">
             <div className="w-full space-y-2">
-              <div className="space-y-2">
-                <div className="flex gap-10">
-                  <Chat messages={messages} topic={topic} />
-                  <Sources sources={sources} isLoading={isLoadingSources} />
-                </div>
+              <div className="flex w-full items-start gap-3 px-5 pt-2 lg:px-10">
+                <p className="mx-auto uppercase text-gray-900">
+                  <b>Topic: </b>
+                  {topic}
+                </p>
               </div>
-
-              <div className="pt-1 sm:pt-2" ref={chatContainerRef}></div>
-            </div>
-            <div className="container px-4 lg:px-0">
-              <InputArea
-                disabled={loading}
-                promptValue={inputValue}
-                setPromptValue={setInputValue}
-                setMessages={setMessages}
-                handleChat={handleChat}
-                messages={messages}
-                handleInitialChat={handleInitialChat}
-              />
+              <div className="mx-auto flex max-w-7xl gap-10">
+                <Chat
+                  messages={messages}
+                  disabled={loading}
+                  promptValue={inputValue}
+                  setPromptValue={setInputValue}
+                  setMessages={setMessages}
+                  handleChat={handleChat}
+                  handleInitialChat={handleInitialChat}
+                />
+                <Sources sources={sources} isLoading={isLoadingSources} />
+              </div>
+              <div className="pt-1 sm:pt-2" ref={chatContainerRef} />
             </div>
           </div>
         ) : (

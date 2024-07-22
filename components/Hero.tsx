@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { FC } from "react";
-import InputArea from "./InputArea";
 import mainImg from "../public/new-hero.png";
+import InitialInputArea from "./InitialInputArea";
 
 type THeroProps = {
   promptValue: string;
@@ -57,7 +57,7 @@ const Hero: FC<THeroProps> = ({
 
       {/* input section */}
       <div className="mt-4 w-full pb-6">
-        <InputArea
+        <InitialInputArea
           promptValue={promptValue}
           setPromptValue={setPromptValue}
           setMessages={setMessages}
