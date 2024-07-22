@@ -1,12 +1,10 @@
 "use client";
 
-import Answer from "@/components/Answer";
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
 import InputArea from "@/components/InputArea";
 import Sources from "@/components/Sources";
-import Image from "next/image";
 import { useRef, useState } from "react";
 import {
   createParser,
@@ -14,32 +12,30 @@ import {
   ReconnectInterval,
 } from "eventsource-parser";
 import { getSystemPrompt } from "@/utils/utils";
-import FollowUpQs from "@/components/FollowUpQs";
+import Chat from "@/components/Chat";
 
 export default function Home() {
-  const [promptValue, setPromptValue] = useState("");
-  const [question, setQuestion] = useState("");
+  const [inputValue, setInputValue] = useState("");
+  const [topic, setTopic] = useState("");
   const [showResult, setShowResult] = useState(false);
   const [sources, setSources] = useState<{ name: string; url: string }[]>([]);
   const [isLoadingSources, setIsLoadingSources] = useState(false);
-  const [similarQuestions, setSimilarQuestions] = useState<string[]>([]);
-  const [loading, setLoading] = useState(false);
-  const chatContainerRef = useRef<HTMLDivElement>(null);
   const [messages, setMessages] = useState<{ role: string; content: string }[]>(
     [],
   );
+  const [loading, setLoading] = useState(false);
+  const chatContainerRef = useRef<HTMLDivElement>(null);
+  const [similarQuestions, setSimilarQuestions] = useState<string[]>([]);
 
-  const handleInitialChat = async (newQuestion?: string) => {
-    newQuestion = newQuestion || promptValue;
-
+  const handleInitialChat = async () => {
     setShowResult(true);
     setLoading(true);
-    setQuestion(newQuestion);
-    setPromptValue("");
+    setTopic(inputValue);
+    setInputValue("");
 
     await Promise.all([
-      handleSourcesAndChat(newQuestion),
-      handleFollowUpQs(newQuestion),
+      handleSourcesAndChat(inputValue),
+      handleFollowUpQs(inputValue),
     ]);
 
     setLoading(false);
@@ -146,44 +142,17 @@ export default function Home() {
     setSimilarQuestions(questions);
   }
 
-  // TODO: Only pass this into like the header to reset. That's it.
-  const reset = () => {
-    setShowResult(false);
-    setPromptValue("");
-    setQuestion("");
-    setSimilarQuestions([]);
-  };
-
   return (
     <>
       <Header />
       <main className="flex-grow px-4 pb-4">
-        {!showResult && (
-          <Hero
-            promptValue={promptValue}
-            setPromptValue={setPromptValue}
-            setMessages={setMessages}
-            handleChat={handleChat}
-            messages={messages}
-            handleInitialChat={handleInitialChat}
-          />
-        )}
-        {showResult && (
+        {showResult ? (
           <div className="mt-2 flex h-full min-h-[68vh] w-full grow flex-col justify-between">
             <div className="w-full space-y-2">
               <div className="space-y-2">
-                <div className="flex w-full items-start gap-3 px-5 pt-2 lg:px-10">
-                  <p className="font-bold uppercase text-gray-900">Topic:</p>
-                  <p>{question}</p>
-                </div>
-                <div className="container">
-                  <Answer messages={messages} />
+                <div className="flex gap-10">
+                  <Chat messages={messages} topic={topic} />
                   <Sources sources={sources} isLoading={isLoadingSources} />
-                  {/* <FollowUpQs
-                    similarQuestions={similarQuestions}
-                    setMessages={setMessages}
-                    handleChat={handleChat}
-                  /> */}
                 </div>
               </div>
 
@@ -192,8 +161,8 @@ export default function Home() {
             <div className="container px-4 lg:px-0">
               <InputArea
                 disabled={loading}
-                promptValue={promptValue}
-                setPromptValue={setPromptValue}
+                promptValue={inputValue}
+                setPromptValue={setInputValue}
                 setMessages={setMessages}
                 handleChat={handleChat}
                 messages={messages}
@@ -201,6 +170,15 @@ export default function Home() {
               />
             </div>
           </div>
+        ) : (
+          <Hero
+            promptValue={inputValue}
+            setPromptValue={setInputValue}
+            setMessages={setMessages}
+            handleChat={handleChat}
+            messages={messages}
+            handleInitialChat={handleInitialChat}
+          />
         )}
       </main>
       <Footer />

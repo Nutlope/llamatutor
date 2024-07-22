@@ -2,13 +2,19 @@ import Image from "next/image";
 import { Toaster, toast } from "react-hot-toast";
 import ReactMarkdown from "react-markdown";
 
-export default function Answer({
+export default function Chat({
   messages,
+  topic,
 }: {
   messages: { role: string; content: string }[];
+  topic: string;
 }) {
   return (
     <div className="container flex w-full rounded-lg border border-solid border-[#C2C2C2] bg-white p-5 lg:p-7">
+      <div className="flex w-full items-start gap-3 px-5 pt-2 lg:px-10">
+        <p className="font-bold uppercase text-gray-900">Topic:</p>
+        <p>{topic}</p>
+      </div>
       <div className="flex w-full flex-wrap content-center items-center gap-[15px]">
         <div className="w-full">
           {messages ? (
@@ -16,9 +22,7 @@ export default function Answer({
               <div className="prose">
                 {messages.slice(2).map((message, index) =>
                   message.role === "assistant" ? (
-                    <ReactMarkdown key={index}>
-                      {message.content.trim()}
-                    </ReactMarkdown>
+                    <ReactMarkdown key={index}>{message.content}</ReactMarkdown>
                   ) : (
                     <p key={index} className="font-bold">
                       User: {message.content}
@@ -26,28 +30,30 @@ export default function Answer({
                   ),
                 )}
               </div>
-              <div className="flex justify-end">
-                <button
-                  onClick={() => {
-                    navigator.clipboard.writeText(
-                      messages[messages.length - 1].content.trim(),
-                    );
-                    toast("Answer copied to clipboard", {
-                      icon: "✂️",
-                    });
-                  }}
-                  className=""
-                >
-                  <Image
-                    unoptimized
-                    src="/img/copy.svg"
-                    alt=""
-                    width={20}
-                    height={20}
-                    className="cursor-pointer"
-                  />
-                </button>
-              </div>
+              {messages.length > 2 ? (
+                <div className="flex justify-end">
+                  <button
+                    onClick={() => {
+                      navigator.clipboard.writeText(
+                        messages[messages.length - 1].content.trim(),
+                      );
+                      toast("Answer copied to clipboard", {
+                        icon: "✂️",
+                      });
+                    }}
+                    className=""
+                  >
+                    <Image
+                      unoptimized
+                      src="/img/copy.svg"
+                      alt=""
+                      width={20}
+                      height={20}
+                      className="cursor-pointer"
+                    />
+                  </button>
+                </div>
+              ) : null}
             </>
           ) : (
             <div className="flex w-full flex-col gap-2">

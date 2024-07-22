@@ -2,12 +2,12 @@ import Image from "next/image";
 
 const FollowUpQs = ({
   similarQuestions,
-  handleDisplayResult,
-  reset,
+  setMessages,
+  handleChat,
 }: {
   similarQuestions: string[];
-  handleDisplayResult: (item: string) => void;
-  reset: () => void;
+  setMessages: (messages: any) => void;
+  handleChat: () => void;
 }) => {
   return (
     <div className="container flex h-auto w-full shrink-0 gap-4 rounded-lg border border-solid border-[#C2C2C2] bg-white p-5 lg:p-10">
