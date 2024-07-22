@@ -17,7 +17,7 @@ const Footer = () => {
         <Link href={"https://x.com/nutlope"} target="_blank">
           <Image
             unoptimized
-            src="/img/x.svg"
+            src="/twitter.svg"
             alt="twitter"
             width={15}
             height={15}
@@ -26,7 +26,7 @@ const Footer = () => {
         <Link href={"https://github.com/Nutlope/llama-teacher"} target="_blank">
           <Image
             unoptimized
-            src={"/img/github-footer.svg"}
+            src={"/github.svg"}
             alt="facebook"
             width={16}
             height={16}

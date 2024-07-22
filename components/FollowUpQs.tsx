@@ -14,7 +14,7 @@ const FollowUpQs = ({
       <div className="hidden lg:block">
         <Image
           unoptimized
-          src="/img/similarTopics.svg"
+          src="/similarTopics.svg"
           alt="footer"
           width={24}
           height={24}
@@ -24,7 +24,7 @@ const FollowUpQs = ({
         <div className="flex gap-4 pb-3">
           <Image
             unoptimized
-            src="/img/similarTopics.svg"
+            src="/similarTopics.svg"
             alt="footer"
             width={24}
             height={24}
@@ -49,7 +49,7 @@ const FollowUpQs = ({
                 <div className="flex items-center">
                   <Image
                     unoptimized
-                    src="/img/arrow-circle-up-right.svg"
+                    src="/arrow-up.svg"
                     alt="footer"
                     width={24}
                     height={24}

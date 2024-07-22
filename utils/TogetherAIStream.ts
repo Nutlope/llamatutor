@@ -18,7 +18,6 @@ export interface TogetherAIStreamPayload {
   stream: boolean;
 }
 
-// TODO: Add back the Together TypeScript SDK with Helicone
 // const together = new Together({
 //   apiKey: process.env["TOGETHER_API_KEY"],
 //   baseURL: "https://together.helicone.ai/v1",

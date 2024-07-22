@@ -25,7 +25,7 @@
 5. Create a `.env` (use the `.example.env` for reference) and replace the API keys
 6. Run `npm install` and `npm run dev` to install dependencies and run locally
 
-## Tasks - v1
+## Tasks - v0.5
 
 - [x] Finalize homepage as is
 - [x] Remove similar topics
@@ -38,22 +38,30 @@
 - [x] Fix outline in search bar (main + dropdown)
 - [x] Put in age group into react state and into the prompt
 - [x] Make the search bar longer overall
-- [ ] Make new final input & disable after someone sends + clear it
-- [ ] Add slight design changes: LlamaTutor icon + making the user messages blue
+- [x] Complete TODOs in the repo
+- [x] Remove all unused images
 
-- [ ] Make sure it works well on mobile
+## Tasks – v0.75
+
+- [ ] Add last section to the landing page, review PR from Youssef
+- [ ] Refactor code in all components
+- [ ] Update the favicon
+- [ ] Make new final input & disable after someone sends + clear it
 - [ ] Fix the loading state of the main screen
 - [ ] Make chat fixed on the bottom and no scrolling overall
-- [ ] Send it to Jamie/Rajan & #component-dx for testing
 
-## Tasks – v2
+## Tasks – v1
 
-- [ ] Update the favicon
-- [ ] Complete TODOs in the repo
-- [ ] Add follow up questions + new chat at the end
+- [ ] Add slight design changes on chat: LlamaTutor icon + user messages blue
+- [ ] Make sure it works well on mobile
 - [ ] Iterate on the system prompt to make sure its good
-- [ ] Add last section to the landing page
-- [ ] Add GitHub CTA on the header
-- [ ] Add a nicer dropdown
-- [ ] Go back and add small design things
+- [ ] Add GitHub CTA & Together logo on the header
+- [ ] Update CTA to say 405B on the main screen
+- [ ] Switch from GPT-4o to Llama 405B and do testing
+
+## Future Tasks
+
+- [ ] Add potential follow up questions + new chat at the end of chat page
+- [ ] Add nice hamburger menu on mobile
 - [ ] Try out the generative UI stuff from Vercel
+- [ ] Add a nicer dropdown overall

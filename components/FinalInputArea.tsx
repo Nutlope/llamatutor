@@ -51,7 +51,6 @@ const FinalInputArea: FC<TInputAreaProps> = ({
           onChange={(e) => setPromptValue(e.target.value)}
         />
         <div className="flex items-center justify-center">
-          {/* TODO: Add this in state and pass to the prompt */}
           <select
             id="grade"
             name="grade"
