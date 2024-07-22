@@ -45,9 +45,9 @@
 
 ## Tasks – v0.75 (final UI changes)
 
-- [ ] Make new final input & disable after someone sends + clear it
-- [ ] Fix the loading state of the main screen
+- [x] Fix the loading state of the main screen
 - [ ] Make chat fixed on the bottom and no scrolling overall
+- [ ] Make new final input & disable after someone sends + clear it
 - [ ] Add slight design changes on chat: LlamaTutor icon + user messages blue
 - [ ] Make sure it works well on mobile
 - [ ] Add GitHub CTA & Together logo on the header

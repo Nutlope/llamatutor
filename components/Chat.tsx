@@ -21,9 +21,9 @@ export default function Chat({
   handleInitialChat: () => void;
 }) {
   return (
-    <div className="flex h-screen flex-col gap-4">
+    <div className="flex h-screen flex-1 flex-col gap-4">
       <div className="no-scrollbar flex-grow overflow-y-auto p-4">
-        <div className="flex w-full rounded-lg border border-solid border-[#C2C2C2] bg-white p-5 lg:p-7">
+        <div className="flex rounded-lg border border-solid border-[#C2C2C2] bg-white p-5 lg:p-7">
           {messages.length > 2 ? (
             <div className="prose max-w-5xl">
               {messages.slice(2).map((message, index) =>
@@ -40,14 +40,13 @@ export default function Chat({
             </div>
           ) : (
             <div className="flex w-full flex-col gap-2">
-              <div className="h-6 w-full max-w-[1200px] animate-pulse rounded-md bg-gray-300" />
-              <div className="h-6 w-80 animate-pulse rounded-md bg-gray-300" />
-              <div className="h-6 w-80 animate-pulse rounded-md bg-gray-300" />
-              <div className="h-6 w-80 animate-pulse rounded-md bg-gray-300" />
-              <div className="h-6 w-80 animate-pulse rounded-md bg-gray-300" />
-              <div className="h-6 w-80 animate-pulse rounded-md bg-gray-300" />
-              <div className="h-6 w-80 animate-pulse rounded-md bg-gray-300" />
-              <div className="h-6 w-80 animate-pulse rounded-md bg-gray-300" />
+              {Array.from(Array(5).keys()).map((i) => (
+                <div
+                  key={i}
+                  className="h-10 animate-pulse rounded-md bg-gray-300"
+                  style={{ animationDelay: `${i * 0.05}s` }}
+                />
+              ))}
             </div>
           )}
         </div>
