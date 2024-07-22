@@ -12,8 +12,6 @@ type TInputAreaProps = {
   handleChat: (messages?: { role: string; content: string }[]) => void;
   messages: { role: string; content: string }[];
   handleInitialChat: () => void;
-  ageGroup: string;
-  setAgeGroup: React.Dispatch<React.SetStateAction<string>>;
 };
 
 const FinalInputArea: FC<TInputAreaProps> = ({
@@ -24,8 +22,6 @@ const FinalInputArea: FC<TInputAreaProps> = ({
   handleChat,
   messages,
   handleInitialChat,
-  ageGroup,
-  setAgeGroup,
 }) => {
   return (
     <form
@@ -54,22 +50,6 @@ const FinalInputArea: FC<TInputAreaProps> = ({
           onChange={(e) => setPromptValue(e.target.value)}
           rows={1}
         />
-        <div className="flex items-center justify-center">
-          <select
-            id="grade"
-            name="grade"
-            className="ring-none h-full rounded-md rounded-r-lg border-0 bg-transparent px-2 font-medium text-black focus:ring-0 sm:text-sm"
-            value={ageGroup}
-            onChange={(e) => setAgeGroup(e.target.value)}
-          >
-            <option>Elementary School</option>
-            <option>Middle School</option>
-            <option>High School</option>
-            <option>College</option>
-            <option>Undergrad</option>
-            <option>Graduate</option>
-          </select>
-        </div>
       </div>
       <button
         disabled={disabled}
