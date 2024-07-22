@@ -54,7 +54,7 @@ export default function RootLayout({
         <Image
           src={bgImage}
           alt=""
-          className="absolute inset-0 -z-10 blur-[2px]"
+          className="absolute inset-0 -z-10 max-h-full max-w-full blur-[2px]"
         />
         {children}
       </body>

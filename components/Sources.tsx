@@ -8,13 +8,13 @@ export default function Sources({
   isLoading: boolean;
 }) {
   return (
-    <div className="max-w-[300px] bg-white">
+    <div className="bg-white max-lg:-order-1 lg:max-w-[300px]">
       <div className="flex items-start gap-4 pb-3 lg:pb-3.5">
         <h3 className="text-base font-bold uppercase leading-[152.5%] text-black">
           sources:{" "}
         </h3>
       </div>
-      <div className="flex w-full flex-wrap content-center items-center gap-[15px]">
+      <div className="flex w-full content-center items-center gap-6 pb-4 max-lg:overflow-x-scroll lg:flex-wrap lg:gap-4 lg:pb-0">
         {isLoading ? (
           <>
             <div className="h-20 w-[260px] max-w-sm animate-pulse rounded-md bg-gray-300" />
@@ -41,8 +41,8 @@ export default function Sources({
 
 const SourceCard = ({ source }: { source: { name: string; url: string } }) => {
   return (
-    <div className="flex h-[79px] w-full items-center gap-2.5 rounded-lg border border-gray-100 px-1.5 py-1 shadow-md md:w-auto">
-      <div className="">
+    <div className="flex h-[79px] w-full items-center gap-2.5 rounded-lg border border-gray-100 px-1.5 py-1 shadow-md">
+      <div className="shrink-0">
         <Image
           unoptimized
           src={`https://www.google.com/s2/favicons?domain=${source.url}&sz=128`}
@@ -52,7 +52,7 @@ const SourceCard = ({ source }: { source: { name: string; url: string } }) => {
           height={36}
         />
       </div>
-      <div className="flex max-w-[192px] flex-col justify-center gap-1">
+      <div className="flex min-w-0 max-w-[192px] flex-col justify-center gap-1">
         <h6 className="line-clamp-2 text-xs font-light">{source.name}</h6>
         <a
           target="_blank"

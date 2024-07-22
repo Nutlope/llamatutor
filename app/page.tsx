@@ -132,17 +132,14 @@ export default function Home() {
   return (
     <>
       <Header />
-      <main className="flex grow flex-col overflow-hidden px-4 pb-4">
+
+      <main
+        className={`flex grow flex-col px-4 pb-4 ${showResult ? "overflow-hidden" : ""}`}
+      >
         {showResult ? (
           <div className="mt-2 flex w-full grow flex-col justify-between overflow-hidden">
             <div className="flex w-full grow flex-col space-y-2 overflow-hidden">
-              <div className="flex w-full items-start gap-3 px-5 pt-2 lg:px-10">
-                <p className="mx-auto uppercase text-gray-900">
-                  <b>Topic: </b>
-                  {topic}
-                </p>
-              </div>
-              <div className="mx-auto flex w-full max-w-7xl grow gap-10 overflow-hidden">
+              <div className="mx-auto flex w-full max-w-7xl grow flex-col gap-4 overflow-hidden lg:flex-row lg:gap-10">
                 <Chat
                   messages={messages}
                   disabled={loading}
@@ -151,6 +148,7 @@ export default function Home() {
                   setMessages={setMessages}
                   handleChat={handleChat}
                   handleInitialChat={handleInitialChat}
+                  topic={topic}
                 />
                 <Sources sources={sources} isLoading={isLoadingSources} />
               </div>

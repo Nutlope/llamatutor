@@ -1,17 +1,11 @@
-import Image from "next/image";
-import logo from "../public/new-logo.svg";
+import { Logo } from "./logo";
 
 const Header = () => {
   return (
-    <div className="container h-[60px] shrink-0 px-4 lg:h-[80px] lg:px-0">
-      <div className="grid h-full grid-cols-12">
-        <div className="col-span-5"></div>
-        <div className="col-span-2 flex items-center justify-center">
-          <a href="/">
-            <Image src={logo} alt="" className="w-24 sm:w-36" />
-          </a>
-        </div>
-      </div>
+    <div className="container flex h-[60px] shrink-0 items-center justify-center px-4 lg:h-[80px] lg:px-0">
+      <a href="/">
+        <Logo className="w-30 sm:w-36" />
+      </a>
     </div>
   );
 };

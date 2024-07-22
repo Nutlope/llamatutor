@@ -48,10 +48,12 @@
 - [x] Fix the loading state of the main screen
 - [x] Make new final input & disable after someone sends + clear it
 - [x] Make chat fixed on the bottom and no scrolling overall
-- [ ] Make sure it works well on mobile
+- [x] Make sure it works well on mobile pt.1
+- [ ] Fix mobile overall pt.2
 - [ ] Add slight design changes on chat: LlamaTutor icon + user messages blue
 - [ ] Add GitHub CTA & Together logo on the header
 - [ ] Switch all the names to Llama-Tutor (site, repo, ect...)
+- [ ] move all my icons into their own typescript file (transform.tools)
 
 ## Tasks – v1 (after endpoint access)
 
