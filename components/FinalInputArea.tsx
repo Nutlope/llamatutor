@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, KeyboardEvent } from "react";
 import TypeAnimation from "./TypeAnimation";
 import Image from "next/image";
 
@@ -6,47 +6,54 @@ type TInputAreaProps = {
   promptValue: string;
   setPromptValue: React.Dispatch<React.SetStateAction<string>>;
   disabled?: boolean;
+  messages: { role: string; content: string }[];
   setMessages: React.Dispatch<
     React.SetStateAction<{ role: string; content: string }[]>
   >;
   handleChat: (messages?: { role: string; content: string }[]) => void;
-  messages: { role: string; content: string }[];
-  handleInitialChat: () => void;
 };
 
 const FinalInputArea: FC<TInputAreaProps> = ({
   promptValue,
   setPromptValue,
   disabled,
+  messages,
   setMessages,
   handleChat,
-  messages,
-  handleInitialChat,
 }) => {
+  function onSubmit() {
+    let latestMessages = [...messages, { role: "user", content: promptValue }];
+    setPromptValue("");
+    setMessages(latestMessages);
+    handleChat(latestMessages);
+  }
+
+  const handleKeyDown = (e: KeyboardEvent<HTMLTextAreaElement>) => {
+    if (e.key === "Enter") {
+      if (e.shiftKey) {
+        return;
+      } else {
+        e.preventDefault();
+        onSubmit();
+      }
+    }
+  };
+
   return (
     <form
       className="mx-auto flex w-full items-center justify-between"
       onSubmit={(e) => {
         e.preventDefault();
-        if (messages.length > 0) {
-          let latestMessages = [
-            ...messages,
-            { role: "user", content: promptValue },
-          ];
-          setMessages(latestMessages);
-          handleChat(latestMessages);
-          setPromptValue("");
-        } else {
-          handleInitialChat();
-        }
+        onSubmit();
       }}
     >
       <div className="flex w-full rounded-lg border">
         <textarea
-          placeholder="Teach me about..."
+          placeholder="Follow up question"
           className="block w-full resize-none rounded-l-lg border-r p-6 text-gray-900 placeholder:text-gray-400"
           disabled={disabled}
           value={promptValue}
+          onKeyDown={handleKeyDown}
           required
           onChange={(e) => setPromptValue(e.target.value)}
           rows={1}

@@ -13,9 +13,9 @@ type THeroProps = {
   >;
   handleChat: (messages?: { role: string; content: string }[]) => void;
   messages: { role: string; content: string }[];
-  handleInitialChat: () => void;
   ageGroup: string;
   setAgeGroup: React.Dispatch<React.SetStateAction<string>>;
+  handleInitialChat: () => void;
 };
 
 const Hero: FC<THeroProps> = ({
@@ -24,9 +24,9 @@ const Hero: FC<THeroProps> = ({
   setMessages,
   handleChat,
   messages,
-  handleInitialChat,
   ageGroup,
   setAgeGroup,
+  handleInitialChat,
 }) => {
   const handleClickSuggestion = (value: string) => {
     setPromptValue(value);
@@ -51,13 +51,13 @@ const Hero: FC<THeroProps> = ({
             Powered by <b>Llama 3</b> and <b>Together AI</b>
           </span>
         </a>
-        <h2 className="mt-2 bg-custom-gradient bg-clip-text text-center text-6xl font-medium tracking-tight text-gray-900">
+        <h2 className="mt-2 bg-custom-gradient bg-clip-text text-center text-4xl font-medium tracking-tight text-gray-900 sm:text-6xl">
           Your Personal{" "}
           <span className="bg-gradient-to-r from-blue-600 to-blue-500 bg-clip-text font-bold text-transparent">
             Tutor
           </span>
         </h2>
-        <p className="mt-4 text-balance text-center">
+        <p className="mt-4 text-balance text-center text-sm sm:text-base">
           Enter a topic you want to learn about along with the education level
           you want to be taught at and generate a personalized tutor tailored to
           you!
@@ -66,11 +66,11 @@ const Hero: FC<THeroProps> = ({
         <div className="mt-4 w-full pb-6">
           <InitialInputArea
             promptValue={promptValue}
+            handleInitialChat={handleInitialChat}
             setPromptValue={setPromptValue}
             setMessages={setMessages}
             handleChat={handleChat}
             messages={messages}
-            handleInitialChat={handleInitialChat}
             ageGroup={ageGroup}
             setAgeGroup={setAgeGroup}
           />
@@ -107,7 +107,7 @@ const Hero: FC<THeroProps> = ({
         <Image
           src={mobileImg}
           alt="hero"
-          className="my-32 max-w-full lg:hidden"
+          className="my-5 max-w-full lg:hidden"
         />
       </div>
     </>

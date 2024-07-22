@@ -19,13 +19,13 @@ export default function Sources({
           <>
             <div className="h-20 w-[260px] max-w-sm animate-pulse rounded-md bg-gray-300" />
             <div className="h-20 w-[260px] max-w-sm animate-pulse rounded-md bg-gray-300" />
-            <div className="h-20 w-[260px] max-w-sm animate-pulse rounded-md bg-gray-300" />
-            <div className="h-20 w-[260px] max-w-sm animate-pulse rounded-md bg-gray-300" />
-            <div className="h-20 w-[260px] max-w-sm animate-pulse rounded-md bg-gray-300" />
-            <div className="h-20 w-[260px] max-w-sm animate-pulse rounded-md bg-gray-300" />
-            <div className="h-20 w-[260px] max-w-sm animate-pulse rounded-md bg-gray-300" />
-            <div className="h-20 w-[260px] max-w-sm animate-pulse rounded-md bg-gray-300" />
-            <div className="h-20 w-[260px] max-w-sm animate-pulse rounded-md bg-gray-300" />
+            <div className="hidden h-20 w-[260px] max-w-sm animate-pulse rounded-md bg-gray-300 sm:block" />
+            <div className="hidden h-20 w-[260px] max-w-sm animate-pulse rounded-md bg-gray-300 sm:block" />
+            <div className="hidden h-20 w-[260px] max-w-sm animate-pulse rounded-md bg-gray-300 lg:block" />
+            <div className="hidden h-20 w-[260px] max-w-sm animate-pulse rounded-md bg-gray-300 lg:block" />
+            <div className="hidden h-20 w-[260px] max-w-sm animate-pulse rounded-md bg-gray-300 lg:block" />
+            <div className="hidden h-20 w-[260px] max-w-sm animate-pulse rounded-md bg-gray-300 lg:block" />
+            <div className="hidden h-20 w-[260px] max-w-sm animate-pulse rounded-md bg-gray-300 lg:block" />
           </>
         ) : sources.length > 0 ? (
           sources.map((source) => (

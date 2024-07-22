@@ -45,7 +45,7 @@ export default function Chat({
               )}
             </div>
           ) : (
-            <div className="flex w-full flex-col gap-2">
+            <div className="flex w-full flex-col gap-2 py-5">
               {Array.from(Array(5).keys()).map((i) => (
                 <div
                   key={i}
@@ -63,10 +63,9 @@ export default function Chat({
           disabled={disabled}
           promptValue={promptValue}
           setPromptValue={setPromptValue}
-          setMessages={setMessages}
           handleChat={handleChat}
           messages={messages}
-          handleInitialChat={handleInitialChat}
+          setMessages={setMessages}
         />
       </div>
     </div>
