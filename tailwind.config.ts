@@ -12,7 +12,6 @@ const config: Config = {
       sm: "640px",
       md: "768px",
       lg: "898px",
-      // xl:"1024px"
     },
 
     container: {

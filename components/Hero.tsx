@@ -60,7 +60,6 @@ const Hero: FC<THeroProps> = ({
         want to be taught at and generate a personalized tutor tailored to you!
       </p>
 
-      {/* input section */}
       <div className="mt-4 w-full pb-6">
         <InitialInputArea
           promptValue={promptValue}
@@ -74,7 +73,6 @@ const Hero: FC<THeroProps> = ({
         />
       </div>
 
-      {/* Suggestions section */}
       <div className="flex flex-wrap items-center justify-center gap-2.5 pb-[30px] lg:flex-nowrap lg:justify-normal">
         {suggestions.map((item) => (
           <div

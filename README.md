@@ -25,7 +25,7 @@
 5. Create a `.env` (use the `.example.env` for reference) and replace the API keys
 6. Run `npm install` and `npm run dev` to install dependencies and run locally
 
-## Tasks - v0.5
+## Tasks - v0.5 (working version)
 
 - [x] Finalize homepage as is
 - [x] Remove similar topics
@@ -40,28 +40,32 @@
 - [x] Make the search bar longer overall
 - [x] Complete TODOs in the repo
 - [x] Remove all unused images
+- [x] Update the favicon
+- [x] Refactor code in all components
 
-## Tasks – v0.75
+## Tasks – v0.75 (final UI changes)
 
-- [ ] Add last section to the landing page, review PR from Youssef
-- [ ] Refactor code in all components
-- [ ] Update the favicon
 - [ ] Make new final input & disable after someone sends + clear it
 - [ ] Fix the loading state of the main screen
 - [ ] Make chat fixed on the bottom and no scrolling overall
-
-## Tasks – v1
-
 - [ ] Add slight design changes on chat: LlamaTutor icon + user messages blue
 - [ ] Make sure it works well on mobile
-- [ ] Iterate on the system prompt to make sure its good
 - [ ] Add GitHub CTA & Together logo on the header
-- [ ] Update CTA to say 405B on the main screen
+- [ ] Switch all the names to Llama-Tutor (site, repo, ect...)
+
+## Tasks – v1 (after endpoint access)
+
+- [ ] Add the together domains and test them out
 - [ ] Switch from GPT-4o to Llama 405B and do testing
+- [ ] Iterate on the system prompt to make sure its good
+- [ ] Update CTA to say 405B on the main screen
+- [ ] Write copy for tweet / linkedin + record demo vid with nice zoomins
 
 ## Future Tasks
 
+- [ ] Add a share & copy buttons that folks can click on after convos are generated
 - [ ] Add potential follow up questions + new chat at the end of chat page
+- [ ] Add a more detailed landing page with a nice section with the GitHub link
 - [ ] Add nice hamburger menu on mobile
 - [ ] Try out the generative UI stuff from Vercel
 - [ ] Add a nicer dropdown overall

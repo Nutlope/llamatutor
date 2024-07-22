@@ -24,7 +24,6 @@ export default function Home() {
   );
   const [loading, setLoading] = useState(false);
   const chatContainerRef = useRef<HTMLDivElement>(null);
-  const [similarQuestions, setSimilarQuestions] = useState<string[]>([]);
   const [ageGroup, setAgeGroup] = useState("Middle School");
 
   const handleInitialChat = async () => {
@@ -33,10 +32,7 @@ export default function Home() {
     setTopic(inputValue);
     setInputValue("");
 
-    await Promise.all([
-      handleSourcesAndChat(inputValue),
-      handleFollowUpQs(inputValue),
-    ]);
+    await handleSourcesAndChat(inputValue);
 
     setLoading(false);
   };
@@ -122,7 +118,6 @@ export default function Home() {
     let parsedSources;
     if (parsedSourcesRes.ok) {
       parsedSources = await parsedSourcesRes.json();
-      console.log({ parsedSources });
     }
 
     const initialMessage = [
@@ -131,15 +126,6 @@ export default function Home() {
     ];
     setMessages(initialMessage);
     await handleChat(initialMessage);
-  }
-
-  async function handleFollowUpQs(question: string) {
-    let res = await fetch("/api/getFollowUps", {
-      method: "POST",
-      body: JSON.stringify({ question }),
-    });
-    let questions = await res.json();
-    setSimilarQuestions(questions);
   }
 
   return (

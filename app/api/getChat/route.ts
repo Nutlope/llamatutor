@@ -25,7 +25,6 @@ export async function POST(request: Request) {
     };
     const stream = await OpenAIStream(payload);
 
-    // TODO: Need to add error handling here, since a non-200 status code doesn't throw.
     return new Response(stream, {
       headers: new Headers({
         "Cache-Control": "no-cache",

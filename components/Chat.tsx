@@ -1,4 +1,3 @@
-// import { Toaster, toast } from "react-hot-toast";
 import ReactMarkdown from "react-markdown";
 import FinalInputArea from "./FinalInputArea";
 
