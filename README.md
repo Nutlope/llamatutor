@@ -46,10 +46,10 @@
 ## Tasks – v0.75 (final UI changes)
 
 - [x] Fix the loading state of the main screen
-- [ ] Make chat fixed on the bottom and no scrolling overall
-- [ ] Make new final input & disable after someone sends + clear it
-- [ ] Add slight design changes on chat: LlamaTutor icon + user messages blue
+- [x] Make new final input & disable after someone sends + clear it
+- [x] Make chat fixed on the bottom and no scrolling overall
 - [ ] Make sure it works well on mobile
+- [ ] Add slight design changes on chat: LlamaTutor icon + user messages blue
 - [ ] Add GitHub CTA & Together logo on the header
 - [ ] Switch all the names to Llama-Tutor (site, repo, ect...)
 
@@ -63,6 +63,7 @@
 
 ## Future Tasks
 
+- [ ] Make it autoscroll by default
 - [ ] Add a share & copy buttons that folks can click on after convos are generated
 - [ ] Add potential follow up questions + new chat at the end of chat page
 - [ ] Add a more detailed landing page with a nice section with the GitHub link

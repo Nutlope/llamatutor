@@ -35,6 +35,7 @@ const FinalInputArea: FC<TInputAreaProps> = ({
           ];
           setMessages(latestMessages);
           handleChat(latestMessages);
+          setPromptValue("");
         } else {
           handleInitialChat();
         }

@@ -43,13 +43,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" className="h-full">
       <head>
         <PlausibleProvider domain="llamateacher.com" />
       </head>
 
       <body
-        className={`${montserrat.className} flex min-h-screen flex-col justify-between text-gray-700 antialiased`}
+        className={`${montserrat.className} flex h-full flex-col justify-between text-gray-700 antialiased`}
       >
         <Image
           src={bgImage}

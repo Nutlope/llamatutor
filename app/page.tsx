@@ -4,7 +4,7 @@ import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
 import Sources from "@/components/Sources";
-import { useRef, useState } from "react";
+import { useState } from "react";
 import {
   createParser,
   ParsedEvent,
@@ -23,7 +23,6 @@ export default function Home() {
     [],
   );
   const [loading, setLoading] = useState(false);
-  const chatContainerRef = useRef<HTMLDivElement>(null);
   const [ageGroup, setAgeGroup] = useState("Middle School");
 
   const handleInitialChat = async () => {
@@ -38,6 +37,7 @@ export default function Home() {
   };
 
   const handleChat = async (messages?: { role: string; content: string }[]) => {
+    setLoading(true);
     const chatRes = await fetch("/api/getChat", {
       method: "POST",
       headers: {
@@ -93,6 +93,7 @@ export default function Home() {
       const chunkValue = decoder.decode(value);
       parser.feed(chunkValue);
     }
+    setLoading(false);
   };
 
   async function handleSourcesAndChat(question: string) {
@@ -131,17 +132,17 @@ export default function Home() {
   return (
     <>
       <Header />
-      <main className="flex-grow px-4 pb-4">
+      <main className="flex grow flex-col overflow-hidden px-4 pb-4">
         {showResult ? (
-          <div className="mt-2 flex h-full min-h-[68vh] w-full grow flex-col justify-between">
-            <div className="w-full space-y-2">
+          <div className="mt-2 flex w-full grow flex-col justify-between overflow-hidden">
+            <div className="flex w-full grow flex-col space-y-2 overflow-hidden">
               <div className="flex w-full items-start gap-3 px-5 pt-2 lg:px-10">
                 <p className="mx-auto uppercase text-gray-900">
                   <b>Topic: </b>
                   {topic}
                 </p>
               </div>
-              <div className="mx-auto flex max-w-7xl gap-10">
+              <div className="mx-auto flex w-full max-w-7xl grow gap-10 overflow-hidden">
                 <Chat
                   messages={messages}
                   disabled={loading}
@@ -153,7 +154,6 @@ export default function Home() {
                 />
                 <Sources sources={sources} isLoading={isLoadingSources} />
               </div>
-              <div className="pt-1 sm:pt-2" ref={chatContainerRef} />
             </div>
           </div>
         ) : (
@@ -169,7 +169,7 @@ export default function Home() {
           />
         )}
       </main>
-      <Footer />
+      {/* <Footer /> */}
     </>
   );
 }

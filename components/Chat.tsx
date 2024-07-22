@@ -21,9 +21,9 @@ export default function Chat({
   handleInitialChat: () => void;
 }) {
   return (
-    <div className="flex h-screen flex-1 flex-col gap-4">
-      <div className="no-scrollbar flex-grow overflow-y-auto p-4">
-        <div className="flex rounded-lg border border-solid border-[#C2C2C2] bg-white p-5 lg:p-7">
+    <div className="flex grow flex-col gap-4 overflow-hidden">
+      <div className="flex grow flex-col overflow-hidden p-4">
+        <div className="overflow-y-scroll rounded-lg border border-solid border-[#C2C2C2] bg-white p-5 lg:p-7">
           {messages.length > 2 ? (
             <div className="prose max-w-5xl">
               {messages.slice(2).map((message, index) =>
@@ -51,7 +51,8 @@ export default function Chat({
           )}
         </div>
       </div>
-      <div className="sticky bottom-0 bg-white p-4">
+
+      <div className="bg-white p-4">
         <FinalInputArea
           disabled={disabled}
           promptValue={promptValue}
