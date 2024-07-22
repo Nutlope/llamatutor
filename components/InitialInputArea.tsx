@@ -12,6 +12,8 @@ type TInputAreaProps = {
   handleChat: (messages?: { role: string; content: string }[]) => void;
   messages: { role: string; content: string }[];
   handleInitialChat: () => void;
+  ageGroup: string;
+  setAgeGroup: React.Dispatch<React.SetStateAction<string>>;
 };
 
 const InitialInputArea: FC<TInputAreaProps> = ({
@@ -22,6 +24,8 @@ const InitialInputArea: FC<TInputAreaProps> = ({
   handleChat,
   messages,
   handleInitialChat,
+  ageGroup,
+  setAgeGroup,
 }) => {
   return (
     <form
@@ -41,21 +45,22 @@ const InitialInputArea: FC<TInputAreaProps> = ({
       }}
     >
       <div className="flex w-full rounded-lg border">
-        <input
-          type="text"
+        <textarea
           placeholder="Teach me about..."
-          className="block w-full rounded-l-full border-r p-6 text-gray-900 placeholder:text-gray-400"
+          className="block w-full resize-none rounded-l-lg border-r p-6 text-gray-900 placeholder:text-gray-400"
           disabled={disabled}
           value={promptValue}
           required
           onChange={(e) => setPromptValue(e.target.value)}
+          rows={1}
         />
         <div className="flex items-center justify-center">
-          {/* TODO: Add this in state and pass to the prompt */}
           <select
             id="grade"
             name="grade"
-            className="ring-none mr-4 h-full rounded-md rounded-r-full border-0 bg-transparent pl-2 font-medium text-black focus:ring-0 sm:text-sm"
+            className="ring-none h-full rounded-md rounded-r-lg border-0 bg-transparent px-2 font-medium text-black focus:ring-0 sm:text-sm"
+            value={ageGroup}
+            onChange={(e) => setAgeGroup(e.target.value)}
           >
             <option>Elementary School</option>
             <option>Middle School</option>

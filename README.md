@@ -33,12 +33,17 @@
 - [x] Make it a chat where messages stay on the UI + don't refresh everything
 - [x] Migrate to GPT-4o & remove restrictions on tokens
 - [x] Show messages more nicely + with markdown mode + streaming
-- [ ] Redesign the second screen to match the design – move sources to the right & make chat fixed on bottom
-- [ ] Fix outline in search bar (main + dropdown)
-- [ ] Make the search bar longer overall
+- [x] Redesign the second screen to match the design – move sources to the right & make chat fixed on bottom
+- [x] Add shift enter to add new lines to the prompt
+- [x] Fix outline in search bar (main + dropdown)
+- [x] Put in age group into react state and into the prompt
+- [x] Make the search bar longer overall
+- [ ] Make new final input & disable after someone sends + clear it
+- [ ] Add slight design changes: LlamaTutor icon + making the user messages blue
+
 - [ ] Make sure it works well on mobile
-- [ ] Add shift enter to add new lines to the prompt
-- [ ] Put in age group into react state and into the prompt
+- [ ] Fix the loading state of the main screen
+- [ ] Make chat fixed on the bottom and no scrolling overall
 - [ ] Send it to Jamie/Rajan & #component-dx for testing
 
 ## Tasks – v2

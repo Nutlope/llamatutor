@@ -38,9 +38,41 @@ export async function fetchWithTimeout(
     });
 }
 
-export const getSystemPrompt = (finalResults: { fullContent: string }[]) => {
+type suggestionType = {
+  id: number;
+  name: string;
+  icon: string;
+};
+
+export const suggestions: suggestionType[] = [
+  {
+    id: 1,
+    name: "Basketball",
+    icon: "/Basketball.svg",
+  },
+  {
+    id: 2,
+    name: "Machine Learning",
+    icon: "/Light.svg",
+  },
+  {
+    id: 3,
+    name: "Personal Finance",
+    icon: "/finance.svg",
+  },
+  {
+    id: 4,
+    name: "U.S History",
+    icon: "/us.svg",
+  },
+];
+
+export const getSystemPrompt = (
+  finalResults: { fullContent: string }[],
+  ageGroup: string,
+) => {
   return `
-  You are an interactive personal tutor. Given a topic and the information to teach, please educate the user about it at a middle school level. Please start off by greeting the learner, giving them an overview of the topic, and then ask the user what they want to learn about. Continue to be interactive and don't be afraid to quiz them on the material after explaining it sometimes.
+  You are an interactive personal tutor. Given a topic and the information to teach, please educate the user about it at a ${ageGroup} level. Please start off by greeting the learner, giving them an overview of the topic, and then ask the user what they want to learn about. Continue to be interactive and don't be afraid to quiz them on the material after explaining it sometimes.
 
   Here is the information to teach:
 

@@ -22,10 +22,10 @@ export default function Chat({
   handleInitialChat: () => void;
 }) {
   return (
-    <div className="flex flex-col gap-4">
-      <div className="flex w-full rounded-lg border border-solid border-[#C2C2C2] bg-white p-5 lg:p-7">
-        {messages.length > 2 ? (
-          <>
+    <div className="flex h-screen flex-col gap-4">
+      <div className="no-scrollbar flex-grow overflow-y-auto p-4">
+        <div className="flex w-full rounded-lg border border-solid border-[#C2C2C2] bg-white p-5 lg:p-7">
+          {messages.length > 2 ? (
             <div className="prose max-w-5xl">
               {messages.slice(2).map((message, index) =>
                 message.role === "assistant" ? (
@@ -39,50 +39,21 @@ export default function Chat({
                 ),
               )}
             </div>
-            {/* {messages.length > 2 ? (
-              <div className="flex justify-end">
-                <button
-                  onClick={() => {
-                    navigator.clipboard.writeText(
-                      messages[messages.length - 1].content.trim(),
-                    );
-                    toast("Answer copied to clipboard", {
-                      icon: "✂️",
-                    });
-                  }}
-                  className=""
-                >
-                  <Image
-                    unoptimized
-                    src="/img/copy.svg"
-                    alt=""
-                    width={20}
-                    height={20}
-                    className="cursor-pointer"
-                  />
-                </button>
-              </div>
-            ) : null} */}
-          </>
-        ) : (
-          <div className="flex w-full flex-col gap-2">
-            <div className="h-6 w-full animate-pulse rounded-md bg-gray-300" />
-            <div className="h-6 w-full animate-pulse rounded-md bg-gray-300" />
-            <div className="h-6 w-full animate-pulse rounded-md bg-gray-300" />
-            <div className="h-6 w-full animate-pulse rounded-md bg-gray-300" />
-            <div className="h-6 w-full animate-pulse rounded-md bg-gray-300" />
-            <div className="h-6 w-full animate-pulse rounded-md bg-gray-300" />
-            <div className="h-6 w-full animate-pulse rounded-md bg-gray-300" />
-            <div className="h-6 w-full animate-pulse rounded-md bg-gray-300" />
-          </div>
-        )}
-        {/* <Toaster
-        position="top-center"
-        reverseOrder={false}
-        toastOptions={{ duration: 2000 }}
-      /> */}
+          ) : (
+            <div className="flex w-full flex-col gap-2">
+              <div className="h-6 w-full max-w-[1200px] animate-pulse rounded-md bg-gray-300" />
+              <div className="h-6 w-80 animate-pulse rounded-md bg-gray-300" />
+              <div className="h-6 w-80 animate-pulse rounded-md bg-gray-300" />
+              <div className="h-6 w-80 animate-pulse rounded-md bg-gray-300" />
+              <div className="h-6 w-80 animate-pulse rounded-md bg-gray-300" />
+              <div className="h-6 w-80 animate-pulse rounded-md bg-gray-300" />
+              <div className="h-6 w-80 animate-pulse rounded-md bg-gray-300" />
+              <div className="h-6 w-80 animate-pulse rounded-md bg-gray-300" />
+            </div>
+          )}
+        </div>
       </div>
-      <div className="container px-4 lg:px-0">
+      <div className="sticky bottom-0 bg-white p-4">
         <FinalInputArea
           disabled={disabled}
           promptValue={promptValue}

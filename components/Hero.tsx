@@ -2,6 +2,7 @@ import Image from "next/image";
 import { FC } from "react";
 import mainImg from "../public/new-hero.png";
 import InitialInputArea from "./InitialInputArea";
+import { suggestions } from "@/utils/utils";
 
 type THeroProps = {
   promptValue: string;
@@ -12,6 +13,8 @@ type THeroProps = {
   handleChat: (messages?: { role: string; content: string }[]) => void;
   messages: { role: string; content: string }[];
   handleInitialChat: () => void;
+  ageGroup: string;
+  setAgeGroup: React.Dispatch<React.SetStateAction<string>>;
 };
 
 const Hero: FC<THeroProps> = ({
@@ -21,13 +24,15 @@ const Hero: FC<THeroProps> = ({
   handleChat,
   messages,
   handleInitialChat,
+  ageGroup,
+  setAgeGroup,
 }) => {
   const handleClickSuggestion = (value: string) => {
     setPromptValue(value);
   };
 
   return (
-    <div className="mx-auto mt-10 flex max-w-2xl flex-col items-center justify-center sm:mt-36">
+    <div className="mx-auto mt-10 flex max-w-3xl flex-col items-center justify-center sm:mt-36">
       <a
         className="mb-4 inline-flex h-7 shrink-0 items-center gap-[9px] rounded-[50px] border-[0.5px] border-solid border-[#E6E6E6] bg-[rgba(234,238,255,0.65)] bg-white px-5 py-4 shadow-[0px_1px_1px_0px_rgba(0,0,0,0.25)]"
         href="https://www.together.ai/"
@@ -64,6 +69,8 @@ const Hero: FC<THeroProps> = ({
           handleChat={handleChat}
           messages={messages}
           handleInitialChat={handleInitialChat}
+          ageGroup={ageGroup}
+          setAgeGroup={setAgeGroup}
         />
       </div>
 
@@ -93,34 +100,5 @@ const Hero: FC<THeroProps> = ({
     </div>
   );
 };
-
-type suggestionType = {
-  id: number;
-  name: string;
-  icon: string;
-};
-
-const suggestions: suggestionType[] = [
-  {
-    id: 1,
-    name: "Basketball",
-    icon: "/Basketball.svg",
-  },
-  {
-    id: 2,
-    name: "Machine Learning",
-    icon: "/Light.svg",
-  },
-  {
-    id: 3,
-    name: "Personal Finance",
-    icon: "/finance.svg",
-  },
-  {
-    id: 4,
-    name: "U.S History",
-    icon: "/us.svg",
-  },
-];
 
 export default Hero;

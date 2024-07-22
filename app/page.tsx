@@ -25,6 +25,7 @@ export default function Home() {
   const [loading, setLoading] = useState(false);
   const chatContainerRef = useRef<HTMLDivElement>(null);
   const [similarQuestions, setSimilarQuestions] = useState<string[]>([]);
+  const [ageGroup, setAgeGroup] = useState("Middle School");
 
   const handleInitialChat = async () => {
     setShowResult(true);
@@ -125,7 +126,7 @@ export default function Home() {
     }
 
     const initialMessage = [
-      { role: "system", content: getSystemPrompt(parsedSources) },
+      { role: "system", content: getSystemPrompt(parsedSources, ageGroup) },
       { role: "user", content: `${question}` },
     ];
     setMessages(initialMessage);
@@ -177,6 +178,8 @@ export default function Home() {
             handleChat={handleChat}
             messages={messages}
             handleInitialChat={handleInitialChat}
+            ageGroup={ageGroup}
+            setAgeGroup={setAgeGroup}
           />
         )}
       </main>
