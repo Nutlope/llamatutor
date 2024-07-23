@@ -1,17 +1,15 @@
 import type React from "react";
-import { useEffect, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 
-type RelatedTopicsProps = {
-	topic: string;
-	setInputValue: React.Dispatch<React.SetStateAction<string>>;
-	handleSourcesAndChat: (question: string) => Promise<void>;
-};
-
-const RelatedTopics: React.FC<RelatedTopicsProps> = ({
+export default function RelatedTopics({
 	topic,
-	setInputValue,
-	handleSourcesAndChat,
-}) => {
+	setPromptValue,
+	handleInitialChat,
+}: {
+	topic: string;
+	setPromptValue: React.Dispatch<React.SetStateAction<string>>;
+	handleInitialChat: (newTopic?: string) => Promise<void>;
+}) {
 	const [relatedTopics, setRelatedTopics] = useState<string[]>([]);
 	const [loading, setLoading] = useState<boolean>(false);
 
@@ -39,29 +37,34 @@ const RelatedTopics: React.FC<RelatedTopicsProps> = ({
 	}, [topic]);
 
 	const handleTopicClick = (relatedTopic: string) => {
-		setInputValue(relatedTopic);
-		handleSourcesAndChat(relatedTopic);
+		setPromptValue(relatedTopic);
+		handleInitialChat(relatedTopic);
 	};
 
 	return (
-		<div className="related-topics">
-			<h3>Related Topics</h3>
+		<div className="flex gap-2 lg:px-4">
+			<h3 className="text-base font-bold uppercase leading-[152.5%] text-black text-nowrap">
+				Related Topics:{" "}
+			</h3>
 			{loading ? (
 				<p>Loading...</p>
-			) : (
-				<ul>
-					{relatedTopics.map((relatedTopic) => (
-						<li
-							key={relatedTopic}
-							onClick={() => handleTopicClick(relatedTopic)}
-						>
-							{relatedTopic}
-						</li>
+			) : relatedTopics.length > 0 ? (
+				<ul className="flex gap-4 lg:pl-2 overflow-x-scroll text-nowrap">
+					{relatedTopics.slice(0, 3).map((relatedTopic, index) => (
+						<Fragment key={relatedTopic}>
+							{index > 0 && " | "}
+							<li
+								onClick={() => handleTopicClick(relatedTopic)}
+								className="text-blue-500 hover:cursor-pointer"
+							>
+								{relatedTopic}
+							</li>
+						</Fragment>
 					))}
 				</ul>
+			) : (
+				<></>
 			)}
 		</div>
 	);
-};
-
-export default RelatedTopics;
+}
