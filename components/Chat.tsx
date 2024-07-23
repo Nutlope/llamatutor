@@ -23,14 +23,13 @@ export default function Chat({
   handleChat: () => void;
   topic: string;
 }) {
-  const messagesEndRef = useRef(null);
+  const messagesEndRef = useRef<HTMLDivElement>(null);
   const scrollableContainerRef = useRef<HTMLDivElement>(null);
   const [didScrollToBottom, setDidScrollToBottom] = useState(false);
 
-  const scrollToBottom = () => {
-    // @ts-ignore
+  function scrollToBottom() {
     messagesEndRef.current?.scrollIntoView({ behavior: "instant" });
-  };
+  }
 
   useEffect(() => {
     if (didScrollToBottom) {
