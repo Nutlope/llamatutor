@@ -7,7 +7,7 @@ export const cleanedText = (text: string) => {
     .replace(/\t/g, "")
     .replace(/\n+(\s*\n)*/g, "\n");
 
-  return newText.substring(0, 1000);
+  return newText.substring(0, 20000);
 };
 
 export async function fetchWithTimeout(
@@ -78,9 +78,11 @@ export const getSystemPrompt = (
 
   <teaching_info>
   ${"\n"}
-  ${finalResults.map(
-    (result, index) => `## Webpage #${index}:\n ${result.fullContent} \n\n`,
-  )}
+  ${finalResults
+    .slice(4)
+    .map(
+      (result, index) => `## Webpage #${index}:\n ${result.fullContent} \n\n`,
+    )}
   </teaching_info>
 
   Here's the age group to teach at:

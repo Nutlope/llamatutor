@@ -9,7 +9,7 @@
 
 ## Tech stack
 
-- Llama 3 from Meta for the LLM
+- Llama 3.1 70B from Meta for the LLM
 - Together AI for LLM inference
 - Next.js app router with Tailwind
 - Serper for the search API
@@ -27,13 +27,11 @@
 
 ## Future Tasks
 
-- [ ] Fix scrolling behavior
 - [ ] Add GitHub CTA & Together logo on the header
-- [ ] Add slight design changes on chat: LlamaTutor icon + user messages blue
-- [ ] Split the page into two pages and add back the footer
-- [ ] Move all my icons into their own typescript file (transform.tools)
 - [ ] Add a share & copy buttons that folks can click on after convos are generated
 - [ ] Add potential follow up questions + new chat at the end of chat page
+- [ ] Split the page into two pages and add back the footer
+- [ ] Move all my icons into their own typescript file (transform.tools)
 - [ ] Add a more detailed landing page with a nice section with the GitHub link
 - [ ] Add nice hamburger menu on mobile
 - [ ] Try out the generative UI stuff from Vercel
