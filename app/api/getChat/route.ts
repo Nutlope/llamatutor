@@ -2,7 +2,6 @@ import {
   TogetherAIStream,
   TogetherAIStreamPayload,
 } from "@/utils/TogetherAIStream";
-import { OpenAIStream, OpenAIStreamPayload } from "@/utils/OpenAIStream";
 
 export const maxDuration = 40;
 
@@ -11,19 +10,13 @@ export async function POST(request: Request) {
 
   try {
     console.log("[getChat] Fetching answer stream from Together API");
-    // const payload: TogetherAIStreamPayload = {
-    //   model: "mistralai/Mixtral-8x7B-Instruct-v0.1",
-    //   messages,
-    //   stream: true,
-    // };
-    // const stream = await TogetherAIStream(payload);
-
-    const payload: OpenAIStreamPayload = {
-      model: "gpt-4o",
+    const payload: TogetherAIStreamPayload = {
+      model: "meta-llama/Meta-Llama-3.1-405B-Instruct-Turbo",
+      // model: "meta-llama/Meta-Llama-3-8B-Instruct-Turbo",
       messages,
       stream: true,
     };
-    const stream = await OpenAIStream(payload);
+    const stream = await TogetherAIStream(payload);
 
     return new Response(stream, {
       headers: new Headers({

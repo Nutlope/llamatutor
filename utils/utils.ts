@@ -7,7 +7,7 @@ export const cleanedText = (text: string) => {
     .replace(/\t/g, "")
     .replace(/\n+(\s*\n)*/g, "\n");
 
-  return newText.substring(0, 40000);
+  return newText.substring(0, 1000);
 };
 
 export async function fetchWithTimeout(

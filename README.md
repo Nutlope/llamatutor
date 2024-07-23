@@ -25,14 +25,9 @@
 5. Create a `.env` (use the `.example.env` for reference) and replace the API keys
 6. Run `npm install` and `npm run dev` to install dependencies and run locally
 
-## Tasks – v1
-
-- [ ] Switch from GPT-4o to Llama 405B and do testing
-- [ ] Update CTA to say 405B on the main screen
-- [ ] Write copy for tweet / linkedin + record demo vid with nice zoomins
-
 ## Future Tasks
 
+- [ ] Fix scrolling behavior
 - [ ] Add GitHub CTA & Together logo on the header
 - [ ] Add slight design changes on chat: LlamaTutor icon + user messages blue
 - [ ] Split the page into two pages and add back the footer

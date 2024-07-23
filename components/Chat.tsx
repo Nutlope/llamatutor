@@ -25,7 +25,7 @@ export default function Chat({
 
   const scrollToBottom = () => {
     // @ts-ignore
-    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+    messagesEndRef.current?.scrollIntoView({ behavior: "instant" });
   };
 
   useEffect(() => {
