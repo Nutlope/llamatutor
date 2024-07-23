@@ -25,8 +25,6 @@ export default function Home() {
   const [loading, setLoading] = useState(false);
   const [ageGroup, setAgeGroup] = useState("Middle School");
 
-  console.log({ messages });
-
   const handleInitialChat = async () => {
     setShowResult(true);
     setLoading(true);
