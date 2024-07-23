@@ -40,7 +40,7 @@ export default function Chat({
           {topic}
         </p>
         <div className="mt-2 overflow-y-scroll rounded-lg border border-solid border-[#C2C2C2] bg-white px-5 lg:p-7">
-          {messages.length > 2 ? (
+          {false && messages.length > 2 ? (
             <div className="prose-sm max-w-5xl lg:prose">
               {messages.slice(2).map((message, index) =>
                 message.role === "assistant" ? (
@@ -59,11 +59,11 @@ export default function Chat({
               <div ref={messagesEndRef} />
             </div>
           ) : (
-            <div className="flex w-full flex-col gap-2 py-5">
-              {Array.from(Array(5).keys()).map((i) => (
+            <div className="flex w-full flex-col gap-4 py-5">
+              {Array.from(Array(10).keys()).map((i) => (
                 <div
                   key={i}
-                  className="h-10 animate-pulse rounded-md bg-gray-300"
+                  className={`${i < 5 && "hidden sm:block"} h-10 animate-pulse rounded-md bg-gray-300`}
                   style={{ animationDelay: `${i * 0.05}s` }}
                 />
               ))}

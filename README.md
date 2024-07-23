@@ -1,6 +1,6 @@
-<a href="https://www.LlamaTeacher.com">
-  <img alt="Llama teacher" src="./public/og-image.png">
-  <h1 align="center">Llama Teacher</h1>
+<a href="https://www.llamatutor.com">
+  <img alt="Llama Tutor" src="./public/og-image.png">
+  <h1 align="center">Llama Tutor</h1>
 </a>
 
 <p align="center">
@@ -54,7 +54,7 @@
 - [x] Make the main chat page autoscroll by default
 - [x] Add the together domains and test them out
 - [x] Add password and send to team
-- [ ] Fix issue
+- [x] Fix issue with icons not loading & loading state
 - [ ] Add GitHub CTA & Together logo on the header
 
 ## Tasks – v1 (after endpoint access)

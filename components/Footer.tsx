@@ -23,7 +23,7 @@ const Footer = () => {
             height={15}
           />
         </Link>
-        <Link href={"https://github.com/Nutlope/llama-teacher"} target="_blank">
+        <Link href={"https://github.com/Nutlope/llamatutor"} target="_blank">
           <Image
             unoptimized
             src={"/github.svg"}
