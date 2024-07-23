@@ -1,3 +1,5 @@
+// import llama3Tokenizer from "llama3-tokenizer-js";
+
 export const cleanedText = (text: string) => {
   let newText = text
     .trim()
@@ -5,9 +7,12 @@ export const cleanedText = (text: string) => {
     .replace(/\n\n/g, " ")
     .replace(/ {3,}/g, "  ")
     .replace(/\t/g, "")
-    .replace(/\n+(\s*\n)*/g, "\n");
+    .replace(/\n+(\s*\n)*/g, "\n")
+    .substring(0, 40000);
 
-  return newText.substring(0, 20000);
+  // console.log(llama3Tokenizer.encode(newText).length);
+
+  return newText;
 };
 
 export async function fetchWithTimeout(
@@ -79,7 +84,7 @@ export const getSystemPrompt = (
   <teaching_info>
   ${"\n"}
   ${finalResults
-    .slice(4)
+    .slice(0, 6)
     .map(
       (result, index) => `## Webpage #${index}:\n ${result.fullContent} \n\n`,
     )}
