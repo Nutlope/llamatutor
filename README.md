@@ -25,40 +25,9 @@
 5. Create a `.env` (use the `.example.env` for reference) and replace the API keys
 6. Run `npm install` and `npm run dev` to install dependencies and run locally
 
-## Tasks - v0.5 (working version)
+## Tasks – v1
 
-- [x] Finalize homepage as is
-- [x] Remove similar topics
-- [x] Move "question" to "summary"
-- [x] Make it a chat where messages stay on the UI + don't refresh everything
-- [x] Migrate to GPT-4o & remove restrictions on tokens
-- [x] Show messages more nicely + with markdown mode + streaming
-- [x] Redesign the second screen to match the design – move sources to the right & make chat fixed on bottom
-- [x] Add shift enter to add new lines to the prompt
-- [x] Fix outline in search bar (main + dropdown)
-- [x] Put in age group into react state and into the prompt
-- [x] Make the search bar longer overall
-- [x] Complete TODOs in the repo
-- [x] Remove all unused images
-- [x] Update the favicon
-- [x] Refactor code in all components
-
-## Tasks – v0.75 (final UI changes)
-
-- [x] Fix the loading state of the main screen
-- [x] Make new final input & disable after someone sends + clear it
-- [x] Make chat fixed on the bottom and no scrolling overall
-- [x] Make sure it works well on mobile pt.1
-- [x] Fix mobile overall pt.2
-- [x] Iterate on the system prompt to make sure its good
-- [x] Make the main chat page autoscroll by default
-- [x] Add the together domains and test them out
-- [x] Add password and send to team
-- [x] Fix issue with icons not loading & loading state
 - [ ] Add GitHub CTA & Together logo on the header
-
-## Tasks – v1 (after endpoint access)
-
 - [ ] Switch all the names to Llama-Tutor (site, repo, ect...)
 - [ ] Switch from GPT-4o to Llama 405B and do testing
 - [ ] Update CTA to say 405B on the main screen

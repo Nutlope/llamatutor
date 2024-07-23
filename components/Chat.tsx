@@ -40,7 +40,7 @@ export default function Chat({
           {topic}
         </p>
         <div className="mt-2 overflow-y-scroll rounded-lg border border-solid border-[#C2C2C2] bg-white px-5 lg:p-7">
-          {false && messages.length > 2 ? (
+          {messages.length > 2 ? (
             <div className="prose-sm max-w-5xl lg:prose">
               {messages.slice(2).map((message, index) =>
                 message.role === "assistant" ? (
