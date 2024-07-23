@@ -12,7 +12,6 @@ import {
 } from "eventsource-parser";
 import { getSystemPrompt } from "@/utils/utils";
 import Chat from "@/components/Chat";
-import RelatedTopics from "@/components/RelatedTopics";
 
 export default function Home() {
 	const [inputValue, setInputValue] = useState("");
@@ -26,13 +25,14 @@ export default function Home() {
 	const [loading, setLoading] = useState(false);
 	const [ageGroup, setAgeGroup] = useState("Middle School");
 
-	const handleInitialChat = async () => {
+	const handleInitialChat = async (newTopic?: string) => {
 		setShowResult(true);
 		setLoading(true);
-		setTopic(inputValue);
+		setMessages([]);
+		setTopic(newTopic ?? inputValue);
 		setInputValue("");
 
-		await handleSourcesAndChat(inputValue);
+		await handleSourcesAndChat(newTopic ?? inputValue);
 
 		setLoading(false);
 	};
@@ -150,16 +150,10 @@ export default function Home() {
 									setPromptValue={setInputValue}
 									setMessages={setMessages}
 									handleChat={handleChat}
+									handleInitialChat={handleInitialChat}
 									topic={topic}
 								/>
-								<div className="flex flex-row">
-									<Sources sources={sources} isLoading={isLoadingSources} />
-									<RelatedTopics
-										topic={topic}
-										setInputValue={setInputValue}
-										handleSourcesAndChat={handleSourcesAndChat}
-									/>
-								</div>
+								<Sources sources={sources} isLoading={isLoadingSources} />
 							</div>
 						</div>
 					</div>
