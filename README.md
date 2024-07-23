@@ -27,14 +27,13 @@
 
 ## Tasks – v1
 
-- [ ] Add GitHub CTA & Together logo on the header
-- [ ] Switch all the names to Llama-Tutor (site, repo, ect...)
 - [ ] Switch from GPT-4o to Llama 405B and do testing
 - [ ] Update CTA to say 405B on the main screen
 - [ ] Write copy for tweet / linkedin + record demo vid with nice zoomins
 
 ## Future Tasks
 
+- [ ] Add GitHub CTA & Together logo on the header
 - [ ] Add slight design changes on chat: LlamaTutor icon + user messages blue
 - [ ] Split the page into two pages and add back the footer
 - [ ] Move all my icons into their own typescript file (transform.tools)
