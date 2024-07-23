@@ -48,12 +48,12 @@ export const suggestions: suggestionType[] = [
   {
     id: 1,
     name: "Basketball",
-    icon: "/basketball.svg",
+    icon: "/basketball-new.svg",
   },
   {
     id: 2,
     name: "Machine Learning",
-    icon: "/light.svg",
+    icon: "/light-new.svg",
   },
   {
     id: 3,

@@ -48,8 +48,11 @@ export default function Chat({
                     {message.content}
                   </ReactMarkdown>
                 ) : (
-                  <p key={index} className="font-bold">
-                    User: {message.content}
+                  <p
+                    key={index}
+                    className="w-fit rounded-xl bg-gray-100 p-4 font-bold"
+                  >
+                    {message.content}
                   </p>
                 ),
               )}

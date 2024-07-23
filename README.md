@@ -52,9 +52,10 @@
 - [x] Fix mobile overall pt.2
 - [x] Iterate on the system prompt to make sure its good
 - [x] Make the main chat page autoscroll by default
+- [x] Add the together domains and test them out
+- [x] Add password and send to team
+- [ ] Fix issue
 - [ ] Add GitHub CTA & Together logo on the header
-- [ ] Add the together domains and test them out
-- [ ] Add password and send to team
 
 ## Tasks – v1 (after endpoint access)
 
