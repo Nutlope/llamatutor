@@ -25,7 +25,7 @@ export default function Chat({
 }) {
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const scrollableContainerRef = useRef<HTMLDivElement>(null);
-  const [didScrollToBottom, setDidScrollToBottom] = useState(false);
+  const [didScrollToBottom, setDidScrollToBottom] = useState(true);
 
   function scrollToBottom() {
     messagesEndRef.current?.scrollIntoView({ behavior: "instant" });
