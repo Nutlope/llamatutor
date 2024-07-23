@@ -1,5 +1,6 @@
 import ReactMarkdown from "react-markdown";
 import FinalInputArea from "./FinalInputArea";
+import { useEffect, useRef } from "react";
 
 export default function Chat({
   messages,
@@ -8,7 +9,6 @@ export default function Chat({
   setPromptValue,
   setMessages,
   handleChat,
-  handleInitialChat,
   topic,
 }: {
   messages: { role: string; content: string }[];
@@ -19,9 +19,19 @@ export default function Chat({
     React.SetStateAction<{ role: string; content: string }[]>
   >;
   handleChat: () => void;
-  handleInitialChat: () => void;
   topic: string;
 }) {
+  const messagesEndRef = useRef(null);
+
+  const scrollToBottom = () => {
+    // @ts-ignore
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+  };
+
+  useEffect(() => {
+    scrollToBottom();
+  }, [messages]);
+
   return (
     <div className="flex grow flex-col gap-4 overflow-hidden">
       <div className="flex grow flex-col overflow-hidden lg:p-4">
@@ -43,6 +53,7 @@ export default function Chat({
                   </p>
                 ),
               )}
+              <div ref={messagesEndRef} />
             </div>
           ) : (
             <div className="flex w-full flex-col gap-2 py-5">

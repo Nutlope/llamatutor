@@ -50,23 +50,24 @@
 - [x] Make chat fixed on the bottom and no scrolling overall
 - [x] Make sure it works well on mobile pt.1
 - [x] Fix mobile overall pt.2
-- [ ] Add slight design changes on chat: LlamaTutor icon + user messages blue
+- [x] Iterate on the system prompt to make sure its good
+- [x] Make the main chat page autoscroll by default
 - [ ] Add GitHub CTA & Together logo on the header
-- [ ] Switch all the names to Llama-Tutor (site, repo, ect...)
-- [ ] move all my icons into their own typescript file (transform.tools)
 - [ ] Add the together domains and test them out
-- [ ] Iterate on the system prompt to make sure its good
-- [ ] Add a password on the site & share with team to test out
+- [ ] Add password and send to team
 
 ## Tasks – v1 (after endpoint access)
 
+- [ ] Switch all the names to Llama-Tutor (site, repo, ect...)
 - [ ] Switch from GPT-4o to Llama 405B and do testing
 - [ ] Update CTA to say 405B on the main screen
 - [ ] Write copy for tweet / linkedin + record demo vid with nice zoomins
 
 ## Future Tasks
 
-- [ ] Make it autoscroll by default
+- [ ] Add slight design changes on chat: LlamaTutor icon + user messages blue
+- [ ] Split the page into two pages and add back the footer
+- [ ] Move all my icons into their own typescript file (transform.tools)
 - [ ] Add a share & copy buttons that folks can click on after convos are generated
 - [ ] Add potential follow up questions + new chat at the end of chat page
 - [ ] Add a more detailed landing page with a nice section with the GitHub link

@@ -149,7 +149,6 @@ export default function Home() {
                   setPromptValue={setInputValue}
                   setMessages={setMessages}
                   handleChat={handleChat}
-                  handleInitialChat={handleInitialChat}
                   topic={topic}
                 />
                 <Sources sources={sources} isLoading={isLoadingSources} />
