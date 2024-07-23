@@ -1,6 +1,8 @@
 import ReactMarkdown from "react-markdown";
 import FinalInputArea from "./FinalInputArea";
 import { useEffect, useRef } from "react";
+import simpleLogo from "../public/simple-logo.png";
+import Image from "next/image";
 
 export default function Chat({
   messages,
@@ -41,16 +43,23 @@ export default function Chat({
         </p>
         <div className="mt-2 overflow-y-scroll rounded-lg border border-solid border-[#C2C2C2] bg-white px-5 lg:p-7">
           {messages.length > 2 ? (
-            <div className="prose-sm max-w-5xl lg:prose">
+            <div className="prose-sm max-w-5xl lg:prose lg:max-w-full">
               {messages.slice(2).map((message, index) =>
                 message.role === "assistant" ? (
-                  <ReactMarkdown key={index} className="w-full">
-                    {message.content}
-                  </ReactMarkdown>
+                  <div className="relative w-full" key={index}>
+                    <Image
+                      src={simpleLogo}
+                      alt=""
+                      className="absolute left-0 top-0 !my-0 size-7"
+                    />
+                    <ReactMarkdown className="w-full pl-10">
+                      {message.content}
+                    </ReactMarkdown>
+                  </div>
                 ) : (
                   <p
                     key={index}
-                    className="w-fit rounded-xl bg-gray-100 p-4 font-bold"
+                    className="ml-auto w-fit rounded-xl bg-blue-500 p-4 font-medium text-white"
                   >
                     {message.content}
                   </p>
