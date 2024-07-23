@@ -6,9 +6,6 @@ type TInputAreaProps = {
   promptValue: string;
   setPromptValue: React.Dispatch<React.SetStateAction<string>>;
   disabled?: boolean;
-  setMessages: React.Dispatch<
-    React.SetStateAction<{ role: string; content: string }[]>
-  >;
   handleChat: (messages?: { role: string; content: string }[]) => void;
   ageGroup: string;
   setAgeGroup: React.Dispatch<React.SetStateAction<string>>;

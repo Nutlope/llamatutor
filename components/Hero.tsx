@@ -8,11 +8,7 @@ import { suggestions } from "@/utils/utils";
 type THeroProps = {
   promptValue: string;
   setPromptValue: React.Dispatch<React.SetStateAction<string>>;
-  setMessages: React.Dispatch<
-    React.SetStateAction<{ role: string; content: string }[]>
-  >;
   handleChat: (messages?: { role: string; content: string }[]) => void;
-  messages: { role: string; content: string }[];
   ageGroup: string;
   setAgeGroup: React.Dispatch<React.SetStateAction<string>>;
   handleInitialChat: () => void;
@@ -21,9 +17,7 @@ type THeroProps = {
 const Hero: FC<THeroProps> = ({
   promptValue,
   setPromptValue,
-  setMessages,
   handleChat,
-  messages,
   ageGroup,
   setAgeGroup,
   handleInitialChat,
@@ -68,9 +62,7 @@ const Hero: FC<THeroProps> = ({
             promptValue={promptValue}
             handleInitialChat={handleInitialChat}
             setPromptValue={setPromptValue}
-            setMessages={setMessages}
             handleChat={handleChat}
-            messages={messages}
             ageGroup={ageGroup}
             setAgeGroup={setAgeGroup}
           />
