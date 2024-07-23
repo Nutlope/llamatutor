@@ -76,7 +76,6 @@ const Hero: FC<THeroProps> = ({
               key={item.id}
             >
               <Image
-                unoptimized
                 src={item.icon}
                 alt={item.name}
                 width={18}
