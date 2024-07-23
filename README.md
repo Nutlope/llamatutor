@@ -4,7 +4,7 @@
 </a>
 
 <p align="center">
-  An open source AI personal tutor. Powered by Llama 3 70B & Together.ai.
+  An open source AI personal tutor. Powered by Llama 3 70B & Together.ai
 </p>
 
 ## Tech stack
