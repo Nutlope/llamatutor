@@ -57,9 +57,9 @@ export default function RelatedTopics({
 				<p>Loading...</p>
 			) : relatedTopics.length > 0 ? (
 				<ul className="flex gap-4 lg:pl-2 overflow-x-scroll text-nowrap">
-					{relatedTopics.slice(0, 3).map((relatedTopic, index) => (
+					{relatedTopics.map((relatedTopic, index) => (
 						<Fragment key={relatedTopic}>
-							{index > 0 && " | "}
+							{index > 0 && "|"}
 							<li
 								onClick={() => handleTopicClick(relatedTopic)}
 								className="text-blue-500 hover:cursor-pointer"

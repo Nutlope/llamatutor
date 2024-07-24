@@ -33,7 +33,7 @@ export async function POST(request: Request) {
           const jsonContent = JSON.parse(jsonMatch[0]);
           // Ensure related_topics is an array before assigning
           if (jsonContent.related_topics && Array.isArray(jsonContent.related_topics)) {
-            topics = jsonContent.related_topics;
+            topics = jsonContent.related_topics.slice(0, 3); // Limit to a maximum of 3 related topics
           }
         } catch (parseError) {
           console.error("Failed to parse JSON:", parseError);
