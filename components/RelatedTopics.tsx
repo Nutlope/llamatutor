@@ -14,37 +14,44 @@ export default function RelatedTopics({
 	const [loading, setLoading] = useState<boolean>(false);
 
 	useEffect(() => {
+		// Function to fetch related topics from the API
 		const fetchRelatedTopics = async () => {
 			setLoading(true);
-			const response = await fetch("/api/getRelatedTopics", {
-				method: "POST",
-				headers: {
-					"Content-Type": "application/json",
-				},
-				body: JSON.stringify({ topic }),
-			});
+			try {
+				const response = await fetch("/api/getRelatedTopics", {
+					method: "POST",
+					headers: {
+						"Content-Type": "application/json",
+					},
+					body: JSON.stringify({ topic }),
+				});
 
-			if (response.ok) {
-				const data = await response.json();
-				setRelatedTopics(data.topics);
+				if (response.ok) {
+					const data = await response.json();
+					setRelatedTopics(data.topics);
+				}
+			} catch (error) {
+				console.error("Failed to fetch related topics:", error);
+			} finally {
+				setLoading(false);
 			}
-			setLoading(false);
 		};
 
 		if (topic) {
-			fetchRelatedTopics();
+			fetchRelatedTopics(); // Fetch topics if a topic is provided
 		}
 	}, [topic]);
 
+	// Function to handle click on a related topic
 	const handleTopicClick = (relatedTopic: string) => {
-		setPromptValue(relatedTopic);
-		handleInitialChat(relatedTopic);
+		setPromptValue(relatedTopic); // Set the prompt value to the clicked topic
+		handleInitialChat(relatedTopic); // Initiate chat with the clicked topic
 	};
 
 	return (
 		<div className="flex gap-2 lg:px-4">
 			<h3 className="text-base font-bold uppercase leading-[152.5%] text-black text-nowrap">
-				Related Topics:{" "}
+				Related Topics:
 			</h3>
 			{loading ? (
 				<p>Loading...</p>
@@ -62,9 +69,7 @@ export default function RelatedTopics({
 						</Fragment>
 					))}
 				</ul>
-			) : (
-				<></>
-			)}
+			) : null}
 		</div>
 	);
 }
