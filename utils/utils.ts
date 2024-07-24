@@ -8,7 +8,7 @@ export const cleanedText = (text: string) => {
     .replace(/ {3,}/g, "  ")
     .replace(/\t/g, "")
     .replace(/\n+(\s*\n)*/g, "\n")
-    .substring(0, 40000);
+    .substring(0, 30000);
 
   // console.log(llama3Tokenizer.encode(newText).length);
 

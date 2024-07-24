@@ -3,7 +3,7 @@ import {
   TogetherAIStreamPayload,
 } from "@/utils/TogetherAIStream";
 
-export const maxDuration = 40;
+export const maxDuration = 60;
 
 export async function POST(request: Request) {
   let { messages } = await request.json();
