@@ -8,7 +8,7 @@ export const cleanedText = (text: string) => {
     .replace(/ {3,}/g, "  ")
     .replace(/\t/g, "")
     .replace(/\n+(\s*\n)*/g, "\n")
-    .substring(0, 75000);
+    .substring(0, 30000);
 
   // console.log(llama3Tokenizer.encode(newText).length);
 
@@ -83,9 +83,11 @@ export const getSystemPrompt = (
 
   <teaching_info>
   ${"\n"}
-  ${finalResults.map(
-    (result, index) => `## Webpage #${index}:\n ${result.fullContent} \n\n`,
-  )}
+  ${finalResults
+    .slice(0, 6)
+    .map(
+      (result, index) => `## Webpage #${index}:\n ${result.fullContent} \n\n`,
+    )}
   </teaching_info>
 
   Here's the age group to teach at:
