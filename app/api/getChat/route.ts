@@ -13,6 +13,7 @@ export async function POST(request: Request) {
     const payload: TogetherAIStreamPayload = {
       model: "meta-llama/Meta-Llama-3.1-8B-Instruct-Turbo",
       messages,
+      max_tokens: 128000,
       stream: true,
     };
     const stream = await TogetherAIStream(payload);

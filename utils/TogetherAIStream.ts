@@ -14,7 +14,7 @@ export interface ChatGPTMessage {
 export interface TogetherAIStreamPayload {
   model: string;
   messages: ChatGPTMessage[];
-
+  max_tokens: number;
   stream: boolean;
 }
 
