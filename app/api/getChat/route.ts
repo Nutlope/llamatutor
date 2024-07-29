@@ -11,7 +11,8 @@ export async function POST(request: Request) {
   try {
     console.log("[getChat] Fetching answer stream from Together API");
     const payload: TogetherAIStreamPayload = {
-      model: "mistralai/Mixtral-8x7B-Instruct-v0.1",
+      // model: "mistralai/Mixtral-8x7B-Instruct-v0.1",
+      model: "meta-llama/Meta-Llama-3.1-70B-Instruct-Turbo",
       messages,
       stream: true,
     };
