@@ -1,4 +1,4 @@
-import { FC, KeyboardEvent } from "react";
+import type { FC, KeyboardEvent } from "react";
 import TypeAnimation from "./TypeAnimation";
 import Image from "next/image";
 
@@ -22,7 +22,7 @@ const FinalInputArea: FC<TInputAreaProps> = ({
   handleChat,
 }) => {
   function onSubmit() {
-    let latestMessages = [...messages, { role: "user", content: promptValue }];
+    const latestMessages = [...messages, { role: "user", content: promptValue }];
     setPromptValue("");
     setMessages(latestMessages);
     handleChat(latestMessages);

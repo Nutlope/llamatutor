@@ -1,17 +1,16 @@
 "use client";
 
-import Footer from "@/components/Footer";
+import Chat from "@/components/Chat";
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
 import Sources from "@/components/Sources";
-import { useState } from "react";
-import {
-  createParser,
-  ParsedEvent,
-  ReconnectInterval,
-} from "eventsource-parser";
 import { getSystemPrompt } from "@/utils/utils";
-import Chat from "@/components/Chat";
+import {
+  type ParsedEvent,
+  type ReconnectInterval,
+  createParser,
+} from "eventsource-parser";
+import { useState } from "react";
 
 export default function Home() {
   const [inputValue, setInputValue] = useState("");
@@ -71,9 +70,8 @@ export default function Home() {
                 ...prev.slice(0, -1),
                 { ...lastMessage, content: lastMessage.content + text },
               ];
-            } else {
-              return [...prev, { role: "assistant", content: text }];
             }
+            return [...prev, { role: "assistant", content: text }];
           });
         } catch (e) {
           console.error(e);
@@ -98,11 +96,11 @@ export default function Home() {
 
   async function handleSourcesAndChat(question: string) {
     setIsLoadingSources(true);
-    let sourcesResponse = await fetch("/api/getSources", {
+    const sourcesResponse = await fetch("/api/getSources", {
       method: "POST",
       body: JSON.stringify({ question }),
     });
-    let sources;
+    let sources = [];
     if (sourcesResponse.ok) {
       sources = await sourcesResponse.json();
 
@@ -116,7 +114,7 @@ export default function Home() {
       method: "POST",
       body: JSON.stringify({ sources }),
     });
-    let parsedSources;
+    let parsedSources = [];
     if (parsedSourcesRes.ok) {
       parsedSources = await parsedSourcesRes.json();
     }

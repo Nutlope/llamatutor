@@ -1,12 +1,12 @@
 import {
   TogetherAIStream,
-  TogetherAIStreamPayload,
+  type TogetherAIStreamPayload,
 } from "@/utils/TogetherAIStream";
 
 export const maxDuration = 60;
 
 export async function POST(request: Request) {
-  let { messages } = await request.json();
+  const { messages } = await request.json();
 
   try {
     console.log("[getChat] Fetching answer stream from Together API");

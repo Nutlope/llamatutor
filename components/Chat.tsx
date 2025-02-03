@@ -1,8 +1,8 @@
-import ReactMarkdown from "react-markdown";
-import FinalInputArea from "./FinalInputArea";
-import { useEffect, useRef, useState } from "react";
-import simpleLogo from "../public/simple-logo.png";
 import Image from "next/image";
+import { useEffect, useRef, useState } from "react";
+import ReactMarkdown from "react-markdown";
+import simpleLogo from "../public/simple-logo.png";
+import FinalInputArea from "./FinalInputArea";
 
 export default function Chat({
   messages,
@@ -38,7 +38,7 @@ export default function Chat({
   }, [didScrollToBottom, messages]);
 
   useEffect(() => {
-    let el = scrollableContainerRef.current;
+    const el = scrollableContainerRef.current;
     if (!el) {
       return;
     }
