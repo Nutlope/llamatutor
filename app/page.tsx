@@ -155,7 +155,6 @@ export default function Home() {
           <Hero
             promptValue={inputValue}
             setPromptValue={setInputValue}
-            handleChat={handleChat}
             ageGroup={ageGroup}
             setAgeGroup={setAgeGroup}
             handleInitialChat={handleInitialChat}
