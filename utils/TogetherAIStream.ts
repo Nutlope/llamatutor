@@ -1,7 +1,7 @@
 import {
+  type ParsedEvent,
+  type ReconnectInterval,
   createParser,
-  ParsedEvent,
-  ReconnectInterval,
 } from "eventsource-parser";
 
 export type ChatGPTAgent = "user" | "system";
@@ -66,9 +66,18 @@ export async function TogetherAIStream(payload: TogetherAIStreamPayload) {
       // stream response (SSE) from OpenAI may be fragmented into multiple chunks
       // this ensures we properly read chunks and invoke an event for each SSE event stream
       const parser = createParser(onParse);
-      // https://web.dev/streams/#asynchronous-iteration
-      for await (const chunk of res.body as any) {
-        parser.feed(decoder.decode(chunk));
+      const reader = res.body?.getReader();
+      if (!reader) return;
+      try {
+        while (true) {
+          // https://web.dev/articles/streams#the_getreader_and_read_methods
+          const { done, value: chunk } = await reader.read();
+          if (done) break;
+          // https://web.dev/streams/#asynchronous-iteration
+          parser.feed(decoder.decode(chunk));
+        }
+      } finally {
+        reader.releaseLock();
       }
     },
   });
