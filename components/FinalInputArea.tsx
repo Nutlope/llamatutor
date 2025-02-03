@@ -32,10 +32,14 @@ const FinalInputArea: FC<TInputAreaProps> = ({
     if (e.key === "Enter") {
       if (e.shiftKey) {
         return;
-      } else {
-        e.preventDefault();
-        onSubmit();
       }
+      // Don't allow empty messages or sending while disabled
+      if (disabled || promptValue.trim() === "") {
+        e.preventDefault();
+        return;
+      }
+      e.preventDefault();
+      onSubmit();
     }
   };
 
@@ -51,7 +55,6 @@ const FinalInputArea: FC<TInputAreaProps> = ({
         <textarea
           placeholder="Follow up question"
           className="block w-full resize-none rounded-l-lg border-r p-6 text-gray-900 placeholder:text-gray-400"
-          disabled={disabled}
           value={promptValue}
           onKeyDown={handleKeyDown}
           required

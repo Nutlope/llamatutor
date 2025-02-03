@@ -1,4 +1,4 @@
-import { FC, KeyboardEvent } from "react";
+import type { FC, KeyboardEvent } from "react";
 import TypeAnimation from "./TypeAnimation";
 import Image from "next/image";
 
@@ -6,7 +6,6 @@ type TInputAreaProps = {
   promptValue: string;
   setPromptValue: React.Dispatch<React.SetStateAction<string>>;
   disabled?: boolean;
-  handleChat: (messages?: { role: string; content: string }[]) => void;
   ageGroup: string;
   setAgeGroup: React.Dispatch<React.SetStateAction<string>>;
   handleInitialChat: () => void;
@@ -24,10 +23,14 @@ const InitialInputArea: FC<TInputAreaProps> = ({
     if (e.key === "Enter") {
       if (e.shiftKey) {
         return;
-      } else {
-        e.preventDefault();
-        handleInitialChat();
       }
+      // Don't allow empty messages or sending while disabled
+      if (disabled || promptValue.trim() === "") {
+        e.preventDefault();
+        return;
+      }
+      e.preventDefault();
+      handleInitialChat();
     }
   };
 
