@@ -27,14 +27,15 @@ export default function Chat({
   const scrollableContainerRef = useRef<HTMLDivElement>(null);
   const [didScrollToBottom, setDidScrollToBottom] = useState(true);
 
-  function scrollToBottom() {
-    messagesEndRef.current?.scrollIntoView({ behavior: "instant" });
-  }
-
   useEffect(() => {
+    const scrollToBottom = () => {
+      messagesEndRef.current?.scrollIntoView({ behavior: "instant" });
+    }
+
     if (didScrollToBottom) {
       scrollToBottom();
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [didScrollToBottom, messages]);
 
   useEffect(() => {
@@ -71,9 +72,9 @@ export default function Chat({
         >
           {messages.length > 2 ? (
             <div className="prose-sm max-w-5xl lg:prose lg:max-w-full">
-              {messages.slice(2).map((message, index) =>
+              {messages.slice(2).map((message) =>
                 message.role === "assistant" ? (
-                  <div className="relative w-full" key={index}>
+                  <div className="relative w-full" key={`${message.role}-${message.content.substring(0, 20)}`}>
                     <Image
                       src={simpleLogo}
                       alt=""
@@ -85,7 +86,7 @@ export default function Chat({
                   </div>
                 ) : (
                   <p
-                    key={index}
+                    key={`${message.role}-${message.content.substring(0, 20)}`}
                     className="ml-auto w-fit rounded-xl bg-blue-500 p-4 font-medium text-white"
                   >
                     {message.content}
