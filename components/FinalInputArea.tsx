@@ -1,6 +1,6 @@
 import type { FC, KeyboardEvent } from "react";
+import { UpArrowIcon } from "./Icons";
 import TypeAnimation from "./TypeAnimation";
-import Image from "next/image";
 
 type TInputAreaProps = {
   promptValue: string;
@@ -73,14 +73,7 @@ const FinalInputArea: FC<TInputAreaProps> = ({
           </div>
         )}
 
-        <Image
-          unoptimized
-          src={"/up-arrow.svg"}
-          alt="search"
-          width={24}
-          height={24}
-          className={disabled ? "invisible" : ""}
-        />
+        <UpArrowIcon className={disabled ? "invisible w-6" : "w-6"} />
       </button>
     </form>
   );

@@ -1,14 +1,13 @@
+import { suggestions } from "@/utils/utils";
 import Image from "next/image";
-import { FC } from "react";
+import type { FC } from "react";
 import desktopImg from "../public/desktop-screenshot.png";
 import mobileImg from "../public/screenshot-mobile.png";
 import InitialInputArea from "./InitialInputArea";
-import { suggestions } from "@/utils/utils";
 
 type THeroProps = {
   promptValue: string;
   setPromptValue: React.Dispatch<React.SetStateAction<string>>;
-  handleChat: (messages?: { role: string; content: string }[]) => void;
   ageGroup: string;
   setAgeGroup: React.Dispatch<React.SetStateAction<string>>;
   handleInitialChat: () => void;
@@ -17,7 +16,6 @@ type THeroProps = {
 const Hero: FC<THeroProps> = ({
   promptValue,
   setPromptValue,
-  handleChat,
   ageGroup,
   setAgeGroup,
   handleInitialChat,
@@ -32,7 +30,7 @@ const Hero: FC<THeroProps> = ({
         <a
           className="mb-4 inline-flex h-7 shrink-0 items-center gap-[9px] rounded-[50px] border-[0.5px] border-solid border-[#E6E6E6] bg-[rgba(234,238,255,0.65)] bg-white px-5 py-4 shadow-[0px_1px_1px_0px_rgba(0,0,0,0.25)]"
           href="https://togetherai.link/"
-          target="_blank"
+          target="_blank" rel="noreferrer"
         >
           <Image
             unoptimized
@@ -62,30 +60,24 @@ const Hero: FC<THeroProps> = ({
             promptValue={promptValue}
             handleInitialChat={handleInitialChat}
             setPromptValue={setPromptValue}
-            handleChat={handleChat}
             ageGroup={ageGroup}
             setAgeGroup={setAgeGroup}
           />
         </div>
 
         <div className="flex flex-wrap items-center justify-center gap-2.5 pb-[30px] lg:flex-nowrap lg:justify-normal">
-          {suggestions.map((item) => (
-            <div
+          {suggestions.map(({ name, id, Icon }) => (
+            <button
+              type="button"
               className="flex h-[35px] cursor-pointer items-center justify-center gap-[5px] rounded border border-solid border-[#C1C1C1] px-2.5 py-2 transition hover:bg-gray-200"
-              onClick={() => handleClickSuggestion(item?.name)}
-              key={item.id}
+              onClick={() => handleClickSuggestion(name)}
+              key={id}
             >
-              <Image
-                src={item.icon}
-                alt={item.name}
-                width={18}
-                height={16}
-                className="w-[18px]"
-              />
+              <Icon className="w-5 h-5" />
               <span className="text-sm font-light leading-[normal] text-[#1B1B16]">
-                {item.name}
+                {name}
               </span>
-            </div>
+            </button>
           ))}
         </div>
         <p className="text-center text-sm font-light leading-[normal] text-[#1B1B16]">

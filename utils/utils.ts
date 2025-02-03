@@ -1,7 +1,8 @@
 // import llama3Tokenizer from "llama3-tokenizer-js";
+import { BasketballIcon, FinanceIcon, FlagIcon, MachineLearningIcon } from "../components/Icons";
 
 export const cleanedText = (text: string) => {
-  let newText = text
+  const newText = text
     .trim()
     .replace(/(\n){4,}/g, "\n\n\n")
     .replace(/\n\n/g, " ")
@@ -46,29 +47,29 @@ export async function fetchWithTimeout(
 type suggestionType = {
   id: number;
   name: string;
-  icon: string;
+  Icon: React.ComponentType<React.SVGProps<SVGSVGElement>>;
 };
 
 export const suggestions: suggestionType[] = [
   {
     id: 1,
     name: "Basketball",
-    icon: "/basketball-new.svg",
+    Icon: BasketballIcon,
   },
   {
     id: 2,
     name: "Machine Learning",
-    icon: "/light-new.svg",
+    Icon: MachineLearningIcon,
   },
   {
     id: 3,
     name: "Personal Finance",
-    icon: "/finance.svg",
+    Icon: FinanceIcon,
   },
   {
     id: 4,
     name: "U.S History",
-    icon: "/us.svg",
+    Icon: FlagIcon,
   },
 ];
 
