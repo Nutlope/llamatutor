@@ -3,6 +3,7 @@ import FinalInputArea from "./FinalInputArea";
 import { useEffect, useRef, useState } from "react";
 import simpleLogo from "../public/simple-logo.png";
 import Image from "next/image";
+import RelatedTopics from "./RelatedTopics";
 
 export default function Chat({
   messages,
@@ -12,6 +13,7 @@ export default function Chat({
   setMessages,
   handleChat,
   topic,
+  handleInitialChat,
 }: {
   messages: { role: string; content: string }[];
   disabled: boolean;
@@ -22,6 +24,7 @@ export default function Chat({
   >;
   handleChat: () => void;
   topic: string;
+  handleInitialChat: () => Promise<void>;
 }) {
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const scrollableContainerRef = useRef<HTMLDivElement>(null);
@@ -60,7 +63,7 @@ export default function Chat({
 
   return (
     <div className="flex grow flex-col gap-4 overflow-hidden">
-      <div className="flex grow flex-col overflow-hidden lg:p-4">
+      <div className="flex grow flex-col overflow-hidden lg:px-4">
         <p className="uppercase text-gray-900">
           <b>Topic: </b>
           {topic}
@@ -99,7 +102,9 @@ export default function Chat({
               {Array.from(Array(10).keys()).map((i) => (
                 <div
                   key={i}
-                  className={`${i < 5 && "hidden sm:block"} h-10 animate-pulse rounded-md bg-gray-300`}
+                  className={`${
+                    i < 5 && "hidden sm:block"
+                  } h-10 animate-pulse rounded-md bg-gray-300`}
                   style={{ animationDelay: `${i * 0.05}s` }}
                 />
               ))}
@@ -108,7 +113,13 @@ export default function Chat({
         </div>
       </div>
 
-      <div className="bg-white lg:p-4">
+      <RelatedTopics
+        topic={topic}
+        setPromptValue={setPromptValue}
+        handleInitialChat={handleInitialChat}
+      />
+
+      <div className="bg-white lg:px-4">
         <FinalInputArea
           disabled={disabled}
           promptValue={promptValue}

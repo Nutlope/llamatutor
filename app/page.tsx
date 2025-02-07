@@ -7,8 +7,8 @@ import Sources from "@/components/Sources";
 import { useState } from "react";
 import {
   createParser,
-  ParsedEvent,
-  ReconnectInterval,
+  type ParsedEvent,
+  type ReconnectInterval,
 } from "eventsource-parser";
 import { getSystemPrompt } from "@/utils/utils";
 import Chat from "@/components/Chat";
@@ -25,13 +25,14 @@ export default function Home() {
   const [loading, setLoading] = useState(false);
   const [ageGroup, setAgeGroup] = useState("Middle School");
 
-  const handleInitialChat = async () => {
+  const handleInitialChat = async (newTopic?: string) => {
     setShowResult(true);
     setLoading(true);
-    setTopic(inputValue);
+    setMessages([]);
+    setTopic(newTopic ?? inputValue);
     setInputValue("");
 
-    await handleSourcesAndChat(inputValue);
+    await handleSourcesAndChat(newTopic ?? inputValue);
 
     setLoading(false);
   };
@@ -134,7 +135,9 @@ export default function Home() {
       <Header />
 
       <main
-        className={`flex grow flex-col px-4 pb-4 ${showResult ? "overflow-hidden" : ""}`}
+        className={`flex grow flex-col px-4 pb-4 ${
+          showResult ? "overflow-hidden" : ""
+        }`}
       >
         {showResult ? (
           <div className="mt-2 flex w-full grow flex-col justify-between overflow-hidden">
@@ -147,6 +150,7 @@ export default function Home() {
                   setPromptValue={setInputValue}
                   setMessages={setMessages}
                   handleChat={handleChat}
+                  handleInitialChat={handleInitialChat}
                   topic={topic}
                 />
                 <Sources sources={sources} isLoading={isLoadingSources} />
