@@ -25,6 +25,20 @@
 5. Create a `.env` (use the `.example.env` for reference) and replace the API keys
 6. Run `npm install` and `npm run dev` to install dependencies and run locally
 
+## Deploying on Vercel
+
+1. Create an account at [Vercel](https://vercel.com/)
+2. Install the Vercel CLI by running `npm i -g vercel`
+3. Run `vercel` in the project directory and follow the prompts to deploy
+
+## Using Openrouter API
+
+1. Create an account at [Openrouter](https://openrouter.ai/)
+2. Obtain your Openrouter API key from the Openrouter dashboard
+3. Add the Openrouter API key to your `.env` file as `OPENROUTER_API_KEY`
+4. Update the TogetherAIStream function in `utils/TogetherAIStream.ts` to use the Openrouter API endpoint and key
+5. Update the `POST` function in `app/api/getChat/route.ts` to use the new TogetherAIStream function
+
 ## Future Tasks
 
 - [ ] Add a share & copy buttons that folks can click on after convos are generated
