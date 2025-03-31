@@ -6,6 +6,7 @@ import {
 export async function POST(request: Request) {
   let { messages } = await request.json();
 
+  console.log("messages", messages);
   try {
     console.log("[getChat] Fetching answer stream from Together API");
     const payload: TogetherAIStreamPayload = {
