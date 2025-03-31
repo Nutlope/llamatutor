@@ -3,8 +3,6 @@ import {
   TogetherAIStreamPayload,
 } from "@/utils/TogetherAIStream";
 
-export const maxDuration = 60;
-
 export async function POST(request: Request) {
   let { messages } = await request.json();
 
@@ -26,3 +24,5 @@ export async function POST(request: Request) {
     return new Response("Error. Answer stream failed.", { status: 202 });
   }
 }
+
+export const runtime = "edge";
