@@ -1,6 +1,192 @@
-import { ComponentPropsWithoutRef } from "react";
+import type { SVGProps } from "react";
 
-export function Logo(props: ComponentPropsWithoutRef<"svg">) {
+
+export function TwitterIcon(props: SVGProps<SVGSVGElement>) {
+  return <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
+    <title>Twitter Icon</title>
+    <path id="Vector" opacity="0.7" fillRule="evenodd" clipRule="evenodd" d="M10.0748 15L6.45272 9.60689L1.91833 15H0L5.60164 8.33938L0 0H4.9252L8.33897 5.08297L12.6163 0H14.5346L9.19291 6.35215L15 15H10.0748ZM12.2111 13.4796H10.9196L2.74677 1.52045H4.03844L7.31172 6.30897L7.87775 7.13991L12.2111 13.4796Z" fill="#242E36" />
+  </svg>
+}
+
+export function GithubIcon(props: SVGProps<SVGSVGElement>) {
+  return <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
+    <title>Github Icon</title>
+    <g id="Social icon" opacity="0.7" clipPath="url(#clip0_14_6286)">
+      <path id="Icon" fillRule="evenodd" clipRule="evenodd" d="M8 0C3.5816 0 0 3.5872 0 8.0136C0 11.5536 2.292 14.5576 5.4712 15.6168C5.8712 15.6904 6.0168 15.4432 6.0168 15.2304C6.0168 15.0408 6.0104 14.536 6.0064 13.868C3.7808 14.352 3.3112 12.7936 3.3112 12.7936C2.948 11.8672 2.4232 11.6208 2.4232 11.6208C1.6968 11.1248 2.4784 11.1344 2.4784 11.1344C3.2808 11.1904 3.7032 11.96 3.7032 11.96C4.4168 13.184 5.576 12.8304 6.0312 12.6256C6.1048 12.108 6.3112 11.7552 6.54 11.5552C4.764 11.3528 2.896 10.6648 2.896 7.5944C2.896 6.72 3.208 6.004 3.7192 5.444C3.6368 5.2416 3.3624 4.4264 3.7976 3.324C3.7976 3.324 4.4696 3.108 5.9976 4.1448C6.65021 3.96681 7.32355 3.87615 8 3.8752C8.68 3.8784 9.364 3.9672 10.0032 4.1448C11.5304 3.108 12.2008 3.3232 12.2008 3.3232C12.6376 4.4264 12.3624 5.2416 12.2808 5.444C12.7928 6.004 13.1032 6.72 13.1032 7.5944C13.1032 10.6728 11.232 11.3504 9.4504 11.5488C9.7376 11.796 9.9928 12.2848 9.9928 13.0328C9.9928 14.1032 9.9832 14.968 9.9832 15.2304C9.9832 15.4448 10.1272 15.6944 10.5336 15.616C12.1266 15.0817 13.5115 14.0602 14.4924 12.696C15.4733 11.3318 16.0007 9.69385 16 8.0136C16 3.5872 12.4176 0 8 0Z" fill="#242E36" />
+    </g>
+    <defs>
+      <clipPath id="clip0_14_6286">
+        <rect width="16" height="16" fill="white" />
+      </clipPath>
+    </defs>
+  </svg>
+}
+
+export function UpArrowIcon(props: SVGProps<SVGSVGElement>) {
+  return <svg width="31" height="31" viewBox="0 0 31 31" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
+    <title>Up Arrow Icon</title>
+    <g filter="url(#filter0_d_88_2116)">
+      <path d="M3.93934 21.9393C3.35355 22.5251 3.35355 23.4749 3.93934 24.0607C4.52513 24.6464 5.47487 24.6464 6.06066 24.0607L3.93934 21.9393ZM25.5 4C25.5 3.17157 24.8284 2.5 24 2.5H10.5C9.67157 2.5 9 3.17157 9 4C9 4.82843 9.67157 5.5 10.5 5.5H22.5V17.5C22.5 18.3284 23.1716 19 24 19C24.8284 19 25.5 18.3284 25.5 17.5V4ZM6.06066 24.0607L25.0607 5.06066L22.9393 2.93934L3.93934 21.9393L6.06066 24.0607Z" fill="white" />
+    </g>
+    <defs>
+      <filter id="filter0_d_88_2116" x="0.5" y="0.5" width="30" height="30" filterUnits="userSpaceOnUse" colorInterpolationFilters="sRGB">
+        <feFlood floodOpacity="0" result="BackgroundImageFix" />
+        <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha" />
+        <feOffset dx="1" dy="2" />
+        <feGaussianBlur stdDeviation="2" />
+        <feComposite in2="hardAlpha" operator="out" />
+        <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0" />
+        <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_88_2116" />
+        <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_88_2116" result="shape" />
+      </filter>
+    </defs>
+  </svg>
+}
+
+export function SimilarTopicsIcon(props: SVGProps<SVGSVGElement>) {
+  return <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
+    <title>Similar Topics Icon</title>
+    <path id="Layer 58" d="M12 0C9.62663 0 7.30655 0.703787 5.33316 2.02236C3.35977 3.34094 1.8217 5.21508 0.913451 7.4078C0.00519945 9.60051 -0.232441 12.0133 0.230582 14.3411C0.693604 16.6689 1.83649 18.807 3.51472 20.4853C5.19295 22.1635 7.33115 23.3064 9.65892 23.7694C11.9867 24.2324 14.3995 23.9948 16.5922 23.0865C18.7849 22.1783 20.6591 20.6402 21.9776 18.6668C23.2962 16.6935 24 14.3734 24 12C24 8.8174 22.7357 5.76515 20.4853 3.51472C18.2348 1.26428 15.1826 0 12 0ZM6.54546 13.0909C6.3297 13.0909 6.11878 13.0269 5.93938 12.9071C5.75998 12.7872 5.62016 12.6168 5.53759 12.4175C5.45502 12.2181 5.43342 11.9988 5.47551 11.7872C5.5176 11.5756 5.6215 11.3812 5.77407 11.2286C5.92664 11.076 6.12102 10.9721 6.33263 10.93C6.54425 10.888 6.76359 10.9096 6.96293 10.9921C7.16227 11.0747 7.33264 11.2145 7.45252 11.3939C7.57239 11.5733 7.63637 11.7842 7.63637 12C7.63637 12.2893 7.52143 12.5668 7.31685 12.7714C7.11226 12.976 6.83478 13.0909 6.54546 13.0909ZM12 13.0909C11.7842 13.0909 11.5733 13.0269 11.3939 12.9071C11.2145 12.7872 11.0747 12.6168 10.9921 12.4175C10.9096 12.2181 10.888 11.9988 10.9301 11.7872C10.9721 11.5756 11.076 11.3812 11.2286 11.2286C11.3812 11.076 11.5756 10.9721 11.7872 10.93C11.9988 10.888 12.2181 10.9096 12.4175 10.9921C12.6168 11.0747 12.7872 11.2145 12.9071 11.3939C13.0269 11.5733 13.0909 11.7842 13.0909 12C13.0909 12.2893 12.976 12.5668 12.7714 12.7714C12.5668 12.976 12.2893 13.0909 12 13.0909ZM17.4545 13.0909C17.2388 13.0909 17.0279 13.0269 16.8485 12.9071C16.6691 12.7872 16.5292 12.6168 16.4467 12.4175C16.3641 12.2181 16.3425 11.9988 16.3846 11.7872C16.4267 11.5756 16.5306 11.3812 16.6832 11.2286C16.8357 11.076 17.0301 10.9721 17.2417 10.93C17.4533 10.888 17.6727 10.9096 17.872 10.9921C18.0714 11.0747 18.2417 11.2145 18.3616 11.3939C18.4815 11.5733 18.5455 11.7842 18.5455 12C18.5455 12.2893 18.4305 12.5668 18.2259 12.7714C18.0214 12.976 17.7439 13.0909 17.4545 13.0909Z" fill="#231F20" />
+  </svg>
+}
+
+export function FlagIcon(props: SVGProps<SVGSVGElement>) {
+  return <svg
+    width="800px"
+    height="800px"
+    viewBox="-3 0 20 20"
+    xmlns="http://www.w3.org/2000/svg"
+    {...props}
+  >
+    <title>Flag Icon</title>
+    <g transform="translate(-5 -2)">
+      <path fill="#4f85fc" transform="translate(6 5)" d="M0 0H6V6H0z" />
+      <path
+        d="M18 7h-6v4l-1 2h7l-1-3zM6 11h6V5H6zm0-8v18"
+        fill="none"
+        stroke="#0000ba"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth={2}
+      />
+    </g>
+  </svg>
+}
+
+export function FinanceIcon(props: SVGProps<SVGSVGElement>) {
+  return <svg
+    fill="#0000ba"
+    width="800px"
+    height="800px"
+    viewBox="0 0 24 24"
+    data-name="Flat Line"
+    xmlns="http://www.w3.org/2000/svg"
+    className="icon flat-line"
+    {...props}
+  >
+    <title>Finance Icon</title>
+    <path
+      d="M17 5H7a4 4 0 01-4 4v6a4 4 0 014 4h10a4 4 0 014-4V9a4 4 0 01-4-4z"
+      fill="#4f85fc"
+      strokeWidth={2}
+    />
+    <path
+      d="M14 9h-2.5a1.5 1.5 0 00-1.5 1.5h0a1.5 1.5 0 001.5 1.5h1a1.5 1.5 0 011.5 1.5h0a1.5 1.5 0 01-1.5 1.5H10"
+      fill="none"
+      stroke="#0000ba"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth={2}
+    />
+    <path
+      data-name="primary"
+      d="M21 6a1 1 0 00-1-1h-3a4 4 0 004 4h0zM3 9h0a4 4 0 004-4H4a1 1 0 00-1 1zm18 6h0a4 4 0 00-4 4h3a1 1 0 001-1zM3 18a1 1 0 001 1h3a4 4 0 00-4-4h0zm9-9V8m0 8v-1m8 4H4a1 1 0 01-1-1V6a1 1 0 011-1h16a1 1 0 011 1v12a1 1 0 01-1 1z"
+      fill="none"
+      stroke="#0000ba"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth={2}
+    />
+  </svg>
+}
+
+export function MachineLearningIcon(props: SVGProps<SVGSVGElement>) {
+  return <svg
+    fill="#000"
+    width="800px"
+    height="800px"
+    viewBox="0 0 24 24"
+    data-name="Flat Line"
+    xmlns="http://www.w3.org/2000/svg"
+    className="icon flat-line"
+    {...props}
+  >
+    <title>Machine Learning Icon</title>
+    <path
+      d="M11.27 3a6 6 0 00-3.53 10.22A4.13 4.13 0 019 16.12.49.49 0 009 16h6a.49.49 0 000 .12 4 4 0 011.19-2.83A6 6 0 0011.27 3z"
+      fill="#4f85fc"
+      strokeWidth={2}
+    />
+    <path
+      d="M16.19 13.29A4 4 0 0015 16.12V19a1 1 0 01-1 1h-4a1 1 0 01-1-1v-2.87a4.13 4.13 0 00-1.26-2.91 6 6 0 118.45.07zM9 16a.57.57 0 010 .13V19a1 1 0 001 1h4a1 1 0 001-1v-2.88a.49.49 0 010-.12zm4 4h-2v1h2z"
+      fill="none"
+      stroke="#0000ba"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth={2}
+    />
+  </svg>
+}
+
+export function BasketballIcon(props: SVGProps<SVGSVGElement>) {
+  return <svg
+    width="800px"
+    height="800px"
+    viewBox="-0.01 0 20.022 20.022"
+    xmlns="http://www.w3.org/2000/svg"
+    {...props}
+  >
+    <title>Basketball Icon</title>
+    <path
+      fill="#4f85fc"
+      d="M9.17 14.83A10.66 10.66 0 0112.24 21 9 9 0 0021 12.24a10.66 10.66 0 01-6.16-3.07A10.66 10.66 0 0111.76 3 9 9 0 003 11.76a10.66 10.66 0 016.17 3.07z"
+      transform="translate(-2.008 -1.996)"
+    />
+    <path
+      d="M12.23 20.88a10.66 10.66 0 00-3.06-6 10.62 10.62 0 00-6-3.05"
+      fill="none"
+      stroke="#0000ba"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth={2}
+      transform="translate(-2.008 -1.996)"
+    />
+    <path
+      data-name="primary"
+      d="M11.78 3.13a10.53 10.53 0 003.05 6 10.64 10.64 0 006 3"
+      fill="none"
+      stroke="#0000ba"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth={2}
+      transform="translate(-2.008 -1.996)"
+    />
+    <path
+      data-name="primary"
+      d="M5.82 18.18L18.18 5.82m-.06 12.3L5.88 5.88m-.24 12.48a9 9 0 100-12.72 9 9 0 000 12.72z"
+      fill="none"
+      stroke="#0000ba"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth={2}
+      transform="translate(-2.008 -1.996)"
+    />
+  </svg>
+}
+
+
+
+export function Logo(props: SVGProps<SVGSVGElement>) {
   return (
     <svg
       width={125}
@@ -9,8 +195,10 @@ export function Logo(props: ComponentPropsWithoutRef<"svg">) {
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
       xmlnsXlink="http://www.w3.org/1999/xlink"
+      aria-label="AI Tutor Logo"
       {...props}
     >
+      <title>AI Tutor Logo</title>
       <rect y={2} width={23} height={21} rx={3} fill="url(#pattern0_88_2710)" />
       <rect y={2} width={23} height={21} rx={3} fill="url(#pattern1_88_2710)" />
       <path

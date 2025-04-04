@@ -1,10 +1,10 @@
 import {
   TogetherAIStream,
-  TogetherAIStreamPayload,
+  type TogetherAIStreamPayload,
 } from "@/utils/TogetherAIStream";
 
 export async function POST(request: Request) {
-  let { messages } = await request.json();
+  const { messages } = await request.json();
 
   console.log("messages", messages);
   try {

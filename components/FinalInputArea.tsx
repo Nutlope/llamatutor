@@ -1,6 +1,6 @@
-import { FC, KeyboardEvent } from "react";
+import type { FC, KeyboardEvent } from "react";
+import { UpArrowIcon } from "./Icons";
 import TypeAnimation from "./TypeAnimation";
-import Image from "next/image";
 
 type TInputAreaProps = {
   promptValue: string;
@@ -22,7 +22,7 @@ const FinalInputArea: FC<TInputAreaProps> = ({
   handleChat,
 }) => {
   function onSubmit() {
-    let latestMessages = [...messages, { role: "user", content: promptValue }];
+    const latestMessages = [...messages, { role: "user", content: promptValue }];
     setPromptValue("");
     setMessages(latestMessages);
     handleChat(latestMessages);
@@ -32,10 +32,14 @@ const FinalInputArea: FC<TInputAreaProps> = ({
     if (e.key === "Enter") {
       if (e.shiftKey) {
         return;
-      } else {
-        e.preventDefault();
-        onSubmit();
       }
+      // Don't allow empty messages or sending while disabled
+      if (disabled || promptValue.trim() === "") {
+        e.preventDefault();
+        return;
+      }
+      e.preventDefault();
+      onSubmit();
     }
   };
 
@@ -51,7 +55,6 @@ const FinalInputArea: FC<TInputAreaProps> = ({
         <textarea
           placeholder="Follow up question"
           className="block w-full resize-none rounded-l-lg border-r p-6 text-gray-900 placeholder:text-gray-400"
-          disabled={disabled}
           value={promptValue}
           onKeyDown={handleKeyDown}
           required
@@ -70,14 +73,7 @@ const FinalInputArea: FC<TInputAreaProps> = ({
           </div>
         )}
 
-        <Image
-          unoptimized
-          src={"/up-arrow.svg"}
-          alt="search"
-          width={24}
-          height={24}
-          className={disabled ? "invisible" : ""}
-        />
+        <UpArrowIcon className={disabled ? "invisible w-6" : "w-6"} />
       </button>
     </form>
   );

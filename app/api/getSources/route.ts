@@ -1,16 +1,16 @@
 import { NextResponse } from "next/server";
 import { z } from "zod";
 
-let excludedSites = ["youtube.com"];
-let searchEngine: "bing" | "serper" = "serper";
+const excludedSites = ["youtube.com"];
+const searchEngine: "bing" | "serper" = "serper";
 
 export async function POST(request: Request) {
-  let { question } = await request.json();
+  const { question } = await request.json();
 
   const finalQuestion = `what is ${question}`;
 
   if (searchEngine === "bing") {
-    const BING_API_KEY = process.env["BING_API_KEY"];
+    const BING_API_KEY = process.env.BING_API_KEY;
     if (!BING_API_KEY) {
       throw new Error("BING_API_KEY is required");
     }
@@ -41,15 +41,17 @@ export async function POST(request: Request) {
     const rawJSON = await response.json();
     const data = BingJSONSchema.parse(rawJSON);
 
-    let results = data.webPages.value.map((result) => ({
+    const results = data.webPages.value.map((result) => ({
       name: result.name,
       url: result.url,
     }));
 
     return NextResponse.json(results);
     // TODO: Figure out a way to remove certain results like YT
-  } else if (searchEngine === "serper") {
-    const SERPER_API_KEY = process.env["SERPER_API_KEY"];
+  }
+  
+  if (searchEngine === "serper") {
+    const SERPER_API_KEY = process.env.SERPER_API_KEY;
     if (!SERPER_API_KEY) {
       throw new Error("SERPER_API_KEY is required");
     }
@@ -74,7 +76,7 @@ export async function POST(request: Request) {
 
     const data = SerperJSONSchema.parse(rawJSON);
 
-    let results = data.organic.map((result) => ({
+    const results = data.organic.map((result) => ({
       name: result.title,
       url: result.link,
     }));

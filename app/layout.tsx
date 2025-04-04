@@ -1,17 +1,17 @@
 import type { Metadata } from "next";
-import { Montserrat } from "next/font/google";
 import PlausibleProvider from "next-plausible";
+import { Montserrat } from "next/font/google";
 import "./globals.css";
 import Image from "next/image";
 import bgImage from "../public/new-bg.png";
 
 const montserrat = Montserrat({ subsets: ["latin"] });
 
-let title = "Llama Tutor – AI Personal Tutor";
-let description = "Learn faster with our open source AI personal tutor";
-let url = "https://llamatutor.com/";
-let ogimage = "https://llamatutor.together.ai/og-image.png";
-let sitename = "llamatutor.com";
+const title = "Llama Tutor – AI Personal Tutor";
+const description = "Learn faster with our open source AI personal tutor";
+const url = "https://llamatutor.com/";
+const ogimage = "https://llamatutor.together.ai/og-image.png";
+const sitename = "llamatutor.com";
 
 export const metadata: Metadata = {
   metadataBase: new URL(url),

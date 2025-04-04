@@ -8,7 +8,7 @@ export default function Sources({
   isLoading: boolean;
 }) {
   return (
-    <div className="bg-white max-lg:-order-1 lg:flex lg:w-full lg:max-w-[300px] lg:flex-col">
+    <div className="bg-white max-lg:-order-1 lg:flex lg:w-full lg:max-w-[300px] lg:flex-col lg:pt-4">
       <div className="flex items-start gap-4 pb-3 lg:pb-3.5">
         <h3 className="text-base font-bold uppercase leading-[152.5%] text-black">
           sources:{" "}
@@ -41,7 +41,11 @@ export default function Sources({
 
 const SourceCard = ({ source }: { source: { name: string; url: string } }) => {
   return (
-    <div className="flex h-[79px] w-full items-center gap-2.5 rounded-lg border border-gray-100 px-1.5 py-1 shadow-md">
+    <a
+      target="_blank"
+      rel="noopener noreferrer"
+      href={source.url}
+      className="flex h-[79px] w-full items-center gap-2.5 rounded-lg border border-gray-100 px-1.5 py-1 shadow-md hover:border-blue-500">
       <div className="shrink-0">
         <Image
           unoptimized
@@ -54,15 +58,12 @@ const SourceCard = ({ source }: { source: { name: string; url: string } }) => {
       </div>
       <div className="flex min-w-0 max-w-[192px] flex-col justify-center gap-1">
         <h6 className="line-clamp-2 text-xs font-light">{source.name}</h6>
-        <a
-          target="_blank"
-          rel="noopener noreferrer"
-          href={source.url}
+        <span
           className="truncate text-xs font-light text-[#1B1B16]/30"
         >
           {source.url}
-        </a>
+        </span>
       </div>
-    </div>
+    </a>
   );
 };

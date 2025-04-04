@@ -1,12 +1,11 @@
-import { FC, KeyboardEvent } from "react";
+import type { FC, KeyboardEvent } from "react";
+import { UpArrowIcon } from "./Icons";
 import TypeAnimation from "./TypeAnimation";
-import Image from "next/image";
 
 type TInputAreaProps = {
   promptValue: string;
   setPromptValue: React.Dispatch<React.SetStateAction<string>>;
   disabled?: boolean;
-  handleChat: (messages?: { role: string; content: string }[]) => void;
   ageGroup: string;
   setAgeGroup: React.Dispatch<React.SetStateAction<string>>;
   handleInitialChat: () => void;
@@ -24,10 +23,14 @@ const InitialInputArea: FC<TInputAreaProps> = ({
     if (e.key === "Enter") {
       if (e.shiftKey) {
         return;
-      } else {
-        e.preventDefault();
-        handleInitialChat();
       }
+      // Don't allow empty messages or sending while disabled
+      if (disabled || promptValue.trim() === "") {
+        e.preventDefault();
+        return;
+      }
+      e.preventDefault();
+      handleInitialChat();
     }
   };
 
@@ -78,14 +81,7 @@ const InitialInputArea: FC<TInputAreaProps> = ({
           </div>
         )}
 
-        <Image
-          unoptimized
-          src={"/up-arrow.svg"}
-          alt="search"
-          width={24}
-          height={24}
-          className={disabled ? "invisible" : ""}
-        />
+        <UpArrowIcon className={disabled ? "invisible w-6" : "w-6"} />
         <span className="ml-2 font-bold text-white sm:hidden">Search</span>
       </button>
     </form>

@@ -1,16 +1,21 @@
+import { cleanedText, fetchWithTimeout } from "@/utils/utils";
 import { Readability } from "@mozilla/readability";
 import jsdom, { JSDOM } from "jsdom";
-import { cleanedText, fetchWithTimeout } from "@/utils/utils";
 import { NextResponse } from "next/server";
 
 export const maxDuration = 30;
 
+type Source = {
+  url: string;
+  name: string;
+}
+
 export async function POST(request: Request) {
-  let { sources } = await request.json();
+  const { sources } = await request.json();
 
   console.log("[getAnswer] Fetching text from source URLS");
-  let finalResults = await Promise.all(
-    sources.map(async (result: any) => {
+  const finalResults = await Promise.all(
+    sources.map(async (result: Source) => {
       try {
         // Fetch the source URL, or abort if it's been 3 seconds
         const response = await fetchWithTimeout(result.url);
@@ -20,7 +25,7 @@ export async function POST(request: Request) {
 
         const doc = dom.window.document;
         const parsed = new Readability(doc).parse();
-        let parsedContent = parsed
+        const parsedContent = parsed
           ? cleanedText(parsed.textContent)
           : "Nothing found";
 

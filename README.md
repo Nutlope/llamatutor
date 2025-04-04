@@ -30,7 +30,7 @@
 - [ ] Add a share & copy buttons that folks can click on after convos are generated
 - [ ] Add potential follow up questions + new chat at the end of chat page
 - [ ] Split the page into two pages and add back the footer
-- [ ] Move all my icons into their own typescript file (transform.tools)
+- [x] Move all my icons into their own typescript file (transform.tools)
 - [ ] Add a more detailed landing page with a nice section with the GitHub link
 - [ ] Add nice hamburger menu on mobile
 - [ ] Try out the generative UI stuff from Vercel
