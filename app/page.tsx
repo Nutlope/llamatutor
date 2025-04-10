@@ -1,19 +1,15 @@
 "use client";
 
+import { useState } from "react";
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
 import Sources from "@/components/Sources";
-import { useState } from "react";
-import {
-  createParser,
-  ParsedEvent,
-  ReconnectInterval,
-} from "eventsource-parser";
+import { createParser, ParsedEvent, ReconnectInterval } from "eventsource-parser";
 import { getSystemPrompt } from "@/utils/utils";
 import Chat from "@/components/Chat";
 
-export default function Home() {
+export default function HomePage() {
   const [inputValue, setInputValue] = useState("");
   const [topic, setTopic] = useState("");
   const [showResult, setShowResult] = useState(false);
@@ -50,7 +46,6 @@ export default function Home() {
       throw new Error(chatRes.statusText);
     }
 
-    // This data is a ReadableStream
     const data = chatRes.body;
     if (!data) {
       return;
@@ -63,7 +58,7 @@ export default function Home() {
         try {
           const text = JSON.parse(data).text ?? "";
           fullAnswer += text;
-          // Update messages with each chunk
+
           setMessages((prev) => {
             const lastMessage = prev[prev.length - 1];
             if (lastMessage.role === "assistant") {
@@ -81,7 +76,6 @@ export default function Home() {
       }
     };
 
-    // https://web.dev/streams/#the-getreader-and-read-methods
     const reader = data.getReader();
     const decoder = new TextDecoder();
     const parser = createParser(onParse);
@@ -164,7 +158,8 @@ export default function Home() {
           />
         )}
       </main>
-      {/* <Footer /> */}
+
+      <Footer />
     </>
   );
 }

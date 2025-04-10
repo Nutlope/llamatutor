@@ -27,7 +27,6 @@
 
 ## Future Tasks
 
-- [ ] Add a share & copy buttons that folks can click on after convos are generated
 - [ ] Add potential follow up questions + new chat at the end of chat page
 - [ ] Split the page into two pages and add back the footer
 - [ ] Move all my icons into their own typescript file (transform.tools)
