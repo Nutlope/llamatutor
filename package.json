@@ -11,6 +11,7 @@
   "dependencies": {
     "@headlessui/react": "^2.1.2",
     "@mozilla/readability": "^0.5.0",
+    "@upstash/ratelimit": "^2.0.5",
     "eventsource-parser": "^1.1.2",
     "jsdom": "^24.1.0",
     "llama3-tokenizer-js": "^1.1.3",
