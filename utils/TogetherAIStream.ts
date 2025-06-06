@@ -33,6 +33,7 @@ export async function TogetherAIStream(payload: TogetherAIStreamPayload) {
     headers: {
       "Content-Type": "application/json",
       "Helicone-Auth": `Bearer ${process.env.HELICONE_API_KEY}`,
+      "Helicone-Property-AppName": "llamatutor",
       Authorization: `Bearer ${process.env.TOGETHER_API_KEY ?? ""}`,
     },
     method: "POST",
