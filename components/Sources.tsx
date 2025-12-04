@@ -41,7 +41,12 @@ export default function Sources({
 
 const SourceCard = ({ source }: { source: { name: string; url: string } }) => {
   return (
-    <div className="flex h-[79px] w-full items-center gap-2.5 rounded-lg border border-gray-100 px-1.5 py-1 shadow-md">
+    <a
+      href={source.url}
+      target="_blank"
+      rel="noreferrer"
+      className="flex h-[79px] w-full items-center gap-2.5 rounded-lg border border-gray-100 px-1.5 py-1 shadow-md"
+    >
       <div className="shrink-0">
         <Image
           unoptimized
@@ -54,15 +59,10 @@ const SourceCard = ({ source }: { source: { name: string; url: string } }) => {
       </div>
       <div className="flex min-w-0 max-w-[192px] flex-col justify-center gap-1">
         <h6 className="line-clamp-2 text-xs font-light">{source.name}</h6>
-        <a
-          target="_blank"
-          rel="noopener noreferrer"
-          href={source.url}
-          className="truncate text-xs font-light text-[#1B1B16]/30"
-        >
+        <span className="truncate text-xs font-light text-[#1B1B16]/30">
           {source.url}
-        </a>
+        </span>
       </div>
-    </div>
+    </a>
   );
 };

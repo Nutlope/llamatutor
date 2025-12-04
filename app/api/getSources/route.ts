@@ -15,14 +15,16 @@ export async function POST(request: Request) {
 
   const exa = new Exa(EXA_API_KEY);
 
-  const results = await exa.search(finalQuestion, {
+  const results = await exa.searchAndContents(finalQuestion, {
     numResults: 9,
     excludeDomains: excludedSites,
+    text: { maxCharacters: 10000 },
   });
 
   let mappedResults = results.results.map((result) => ({
     name: result.title,
     url: result.url,
+    content: result.text,
   }));
 
   return NextResponse.json(mappedResults);

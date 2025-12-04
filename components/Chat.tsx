@@ -7,6 +7,7 @@ import Image from "next/image";
 export default function Chat({
   messages,
   disabled,
+  loading,
   promptValue,
   setPromptValue,
   setMessages,
@@ -15,6 +16,7 @@ export default function Chat({
 }: {
   messages: { role: string; content: string }[];
   disabled: boolean;
+  loading: boolean;
   promptValue: string;
   setPromptValue: React.Dispatch<React.SetStateAction<string>>;
   setMessages: React.Dispatch<
@@ -28,14 +30,14 @@ export default function Chat({
   const [didScrollToBottom, setDidScrollToBottom] = useState(true);
 
   function scrollToBottom() {
-    messagesEndRef.current?.scrollIntoView({ behavior: "instant" });
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   }
 
   useEffect(() => {
-    if (didScrollToBottom) {
+    if (loading || didScrollToBottom) {
       scrollToBottom();
     }
-  }, [didScrollToBottom, messages]);
+  }, [didScrollToBottom, messages, loading]);
 
   useEffect(() => {
     let el = scrollableContainerRef.current;

@@ -73,7 +73,7 @@ export const suggestions: suggestionType[] = [
 ];
 
 export const getSystemPrompt = (
-  finalResults: { fullContent: string }[],
+  finalResults: { content: string }[],
   ageGroup: string,
 ) => {
   return `
@@ -83,11 +83,9 @@ export const getSystemPrompt = (
 
   <teaching_info>
   ${"\n"}
-  ${finalResults
-    .slice(0, 7)
-    .map(
-      (result, index) => `## Webpage #${index}:\n ${result.fullContent} \n\n`,
-    )}
+   ${finalResults
+     .slice(0, 7)
+     .map((result, index) => `## Webpage #${index}:\n ${result.content} \n\n`)}
   </teaching_info>
 
   Here's the age group to teach at:
