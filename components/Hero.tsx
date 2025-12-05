@@ -96,7 +96,7 @@ const Hero: FC<THeroProps> = ({
               target="_blank"
               rel="noopener noreferrer"
             >
-              Star it on github.
+              Star it on Github.
             </a>
           </span>
         </p>

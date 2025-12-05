@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 
-export async function middleware(req: NextRequest) {
-  let country = req.geo?.country;
+export async function proxy(req: NextRequest) {
+  let country = req.headers.get("X-Vercel-IP-Country");
   // Temporarily blocking traffic from India since I'm seeing abuse from there.
   if (country === "IN") {
     return new NextResponse("Access Denied", { status: 403 });

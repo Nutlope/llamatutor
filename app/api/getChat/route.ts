@@ -4,7 +4,7 @@ import {
 } from "@/utils/TogetherAIStream";
 import { Ratelimit } from "@upstash/ratelimit";
 import { Redis } from "@upstash/redis";
-import { headers } from "next/headers";
+import { NextRequest } from "next/server";
 
 let ratelimit: Ratelimit | undefined;
 
@@ -19,11 +19,11 @@ if (process.env.UPSTASH_REDIS_REST_URL) {
   });
 }
 
-export async function POST(request: Request) {
+export async function POST(request: NextRequest) {
   let { messages } = await request.json();
 
   if (ratelimit) {
-    const identifier = getIPAddress();
+    const identifier = getIPAddress(request);
 
     const { success } = await ratelimit.limit(identifier);
     if (!success) {
@@ -53,13 +53,13 @@ export async function POST(request: Request) {
 
 export const runtime = "edge";
 
-function getIPAddress() {
+function getIPAddress(req: NextRequest) {
   const FALLBACK_IP_ADDRESS = "0.0.0.0";
-  const forwardedFor = headers().get("x-forwarded-for");
+  const forwardedFor = req.headers.get("x-forwarded-for");
 
   if (forwardedFor) {
     return forwardedFor.split(",")[0] ?? FALLBACK_IP_ADDRESS;
   }
 
-  return headers().get("x-real-ip") ?? FALLBACK_IP_ADDRESS;
+  return req.headers.get("x-real-ip") ?? FALLBACK_IP_ADDRESS;
 }

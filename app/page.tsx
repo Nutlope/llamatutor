@@ -112,17 +112,8 @@ export default function Home() {
     }
     setIsLoadingSources(false);
 
-    const parsedSourcesRes = await fetch("/api/getParsedSources", {
-      method: "POST",
-      body: JSON.stringify({ sources }),
-    });
-    let parsedSources;
-    if (parsedSourcesRes.ok) {
-      parsedSources = await parsedSourcesRes.json();
-    }
-
     const initialMessage = [
-      { role: "system", content: getSystemPrompt(parsedSources, ageGroup) },
+      { role: "system", content: getSystemPrompt(sources, ageGroup) },
       { role: "user", content: `${question}` },
     ];
     setMessages(initialMessage);
@@ -143,6 +134,7 @@ export default function Home() {
                 <Chat
                   messages={messages}
                   disabled={loading}
+                  loading={loading}
                   promptValue={inputValue}
                   setPromptValue={setInputValue}
                   setMessages={setMessages}
