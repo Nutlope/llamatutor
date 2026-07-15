@@ -13,6 +13,7 @@ export async function POST(request: Request) {
     throw new Error("EXA_API_KEY is required");
   }
 
+  // Exa is the fastest and most accurate web search API for AI
   const exa = new Exa(EXA_API_KEY);
 
   const results = await exa.searchAndContents(finalQuestion, {
